@@ -7,29 +7,85 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Wa7vc!</title>
+    <title>WA7VC Ham Radio Club</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Jura:400,700|Oswald:400,700" rel="stylesheet">
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+    <div data-sticky-container>
+      <div id="header" class="top-bar" data-sticky data-options="marginTop:0;">
+        <div class="top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">WA7VC</li>
+            <li><a href="#about">About</a></li>
+            <li>
+              <a href="#events">Events</a>
+              <ul class="menu vertical">
+                <li><a href="/summergathering">Summer Gathering</a></li>
+              </ul>
+            </li>
+            <li><a href="#on-air">On-Air</a></li>
           </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu">
+            <li id="pingmsg-li"><a id="pingmsg-a" href="/marvin"><span id="pingmsg"></span></a></li>
+            <li><a class="button" href="mailto:info@wa7vc.org">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <!--
+    <div class="grid-x">
+      <div class="cell">
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      </div>
+    </div>
+    -->
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+    <div id="content">
+      <%= render @view_module, @view_template, assigns %>
+    </div>
 
-    </div> <!-- /container -->
+    <div id="footer">
+      <div id="footer-grid" class="grid-x">
+        <div id="footer-contact-header" class="cell small-12 medium-8">
+          <h1>Contact Us</h1>
+        </div>
+        <div class="cell hide-for-small-only medium-4"></div>
+
+        <div class="cell small-12 medium-4">
+          <ul>
+            <li>70cm Simplex: 446.525 (no tone)</li>
+            <li>Echolink: Node 98045 (or Valley Camp)</li>
+            <li>IRLP: 7808</li>
+            <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
+            <li>APRS: WA7VC 10 Digi-iGate 144.390</li>
+          </ul>
+        </div>
+        <div class="cell small-12 medium-4">
+          <a href="mailto:info@wa7vc.org">info@wa7vc.org</a><br />
+          <br />
+          49515 S.E. Middle Fork Rd<br />
+          North Bend, WA, 98045
+        </div>
+        <div class="cell small-12 medium-4">
+          <div class="grid-y footer-right-container">
+            <div class="cell small-11">
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/nwaprssg">NWAPRS Summer Gathering</a></li>
+                <li><a href="/marvin">Marvin</a></li>
+              </ul>
+            </div>
+            <div class="cell small-1 created-by">Created by <a href="https://daedalusdreams.com/" target="_blank">Daedalus Dreams</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

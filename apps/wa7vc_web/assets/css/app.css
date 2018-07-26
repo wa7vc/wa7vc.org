@@ -1,1 +1,174 @@
 /* This file is for your main application css. */
+
+body {
+  background: rgb(255,255,255);
+  color: rgb(0,0,0);
+}
+
+#header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Jura, san-serif;
+  z-index: 99;
+}
+
+#pingmsg-li {
+  padding-left: 10px;
+  padding-right: 30px;
+}
+
+#pingmsg-a {
+  display: none;
+}
+
+#hero {
+  background-color: rgb(56,56,56);
+  text-align: center;
+  padding-top:30px;
+}
+
+#hero h1 {
+  color: rgb(254,254,254);
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: Oswald, Helvetica, san-serif;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#hero h2 {
+  color: rgb(254,254,254);
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: Jura, Helvetica, san-serif;
+  padding-bottom: 350px;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#hero img {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+#hero-image {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  padding-top: 12rem;
+}
+#hero-image img {
+  position: absolute;
+  top: -315px;
+  z-index: 50;
+  left: 50%;
+  width: auto;
+  transform: translateX(-50%);
+}
+
+
+#content {
+
+}
+
+#content > section.bg-light {
+  background-color: rgb(255,255,255);
+}
+
+#content > section.bg-medium {
+  background-color: rgb(186,186,186);
+}
+
+#content > section.bg-dark {
+  background-color: rgb(56,56,56);
+  color: rgb(254,254,254);
+}
+
+#content > section > .section-drop-image {
+  text-align: center;
+  position: relative;
+  min-height:250px;
+}
+#content > section > .section-drop-image > img {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#content > section > div {
+  padding-top:4rem;
+  padding-bottom:1rem;
+  padding-right: 3rem;
+  padding-left: 3rem;
+  max-width: 90rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#content > section h5 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: Jura, san-serif;
+}
+
+#content > section p {
+  
+}
+
+
+#footer {
+  width: 100%;
+  background: rgb(42,46,49);
+  color: rgb(255,255,255);
+}
+
+#footer > div {
+  padding-right: 3rem;
+  padding-left: 3rem;
+  max-width: 90rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#footer #footer-grid {
+  min-height: 24rem;
+  padding:4rem;
+}
+
+#footer #footer-contact-header {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-family: Jura, san-serif;
+}
+
+#footer .footer-right-container {
+  height: 100%;
+}
+
+#footer .created-by {
+  font-size: 0.8rem;
+}
+
+.upper-curve {
+  position: relative;
+}
+
+.upper-curve::after {
+    background-image: url(/images/upper-curve-white.svg);
+    background-size: 100% 100%;
+    content: "";
+    display: block;
+    height: 50px;
+    position: absolute;
+    top: -57px;
+    width: 100%;
+    z-index: 1;
+}
+
+.p-spacer {
+  min-height: 50px;
+}

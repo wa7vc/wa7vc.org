@@ -1,36 +1,105 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
+<div id="hero">
+  <h1>WA7VC</h1>
+  <h2>Ham Radio in the Middle Fork of the Snoqualamie Valley</h2>
 </div>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
+<div id="hero-image" class="upper-curve">
+  <img src="/images/640x480-placeholder.png" alt="Something hammy" />
 </div>
+
+<section id="about" class="bg-light">
+  <div class="grid-x">
+    <div class="cell small-12 medium-7">
+      <h5>Who we are</h5>
+      <p>WA7VC, the Valley Camp Amateur Radio Group, serving the Upper Snoqualmie Valley community since 1995.</p>
+
+      <p>
+        The home of WA7VC is <a href="https://valleycamp.org/">Valley Camp</a>, located 6 miles NE of North Bend WA.<br />
+        We have onsite a tower with a 10/15/20 meter beam and 2m/440 high gain vertical.<br />
+        5 trees on the property have pulleys at or above 80' allowing for easy long wire installations.
+      </p>
+
+      <div class="p-spacer"></div>
+
+      <h5>Getting Involved</h5>
+      Donations to support ongoing ham radio activities can be made to Valley Camp, a 501(c)3 organization. Indicate you are supporting WA7VC.
+    </div>
+
+    <div class="cell medium-5 hide-for-small-only">
+      <img src="/images/500x500-placeholder.png" alt="Something else" /> 
+    </div>
+  </div>
+</section>
+
+<section id="on-air" class="bg-dark">
+  <div class="section-drop-image">
+    <img src="/images/1024x240-placeholder.png" alt="Antennas Galore!" />
+  </div>
+  <div class="grid-x">
+    <div class="cell small-12 medium-7">
+      <h5>On the air</h5>
+      There are a number of ways to reach us either via good 'ol RF or the internet:
+      <ul>
+        <li>70cm Simplex: 446.525 (no tone)</li>
+        <li>Echolink: Node 98045 (or Valley Camp)</li>
+        <li>IRLP: 7808</li>
+        <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
+        <li>APRS: WA7VC 10 Digi-iGate 144.390</li>
+      </ul>
+
+      Our on-site EchoIRLP node is powered by a Raspberry Pi. It offers the following commands:
+      <ul>
+        <li>#00 - Announce the...</li>
+      </ul>
+    </div>
+
+    <div class="cell medium-5 hide-for-small-only">
+      <h5>But what's the weather?</h5>
+      Our Davis VantagePro2 Plus weather station provides data to the following sites:
+      <ul>
+        <li><a href="https://www.wunderground.com/personal-weather-station/dashboard?ID=KWANORTH35">WeatherUnderground - KWANORTH35</a></li>
+        <li><a href="http://www.wxqa.com/sss/search1.cgi?keyword=EW7771">CWOP - EW7771</a></li>
+        <li><a href="https://www.wrh.noaa.gov/mesowest/timeseries.php?wfo=sew&sid=E7771&num=48">NWS</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="events" class="bg-medium">
+  <div class="grid-x">
+    <div class="cell medium-5 hide-for-small-only">
+      <img src="/images/500x500-placeholder.png" alt="Events" /> 
+    </div>
+
+    <div class="cell small-12 medium-7">
+      <h5>Events</h5>
+      WA7VC has hosted many Ham Radio Events over the years including: 
+      <ul>
+        <li><a href="https://www.winterfieldday.com/">Winter Field Day</a></li>
+        <li><a href="http://www.arrl.org/field-day">ARRL Field Day</a></li>
+        <li><a href="https://sites.google.com/site/pnwqrpgroup/home">SalmonCon</a></li>
+        <li>NW APRS Summer Gathering</a></li>
+        <li><a href="http://www.wwdxc.org/salmonrun/">Salmon Run</a></li>
+        <li><a href="https://www.scouting.org/jota/">BSA JOTA/JOTI</a></li>
+      </ul>
+
+      <h5>Calendar</h5>
+      Our upcoming schedule of events is:
+      <ul>
+        <li>September 7-9, 2018: <a href="#summergathering">Summer Gathering</a></li>
+      </ul>
+
+      <h5 id="summergathering">NW APRS Summer Gathering</h5>
+      <p>
+        Save the date, Septmeber 7-9 is our 21st annual Northwest APRS Summer Gathering, held at <a href="https://valleycamp.org">Valley Camp</a>.
+        Coming up soon is our 21st Annual Northwest APRS Summer Gathering!<br />
+        <br />
+        To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg" target="_blank">sign up for the newsletter</a>. (We promise, we don't send too many emails!)<br />
+        <br />
+        For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.<br />
+        To make your reservation contact Valley Camp at <a href="mailto:info@valleycamp.org">info@valleycamp.org"</a>. 
+      </p>
+    </div>
+  </div>
+</section>
+
