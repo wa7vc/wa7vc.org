@@ -2,7 +2,14 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-      joinTo: "js/app.js"
+      joinTo: "js/app.js",
+      order: {
+        before: [
+          "vendor/js/jquery.js",
+          "vendor/js/what-input.js",
+          "vendor/js/foundation.min.js",
+        ]
+      }
 
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
@@ -20,7 +27,12 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.css",
+      order: {
+        before: [
+          "vendor/css/foundation.min.css",
+        ]
+      }
     },
     templates: {
       joinTo: "js/app.js"
