@@ -2,6 +2,24 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :marvin, Marvin.Robot,
+  adapter: Hedwig.Adapters.IRC,
+  server: "chat.freenode.net",
+  port: 6697,
+  ssl?: true,
+  name: "WA7VC",
+  full_name: "Marvin the WA7VC Robot",
+  aka: "!",
+  rooms: [
+    {"#wa7vc", ""},
+  ],
+  responders: [
+    {Hedwig.Responders.Help, []},
+    {Hedwig.Responders.Ping, []},
+    {Hedwig.Responders.MarvinMisc, []},
+  ]
+
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,
@@ -28,3 +46,5 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env}.exs"
+
+import_config "#{Mix.env}.exs"
