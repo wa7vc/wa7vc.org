@@ -51,12 +51,26 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // Finally, pass the token on connect as below. Or remove it
 // from connect if you don't care about authentication.
 
+
 socket.connect()
 
 // Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("topic:subtopic", {})
-channel.join()
+let pingmsg_channel = socket.channel("website:pingmsg", {})
+pingmsg_channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
+
+let pingmsg_fadetimer = null
+
+function pingFade() {
+  window.clearTimeout(pingmsg_fadetimer)
+  pingmsg_fadetimer = window.setTimeout(function() { $("#pingmsg-a").fadeOut() }, 8000)
+}
+
+pingmsg_channel.on("message", (msg) => {
+  window.clearTimeout(pingmsg_fadetimer)
+  $("#pingmsg-a").fadeOut().text(msg.text).fadeIn()
+  pingFade();
+});
 
 export default socket
