@@ -1,18 +1,7 @@
 defmodule Marvin do
   @moduledoc """
-  Documentation for Marvin.
+  Marvin  is our depressed robot assistant.
+  This module handles webhooks/irc/notifications, and other
+  non-website based things.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Marvin.hello
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end

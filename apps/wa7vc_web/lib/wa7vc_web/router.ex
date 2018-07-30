@@ -20,12 +20,6 @@ defmodule Wa7vcWeb.Router do
     get "/nwaprssg", PageController, :nwaprssg
   end
 
-  scope "/webhooks", Wa7vcWeb do
-    pipe_through :api
-
-    post "/github", WebhookController, :github_webhook
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", Wa7vcWeb do
   #   pipe_through :api

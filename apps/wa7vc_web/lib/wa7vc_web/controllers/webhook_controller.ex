@@ -13,14 +13,12 @@ defmodule Wa7vcWeb.WebhookController do
 
     body = read_body(conn)
 
-    # Calculate HMAC SHA-1 hash of body using Wa7vc.Endpoint.github_webhook_secret as the salt
-    # If hash matches signature, hand off handling of this hook and return a good response.
-    #case valid_hash(body,hash) do
-      #{:ok, hash} ->
+    case Marvin.GithubWebhookHandler.handle_hook(signature, body) do
+      {:ok} ->
         Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "Got a #{event_type} event from GitHub!" }
         render conn, "github_webhook_response.json", %{event_type: event_type}
-      #{:error, :invalid_header} ->
-        #render TODO: ERROR
+      _ -> render conn, "github_webhook_error.json", %{}
+    end
 
   end
 end

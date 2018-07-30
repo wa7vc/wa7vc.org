@@ -20,4 +20,11 @@ defmodule Marvin.Robot do
   def handle_in(_msg, state) do
     {:noreply, state}
   end
+
+
+  def wa7vc_send(msg) do 
+    pid = :global.whereis_name(Application.get_env(:marvin, Marvin.Robot)[:name])
+    GenServer.cast(pid, {:send, %Hedwig.Message{room: "#wa7vc", text: msg}})
+  end
+
 end
