@@ -18,14 +18,14 @@
         <div class="top-bar-left">
           <ul class="dropdown menu" data-dropdown-menu>
             <li class="menu-text">WA7VC</li>
-            <li><a href="#about">About</a></li>
+            <li><a href="/#about">About</a></li>
             <li>
-              <a href="#events">Events</a>
+              <a href="/#events">Events</a>
               <ul class="menu vertical">
-                <li><a href="/summergathering">Summer Gathering</a></li>
+                <li><a href="/nwaprssg">NW APRS Summer Gathering</a></li>
               </ul>
             </li>
-            <li><a href="#on-air">On-Air</a></li>
+            <li><a href="/#on-air">On-Air</a></li>
           </ul>
         </div>
         <div class="top-bar-right">
@@ -77,8 +77,7 @@
             <div class="cell small-11">
               <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/nwaprssg">NWAPRS Summer Gathering</a></li>
-                <li><a href="/marvin">Marvin</a></li>
+                <li><a href="/nwaprssg">NW APRS Summer Gathering</a></li>
               </ul>
             </div>
             <div class="cell small-1 created-by">Created by <a href="https://daedalusdreams.com/" target="_blank">Daedalus Dreams</a></div>

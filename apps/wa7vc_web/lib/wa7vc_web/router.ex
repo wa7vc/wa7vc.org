@@ -17,6 +17,7 @@ defmodule Wa7vcWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/nwaprssg", PageController, :nwaprssg
   end
 
   scope "/webhooks", Wa7vcWeb do

@@ -4,7 +4,7 @@
 </div>
 
 <div id="hero-image" class="upper-curve">
-  <img src="/images/640x480-placeholder.png" alt="Something hammy" />
+  <img src="/images/overhead-640x480.png" alt="Looking down on an event." />
 </div>
 
 <section id="about" class="bg-light">
@@ -26,14 +26,14 @@
     </div>
 
     <div class="cell medium-5 hide-for-small-only">
-      <img src="/images/500x500-placeholder.png" alt="Something else" /> 
+      <img src="/images/antenna-class-500x500.png" alt="Antenna Workshop in the field" /> 
     </div>
   </div>
 </section>
 
 <section id="on-air" class="bg-dark">
   <div class="section-drop-image">
-    <img src="/images/1024x240-placeholder.png" alt="Antennas Galore!" />
+    <img src="/images/picnictable-workbench-1024x240.png" alt="Piles of computers or a picnic table" />
   </div>
   <div class="grid-x">
     <div class="cell small-12 medium-7">
@@ -49,7 +49,10 @@
 
       Our on-site EchoIRLP node is powered by a Raspberry Pi. It offers the following commands:
       <ul>
-        <li>#00 - Announce the...</li>
+        <li>*1 - Read the current time</li>
+        <li>*83 - Read data from Middle Fork river gauging station</li>
+        <li>*82 - Read data from Snoqualamie Falls river gauging station</li>
+        <li>*81 - Read data from North Fork river gauging station</li>
       </ul>
     </div>
 
@@ -68,7 +71,7 @@
 <section id="events" class="bg-medium">
   <div class="grid-x">
     <div class="cell medium-5 hide-for-small-only">
-      <img src="/images/500x500-placeholder.png" alt="Events" /> 
+      <img src="/images/balloon-500x500.png" alt="Preppeing a balloon for launch" /> 
     </div>
 
     <div class="cell small-12 medium-7">
@@ -97,7 +100,7 @@
         To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg" target="_blank">sign up for the newsletter</a>. (We promise, we don't send too many emails!)<br />
         <br />
         For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.<br />
-        To make your reservation contact Valley Camp at <a href="mailto:info@valleycamp.org">info@valleycamp.org"</a>. 
+        To make your reservation contact Valley Camp at <a href="mailto:info@valleycamp.org">info@valleycamp.org</a>. 
       </p>
     </div>
   </div>
