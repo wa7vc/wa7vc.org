@@ -20,6 +20,11 @@ config :marvin, Marvin.Hooker,
   github_webhook_secret: "The Github Webhook Secret (salt) Goes Here"
 ```
 
+./apps/wa7vc/config/prod.secret.exs
+```
+use Mix.Config
+```
+
 ./apps/wa7vc_web/config/prod.secret.exs
 ```
 use Mix.Config
@@ -45,4 +50,4 @@ asdf plugin-install nodejs
 asdf plugin-install erlang
 asdf plugin-install elixir
 ```
-Now you should be able to use scripts/build-release.sh to build the release
+Now you should be able to use `MIX_ENV=prod scripts/build-release.sh` to build the release
