@@ -1,6 +1,6 @@
 <div id="hero">
   <h1>WA7VC</h1>
-  <h2>Ham Radio in the Middle Fork of the Snoqualmie Valley</h2>
+  <h2>Ham Radio in the Snoqualmie Middle Fork Valley</h2>
 </div>
 
 <div id="hero-image" class="upper-curve">
@@ -61,9 +61,9 @@
       <h5>But what's the weather?</h5>
       Our Davis VantagePro2 Plus weather station provides data to the following sites:
       <ul>
-        <li><a href="https://www.wunderground.com/personal-weather-station/dashboard?ID=KWANORTH35">WeatherUnderground - KWANORTH35</a></li>
-        <li><a href="http://www.wxqa.com/sss/search1.cgi?keyword=EW7771">CWOP - EW7771</a></li>
-        <li><a href="https://www.wrh.noaa.gov/mesowest/timeseries.php?wfo=sew&sid=E7771&num=48">NWS</a></li>
+        <li><a href="https://www.wunderground.com/personal-weather-station/dashboard?ID=KWANORTH35" target="_blank">WeatherUnderground - KWANORTH35 <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://www.wxqa.com/sss/search1.cgi?keyword=EW7771" target="_blank">CWOP - EW7771 <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.wrh.noaa.gov/mesowest/timeseries.php?wfo=sew&sid=E7771&num=48" target="_blank">NWS <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
     </div>
   </div>
@@ -79,18 +79,18 @@
       <h5>Events</h5>
       WA7VC has hosted many Ham Radio Events over the years including: 
       <ul>
-        <li><a href="https://www.winterfieldday.com/">Winter Field Day</a></li>
-        <li><a href="http://www.arrl.org/field-day">ARRL Field Day</a></li>
-        <li><a href="https://sites.google.com/site/pnwqrpgroup/home">SalmonCon</a></li>
-        <li>NW APRS Summer Gathering</a></li>
-        <li><a href="http://www.wwdxc.org/salmonrun/">Salmon Run</a></li>
-        <li><a href="https://www.scouting.org/jota/">BSA JOTA/JOTI</a></li>
+        <li><a href="https://www.winterfieldday.com/" target="_blank">Winter Field Day <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://www.arrl.org/field-day" target="_blank">ARRL Field Day <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://pnwqrp.org/salmoncon" target="_blank">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="/nwaprssg">NW APRS Summer Gathering</a></li>
+        <li><a href="http://www.wwdxc.org/salmonrun/" target="_blank">Salmon Run <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.scouting.org/jota/" target="_blank">BSA JOTA/JOTI <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
 
       <h5>Calendar</h5>
       Our upcoming schedule of events is:
       <ul>
-        <li>September 7-9, 2018: <a href="#summergathering">Summer Gathering</a></li>
+        <li>September 7-9, 2018: <a href="/nwaprssg">Summer Gathering</a></li>
       </ul>
 
       <h5 id="summergathering">NW APRS Summer Gathering</h5>
@@ -98,7 +98,7 @@
         Save the date, Septmeber 7-9 is our 21st annual Northwest APRS Summer Gathering, held at <a href="https://valleycamp.org">Valley Camp</a>.
         Coming up soon is our 21st Annual Northwest APRS Summer Gathering!<br />
         <br />
-        To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg" target="_blank">sign up for the newsletter</a>. (We promise, we don't send too many emails!)<br />
+        To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg" target="_blank">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)<br />
         <br />
         For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.<br />
         To make your reservation contact Valley Camp at <a href="mailto:info@valleycamp.org">info@valleycamp.org</a>. 
