@@ -129,6 +129,24 @@ body {
   
 }
 
+.schedule-list {
+  list-style-type: none;
+}
+
+.schedule-list > li {
+  margin-bottom: 0.8rem;
+}
+
+.schedule-list > li > time {
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-bottom: 2px solid black;
+}
+.schedule-list > li > time:after {
+  content: "";
+  display: block;
+}
+
 
 #footer {
   width: 100%;
