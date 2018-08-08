@@ -51,18 +51,18 @@
     <div class="cell small-6 medium-4">
       <h5>Saturday (6/8):</h5>
       <ul class="schedule-list">
-        <li><time>0700 - 0730:</time> Coffee on, start gathering for breakfast</li>
-        <li><time>0730 - 0830:</time> Breakfast for all</li>
-        <li><time>0800:</time> Registration Opens</li>
-        <li><time>0845 - 0900:</time> Opening</li>
+        <li><time>0700 - 0830:</time> Breakfast - Curt WR5J</li>
+        <li><time>0845 - 0900:</time> Introduction - Thom K7FZO</li>
         <li><time>0900 - 1000:</time> Marine Marathon Digital Support - Corky AF7PM</li>
-        <li><time>1000 - 1100:</time> TBD
-        <li><time>1100 - 1200:</time> Lunch</li>
-        <li><time>1300 - 1400:</time> DMR - Bob AF9W and Mike NO7RF</li>
-        <li><time>1400 - 1500:</time> DMR - Bob AF9W and Mike NO7RF</li>
+        <li><time>1000 - 1100:</time> 44net and VPN - John N7VE</li>
+        <li><time>1100 - 1200:</time> HamWAN Update - Kenny KU7M
+        <li><time>1200 - 1300:</time> Lunch
+        <li><time>1300 - 1400:</time> DMR - Bob AF9W</li>
+        <li><time>1400 - 1500:</time> DMR Q&A - Bob AF9W and Mike NO7RF</li>
         <li><time>1500 - 1600:</time> SDR Concept with Raspberry Pi - Anna NH6Z</li>
         <li><time>1600 - 1700:</time> DRAWS - Digital Radio Amateur Workstation - Bryan K7UDR</li>
-        <li><time>1700 - 1830:</time> Dinner</li>
+        <li><time>1700 - 1730:</time> Wrap-Up - Thom K7FZO
+        <li><time>1730 - 1900:</time> BBQ Will be hot! Bring your own dinner!</li>
         <li><time>1830 - 2200:</time> Open time for Discussions, Fix-It Bench, Demonstrations, and evening campfire</li>
       </ul>
     </div>
