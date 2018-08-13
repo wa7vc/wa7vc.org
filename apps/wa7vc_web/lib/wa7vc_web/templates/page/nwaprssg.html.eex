@@ -38,7 +38,7 @@
     </div>
 
     <div class="cell small-6 medium-4">
-      <h5>Friday (6/7):</h5>
+      <h5>Friday (9/7):</h5>
       <ul class="schedule-list">
         <li>Setup</li>
         <li>Demonstrations</li>
@@ -49,7 +49,7 @@
     </div>
 
     <div class="cell small-6 medium-4">
-      <h5>Saturday (6/8):</h5>
+      <h5>Saturday (9/8):</h5>
       <ul class="schedule-list">
         <li><time>0700 - 0830:</time> Breakfast - Curt WR5J</li>
         <li><time>0845 - 0900:</time> Introduction - Thom K7FZO</li>
@@ -68,10 +68,12 @@
     </div>
 
     <div class="cell small-6 medium-4">
-      <h5>Sunday (6/9):</h5>
+      <h5>Sunday (9/9):</h5>
       <ul class="schedule-list">
         <li><time>0730 - 0900:</time> Breakfast for all</li>
-        <li>Presentations</li>
+        <li><time>0900-1000:</time> Nature Friendly Amateur Radio - Bruce Prior N7RR</li>
+        <li><time>1000-1100:</time> RAMROD: Ham Support - Curt</li>
+        <li><time>1100-1200:</time> HamWAN - Randy</li>
         <li>Possible Near-Space Balloon payload building class and launch (Weather Permitting)</li>
         <li><strong>More detailed schedule coming soon</strong></li>
       </ul>
