@@ -1,0 +1,12 @@
+APP="wa7vc_umbrella"
+
+BUILD_HOST="app1.daedalusdreams.com"
+BUILD_USER="wa7vc"
+BUILD_AT="/home/$BUILD_USER/edeliver/$APP/builds"
+
+# Used by umbrella projects only. (Modified from docs to directory things are actually being built at for Distillery)
+RELEASE_DIR="$BUILD_AT/_build/prod/rel/$APP"
+
+PRODUCTION_HOSTS="app1.daedalusdreams.com"
+PRODUCTION_USER="wa7vc"
+DELIVER_TO="/home/$PRODUCTION_USER/$APP_production"

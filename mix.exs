@@ -23,7 +23,8 @@ defmodule Wa7vc.Umbrella.Mixfile do
   # and cannot be accessed from applications inside the apps folder
   defp deps do
     [
-      {:distillery, "~> 1.5", runtime: false},
+      {:edeliver, ">= 0.6.0"},
+      {:distillery, "~> 2.0", warn_missing: false, runtime: false},
     ]
   end
 end
