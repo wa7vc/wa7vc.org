@@ -9,4 +9,4 @@ RELEASE_DIR="$BUILD_AT/_build/prod/rel/$APP"
 
 PRODUCTION_HOSTS="app1.daedalusdreams.com"
 PRODUCTION_USER="wa7vc"
-DELIVER_TO="/home/$PRODUCTION_USER/$APP_production"
+DELIVER_TO="/home/$PRODUCTION_USER/production" # $APP is automatically added at the end
