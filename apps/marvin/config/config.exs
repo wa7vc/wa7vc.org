@@ -19,8 +19,6 @@ config :marvin, Marvin.Robot,
     {Hedwig.Responders.MarvinMisc, []},
   ]
 
-config :marvin, Marvin.Hooker,
-  github_webhook_secret: "devsecret"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

@@ -1,4 +1,7 @@
 use Mix.Config
 
-# Import the secrets file, which is maintained outside of git
-import_config "prod.secret.exs"
+config :marvin, Marvin.Robot,
+  password: "${MARVIN_IRC_PASSWORD}"
+
+config :marvin, Marvin.Hooker,
+  github_webhook_secret: "${GITHUB_WEBHOOK_SECRET}"

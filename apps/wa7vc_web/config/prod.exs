@@ -19,7 +19,8 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
   root: ".",
-  version: Application.spec(:wa7vc_web, :vsn)
+  version: Application.spec(:wa7vc_web, :vsn),
+  secret_key_base: "${SECRET_KEY_BASE}"
 
 # ## SSL Support
 #
@@ -58,7 +59,3 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
 #
 #     config :wa7vc_web, Wa7vcWeb.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"

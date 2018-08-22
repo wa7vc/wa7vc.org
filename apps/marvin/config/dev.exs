@@ -6,4 +6,5 @@ config :marvin, Marvin.Robot,
   aka: "&",
   password: ""
 
-
+config :marvin, Marvin.Hooker,
+  github_webhook_secret: "devsecret"
