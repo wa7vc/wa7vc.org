@@ -10,3 +10,26 @@ RELEASE_DIR="$BUILD_AT/_build/prod/rel/$APP"
 PRODUCTION_HOSTS="app1.daedalusdreams.com"
 PRODUCTION_USER="wa7vc"
 DELIVER_TO="/home/$PRODUCTION_USER/production" # $APP is automatically added at the end
+
+
+pre_erlang_clean_compile() {
+  status "Updating NPM and building web assets"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+    cd '$BUILD_AT/apps/wa7vc_web/assets'
+    # TODO: Should this use $TARGET_MIX_ENV? If so, "prod"->"production" mismatch needs solving.
+    npm install $SILENCE && ./node_modules/brunch/bin/brunch build --production $SILENCE
+  "
+
+  status "Running phoenix.digest"             # log output prepended with "----->"
+  __sync_remote "                             # runs the commands on the build host
+    [ -f ~/.profile ] && source ~/.profile    # load profile (optional)
+    set -e                                    # fail if any command fails (recommended)
+    cd '$BUILD_AT'                            # enter the build directory on the build host (required)
+    # prepare something
+    mkdir -p priv/static # required by the phoenix.digest task
+    # run your custom task
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+  "
+}
