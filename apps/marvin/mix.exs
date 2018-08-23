@@ -4,7 +4,7 @@ defmodule Marvin.MixProject do
   def project do
     [
       app: :marvin,
-      version: "0.1.0",
+      version: append_revision("0.0.1"),
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
@@ -31,5 +31,16 @@ defmodule Marvin.MixProject do
       # {:sibling_app_in_umbrella, in_umbrella: true},
       {:hedwig_irc, "~> 0.1.0"}
     ]
+  end
+
+  # Generate a dynamic version number automatically.
+  def append_revision(version) do
+    "#{version}+#{git_rev()}"
+  end
+
+  defp git_rev() do
+    System.cmd("git", ["rev-parse", "--short", "HEAD"])
+    |> elem(0)
+    |> String.trim_trailing
   end
 end

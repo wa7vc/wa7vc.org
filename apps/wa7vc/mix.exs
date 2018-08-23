@@ -4,7 +4,7 @@ defmodule Wa7vc.Mixfile do
   def project do
     [
       app: :wa7vc,
-      version: "0.0.1",
+      version: append_revision("0.0.1"),
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
@@ -43,5 +43,16 @@ defmodule Wa7vc.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     []
+  end
+
+  # Generate a dynamic version number automatically.
+  def append_revision(version) do
+    "#{version}+#{git_rev()}"
+  end
+
+  defp git_rev() do
+    System.cmd("git", ["rev-parse", "--short", "HEAD"])
+    |> elem(0)
+    |> String.trim_trailing
   end
 end
