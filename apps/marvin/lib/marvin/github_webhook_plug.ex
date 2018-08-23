@@ -2,6 +2,7 @@
 
 defmodule Marvin.GithubWebhookPlug do
   import Plug.Conn
+  require IEx
   
   def init(options) do
     options
@@ -29,6 +30,7 @@ defmodule Marvin.GithubWebhookPlug do
       x -> x
     end
     hmac = :crypto.hmac(:sha, key, body)
+    IEx.pry
     case hmac do
       ^signature ->
         hook = Poison.decode!(body)
