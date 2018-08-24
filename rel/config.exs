@@ -2,7 +2,8 @@
 # They can then be used by adding `plugin MyPlugin` to
 # either an environment, or release definition, where
 # `MyPlugin` is the name of the plugin module.
-Path.join(["rel", "plugins", "*.exs"])
+~w(rel plugins *.exs)
+|> Path.join()
 |> Path.wildcard()
 |> Enum.map(&Code.eval_file(&1))
 
@@ -30,13 +31,13 @@ environment :dev do
   # dev mode.
   set dev_mode: true
   set include_erts: false
-  set cookie: :"dls:eH93Io9AAMH/`cMX%HO@T0XdV(1(>lV^r*35${Et[|_[svof7qQvDhul=TyC"
+  set cookie: :"U0dSnc<%cq6cJ:z5>B~kb,(9)jw{&icHS3vDI!,8rU4lBTNbLYgqX.mLlVzb67)4"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"iDMiSuv*rawJAca$@)$3R_5zl5aJgL}$jV@0M7$=*42$.x7pc?j0_K<<Tf@(5d0$"
+  set cookie: :"3LL4];KlRmy7($v)oas8>ARAq@L2_7eoPlcUEC@67IGzLivQn0QJumO6S.=.>pl~"
 end
 
 # You may define one or more releases in this file.
@@ -45,7 +46,7 @@ end
 # will be used by default
 
 release :wa7vc_umbrella do
-  set version: "0.0.1"
+  set version: "0.0.3"
   set applications: [
     :runtime_tools,
     marvin: :permanent,
