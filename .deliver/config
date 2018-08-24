@@ -1,4 +1,5 @@
 APP="wa7vc_umbrella"
+AUTO_VERSION=git-revision+git-branch-unless-master
 
 BUILD_HOST="app1.daedalusdreams.com"
 BUILD_USER="wa7vc"
