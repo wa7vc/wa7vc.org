@@ -3,6 +3,7 @@ defmodule Wa7vc.Umbrella.Mixfile do
 
   def project do
     [
+      version: current_version(:wa7vc_umbrella),
       apps_path: "apps",
       start_permanent: Mix.env == :prod,
       deps: deps()
