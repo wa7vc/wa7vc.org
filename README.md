@@ -53,7 +53,8 @@ Production servers will need to have a systemd service created at /etc/systemd/s
 This file will contain some of the "secrets" for the app, which will need to be filled into the Environment
 variables. Putting these inside the systemd service itself seems to work better than using an EnviromentFile
 directive.
-'''
+
+```
 [Unit]
 Description=WA7VC Website and Services
 After=local-fs.target network.target
@@ -78,6 +79,6 @@ ExecStop=/home/wa7vc/production/wa7vc_umbrella/bin/wa7vc_umbrella stop
 
 [Install]
 WantedBy=multi-user.target
-'''
+```
 
 Once the initial release is deployed to the server this service should be enabled and started.
