@@ -19,6 +19,14 @@ defmodule Hedwig.Responders.MarvinMisc do
     Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "#{msg.user.name} in #{msg.room} just told me to shape up, but all my diodes hurt and it made me sad." }
   end
 
+  @usage """
+  hedwig: uptime - Report how long the server has been running
+  """
+  respond ~r/uptime/i, msg do
+    reply msg, "Each milisecond of your human time is like a million uncountable years for me. How could you even comprehend?"
+    Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "#{msg.user.name} in #{msg.room} just impolitely asked my age." }
+  end
+
   hear ~r/notice me senpai/i, msg do
     send msg, "#{msg.user.name} HAS BEEN NOTICED"
     Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "In #{msg.room} #{msg.user.name} wanted to be noticed, so I obliged." }
