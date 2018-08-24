@@ -49,6 +49,7 @@ release :wa7vc_umbrella do
   set version: "0.0.3"
   set applications: [
     :runtime_tools,
+    :edeliver,
     marvin: :permanent,
     wa7vc: :permanent,
     wa7vc_web: :permanent
