@@ -46,7 +46,7 @@ end
 # will be used by default
 
 release :wa7vc_umbrella do
-  set version: "0.0.3"
+  set version: "0.0.4"
   set applications: [
     :runtime_tools,
     :edeliver,
