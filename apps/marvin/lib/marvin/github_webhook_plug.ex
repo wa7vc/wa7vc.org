@@ -2,7 +2,6 @@
 
 defmodule Marvin.GithubWebhookPlug do
   import Plug.Conn
-  require IEx
   
   def init(options) do
     options
@@ -30,7 +29,6 @@ defmodule Marvin.GithubWebhookPlug do
       x -> x
     end
     hmac = :crypto.hmac(:sha, key, body)
-    IEx.pry
     case hmac do
       ^signature ->
         hook = Poison.decode!(body)
@@ -40,9 +38,10 @@ defmodule Marvin.GithubWebhookPlug do
         |> send_resp(200, "{ \"code\":200, \"msg\":\"Handled Github Webhook\" }")
         |> halt
       _ ->
+        IO.inspect key, label: "Using Key: "
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(401, "{ \"code\":401, \"msg\":\"You're not github!\" }")
+        |> send_resp(401, "{ \"code\":401, \"msg\":\"You're not github!\", \"calculated\":\"#{hmac}\", \"given\":\"#{signature}\" }")
         |> halt
     end
   end
