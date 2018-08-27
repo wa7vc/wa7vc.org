@@ -24,7 +24,7 @@ defmodule Wa7vcWeb.Mixfile do
   def application do
     [
       mod: {Wa7vcWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :edeliver]
     ]
   end
 
