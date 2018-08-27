@@ -9,7 +9,7 @@
 
 use Mix.Releases.Config,
     # This sets the default release built by `mix release`
-    default_release: :wa7vc_umbrella,
+    default_release: :wa7vc_web,
     # This sets the default environment used by `mix release`
     default_environment: Mix.env()
 
@@ -45,7 +45,7 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :wa7vc_umbrella do
+release :wa7vc_web do
   set version: current_version(:wa7vc_web)
   set applications: [
     :runtime_tools,
