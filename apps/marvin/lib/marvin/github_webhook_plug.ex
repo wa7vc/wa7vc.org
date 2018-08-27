@@ -21,7 +21,7 @@ defmodule Marvin.GithubWebhookPlug do
   end
 
   def github_api(conn, options) do
-    key = options[:secret]
+    key = Application.get_env(:marvin, Marvin.Hooker)[:github_webhook_secret]
     {:ok, body, _} = read_body(conn)
     signature = case get_req_header(conn, "x-hub-signature") do
       ["sha1=" <> signature  | []] -> 
@@ -43,7 +43,7 @@ defmodule Marvin.GithubWebhookPlug do
         IO.inspect key, label: "Using Key: "
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(401, "{ \"code\":401, \"msg\":\"You're not github!\", \"calculated\":\"#{Base.encode16(hmac, case: :lower)}\", \"given\":\"#{Base.encode16(signature, case: :lower)}\" }")
+        |> send_resp(401, "{ \"code\":401, \"msg\":\"You're not github!\" }")
         |> halt
     end
   end
