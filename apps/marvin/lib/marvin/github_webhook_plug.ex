@@ -2,7 +2,6 @@
 
 defmodule Marvin.GithubWebhookPlug do
   import Plug.Conn
-  require Logger
   
   def init(options) do
     options
@@ -30,7 +29,6 @@ defmodule Marvin.GithubWebhookPlug do
       x -> x
     end
     hmac = :crypto.hmac(:sha, key, body)
-    Logger.info("Handling Github Webhook. Using key: #{key}, expecting #{Base.encode16(signature, case: :lower)}, calculated #{Base.encode16(hmac, case: :lower)}")
     case hmac do
       ^signature ->
         hook = Poison.decode!(body)
