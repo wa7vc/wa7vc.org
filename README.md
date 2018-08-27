@@ -65,17 +65,17 @@ Group=wa7vc
 Restart=on-failure
 RemainAfterExit=yes
 LimitNOFILE=65536
-WorkingDirectory=/home/wa7vc/production/wa7vc_umbrella
+WorkingDirectory=/home/wa7vc/production/wa7vc_web
 Environment=MIX_ENV=prod
-Environment=HOME=/home/wa7vc/production/wa7vc_umbrella
+Environment=HOME=/home/wa7vc/production/wa7vc_web
 Environment=PORT=49515
 # Note that if your passwords have any %s in them you need to convert them to %% in order to keep systemd happy.
 Environment="MARVIN_IRC_PASSWORD="
 Environment="GITHUB_WEBHOOK_SECRET="
 Environment="SECRET_KEY_BASE="
 Environment=REPLACE_OS_VARS=true
-ExecStart=/home/wa7vc/production/wa7vc_umbrella/bin/wa7vc_umbrella start
-ExecStop=/home/wa7vc/production/wa7vc_umbrella/bin/wa7vc_umbrella stop
+ExecStart=/home/wa7vc/production/wa7vc_web/bin/wa7vc_web start
+ExecStop=/home/wa7vc/production/wa7vc_web/bin/wa7vc_web stop
 
 [Install]
 WantedBy=multi-user.target
