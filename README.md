@@ -5,6 +5,7 @@ An umbrella app containing the WA7VC.org website, and Marvin, our depressed robo
 ASDF is used to ensure the correct versions of needed software, so either use ASDF or consult
 .tool-versions to ensure you have the right versions on your development system.
 
+New versions to deploy to production are tagged in git following typical SemVer style.
 
 ## Deployment
 While anything Elixir can compile to will work as a server, by default we're using an Ubuntu 18 VM.
@@ -12,11 +13,16 @@ While anything Elixir can compile to will work as a server, by default we're usi
 An important point is that both the production server and the build server should be on the same distro,
 otherwise the builds may not work. Deploying on Ubuntu 18? Build on Ubuntu 18.
 
+SSH Aliases are used by the deploy script, so you will need to have the correct servers set up in your
+~/.ssh/config for the following aliases:
+  - wa7vc_ed_build
+  - wa7vc_ed_prod1
+
 Deployment builds are build by [distillery](https://github.com/bitwalker/distillery) and deployment is
 done using [edeliver](https://github.com/edeliver/edeliver). This allows us to do zero-downtime upgrades.
 As long as you have an SSH key with access to the production servers the following commands can be used
 to deploy an ugrade:
-  - `mix edeliver build upgrade`
+  - `mix edeliver build upgrade --from=x.x.x --to=y.y.y` (Where x.x.x is the tagged version currently on the prod server, and y.y.y is the tagged version to upgrade to)
   - `mix edeliver deploy upgrade to production`
 
 (Initial deployment to a clean server uses "release" instead of "upgrade")
