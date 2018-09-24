@@ -98,6 +98,14 @@ body {
 
 }
 
+#content > section#prev-next {
+  transform: translateY(-150%);
+}
+
+#content > section#prev-next > div {
+  padding: .5rem;
+}
+
 #content > section.bg-light {
   background-color: rgb(255,255,255);
 }
