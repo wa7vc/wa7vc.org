@@ -45,6 +45,7 @@
         <li>IRLP: 7808</li>
         <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
         <li>APRS: WA7VC 10 Digi-iGate 144.390</li>
+        <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz</li>
       </ul>
 
       Our on-site EchoIRLP node is powered by a Raspberry Pi. It offers the following commands:
@@ -90,6 +91,7 @@
       <h5>Calendar</h5>
       Our upcoming schedule of events is:
       <ul>
+        <li>May 18, 2019: <a href="http://www.trbo.org/pnw/index.html" target="_blank">PNW DMR <i class="fas fa-external-link-alt"></i></a> Workshop</li>
         <li>September 6-8, 2019: <a href="/summergathering/2019">Summer Gathering</a></li>
       </ul>
     </div>
