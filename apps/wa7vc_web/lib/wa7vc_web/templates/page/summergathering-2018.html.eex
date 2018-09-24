@@ -15,6 +15,21 @@
   </div>
 </section>
 
+<section id="retrospective" class="bg-medium">
+  <div class="grid-x">
+    <div class="cell small-12">
+      <h5>Post-event Information</h5>
+      <p>
+        Officially we had 89 sign in, but with the drop-ins we know of we believe the official attendance count is 98.<br />
+        Which means that each attendee consumed, on average, just under 1 litre of coffee each. Whew!
+      </p>
+      <p>
+        More post-event information can be found in <a href="https://tinyletter.com/nwaprssg/letters/nw-aprs-summer-gathering-2018-follow-up" target="_blank">the newsletter archive<i class="fas fa-external-link-alt"></i></a>.
+      </p>
+    </div>
+  </div>
+</section>
+
 <section id="about" class="bg-light">
   <div class="grid-x">
     <div class="cell small-12">
