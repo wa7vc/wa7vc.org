@@ -23,7 +23,7 @@
             <li class="menu-text">
               <a href="/#events">Events</a>
               <ul class="menu vertical">
-                <li><a href="/nwaprssg">NW APRS Summer Gathering</a></li>
+                <li><a href="/summergathering">Summer Gathering</a></li>
               </ul>
             </li>
             <li class="menu-text"><a href="/#on-air">On-Air</a></li>
@@ -82,7 +82,7 @@
             <div class="cell small-11">
               <ul>
                 <li><a href="/">Home</a></li>
-                <li><a href="/nwaprssg">NW APRS Summer Gathering</a></li>
+                <li><a href="/summergathering">Summer Gathering</a></li>
               </ul>
             </div>
             <div class="cell small-1 created-by">Created by <a href="https://daedalusdreams.com/" target="_blank">Daedalus Dreams</a></div>

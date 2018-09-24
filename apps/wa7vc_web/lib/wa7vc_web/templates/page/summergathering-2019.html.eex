@@ -1,5 +1,5 @@
 <div id="hero">
-  <h1>NWAPRS Summer Gathering</h1>
+  <h1>Summer Gathering</h1>
   <h2>September 6-8, 2019</h2>
 </div>
 
@@ -9,7 +9,7 @@
 
 <section id="prev-next" class="bg-light">
   <div class="grid-x">
-    <div class="cell small-3"><a href="/summergathering/2018"><-- Summer Gathering 2018</a></div>
+    <div class="cell small-3"><a href="/summergathering/2018"><i class="fas fa-arrow-circle-left"></i> Summer Gathering 2018</a></div>
     <div class="cell small-6"></div>
     <div class="cell small-3" style="text-align: right;"></div>
   </div>
