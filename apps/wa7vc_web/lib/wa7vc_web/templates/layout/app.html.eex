@@ -38,14 +38,18 @@
       </div>
     </div>
 
-    <!--
-    <div class="grid-x">
-      <div class="cell">
-        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <%= if get_flash(@conn, :error) || get_flash(@conn, :info) do %>
+      <div class="grid-x" id="flash-alert-container">
+        <div class="cell">
+          <%= if get_flash(@conn, :error) do %> 
+            <p class="alert alert-danger" role="alert"><i class="fas fa-exclamation-triangle"></i> <%= get_flash(@conn, :error) %></p>
+          <%= end %>
+          <%= if get_flash(@conn, :info) do %>
+            <p class="alert alert-info" role="alert"><i class="fas fa-info-circle"></i> <%= get_flash(@conn, :info) %></p>
+          <%= end %>
+        </div>
       </div>
-    </div>
-    -->
+    <%= end %>
 
     <div id="content">
       <%= render @view_module, @view_template, assigns %>
