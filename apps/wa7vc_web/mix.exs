@@ -4,7 +4,7 @@ defmodule Wa7vcWeb.Mixfile do
   def project do
     [
       app: :wa7vc_web,
-      version: "0.0.7",
+      version: "0.0.8",
       build_path: "../../_build",
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
