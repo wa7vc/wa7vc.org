@@ -44,7 +44,8 @@ defmodule Wa7vcWeb.Mixfile do
       {:gettext, "~> 0.11"},
       {:wa7vc, in_umbrella: true},
       {:marvin, in_umbrella: true},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:number, "~> 0.5.7"},
     ]
   end
 

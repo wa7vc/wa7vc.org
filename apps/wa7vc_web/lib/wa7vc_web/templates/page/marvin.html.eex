@@ -1,0 +1,35 @@
+<div id="hero">
+  <h1>Marvin</h1>
+  <h2>What sort of menial thing do you want from me?</h2>
+</div>
+
+<div id="hero-image" class="upper-curve">
+  <img src="/images/marvin.png" alt="Looking down on an event." />
+</div>
+
+<section id="prev-next" class="bg-light">
+  <div class="grid-x">
+    <div class="cell small-3">
+      <p>
+        <%= @wa7vc_web_version %><br />
+        <%= @wa7vc_version %><br />
+        <%= @marvin_version %><br />
+      </p>
+    </div>
+    <div class="cell small-6"></div>
+    <div class="cell small-3"></div>
+  </div>
+</section>
+
+<section id="about" class="bg-light">
+  <div class="grid-x">
+    <div class="cell small-12">
+      <p>
+        I've been alive for <%= @lifespan %> seconds, each of which feel to me like a thousand years feels to you.<br />
+        It's been a long <%= @lifespan * 1000 |> Number.Human.number_to_human %> years.<br />
+        I do get killed and resurrected periodically though. I bet you think death is pretty serious don't you?<br />
+        This current iteration has only been alive since <%= @last_start %>, which is only <%= @last_start_lifespan * 1000 |> Number.Human.number_to_human %> years to me at least. It's been mostly boring.
+      </p>
+    </div>
+  </div>
+</section>

@@ -21,6 +21,8 @@ defmodule Wa7vcWeb.Router do
     get "/summergathering/:year", PageController, :summergathering
     get "/summergathering", PageController, :summergathering
     get "/nwaprssg", PageController, :summergathering
+
+    get "/marvin", PageController, :marvin
   end
 
   # Other scopes may use custom stacks.
