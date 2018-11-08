@@ -1,7 +1,9 @@
 defmodule Wa7vcWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :wa7vc_web
 
-  socket "/socket", Wa7vcWeb.UserSocket
+  socket "/socket", Wa7vcWeb.UserSocket,
+    websocket: true,
+    longpoll: [check_origin: true]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -29,7 +31,7 @@ defmodule Wa7vcWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head

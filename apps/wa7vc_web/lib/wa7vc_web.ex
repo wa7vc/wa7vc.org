@@ -21,8 +21,8 @@ defmodule Wa7vcWeb do
     quote do
       use Phoenix.Controller, namespace: Wa7vcWeb
       import Plug.Conn
-      import Wa7vcWeb.Router.Helpers
       import Wa7vcWeb.Gettext
+      alias Wa7vcWeb.Router.Helpers, as: Routes
     end
   end
 
