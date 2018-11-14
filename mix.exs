@@ -25,6 +25,7 @@ defmodule Wa7vc.Umbrella.Mixfile do
     [
       {:edeliver, "~> 1.6"},
       {:distillery, "~> 2.0", warn_missing: false, runtime: false},
+      {:observer_cli, "~> 1.4"},
     ]
   end
 end
