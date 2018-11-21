@@ -10,6 +10,8 @@ defmodule Marvin.Robot do
   end
 
   def handle_disconnect(_reason, state) do
+    Logger.debug("Marvin.Robot got IRC disconnect, crashing the process")
+    raise "Mariv.Robot IRC Disconnected"
     {:reconnect, 5000, state}
   end
 
