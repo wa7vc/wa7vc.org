@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :marvin, Marvin.Robot,
+config :marvin, Marvin.IrcRobot,
   password: "${MARVIN_IRC_PASSWORD}"
 
 config :marvin, Marvin.Hooker,

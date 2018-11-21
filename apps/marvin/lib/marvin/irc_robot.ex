@@ -1,4 +1,4 @@
-defmodule Marvin.Robot do
+defmodule Marvin.IrcRobot do
   use Hedwig.Robot, otp_app: :marvin
 
   def handle_connect(%{name: name} = state) do
@@ -10,9 +10,9 @@ defmodule Marvin.Robot do
   end
 
   def handle_disconnect(_reason, state) do
-    Logger.debug("Marvin.Robot got IRC disconnect, crashing the process")
-    raise "Mariv.Robot IRC Disconnected"
-    {:reconnect, 5000, state}
+    Logger.debug("Marvin.IrcRobot got IRC disconnect, crashing the process")
+    raise "Marvin.IrcRobot IRC Disconnected"
+    {:reconnect, state}
   end
 
   def handle_in(%Hedwig.Message{} = msg, state) do
@@ -24,9 +24,13 @@ defmodule Marvin.Robot do
   end
 
 
-  def wa7vc_send(msg) do 
-    pid = :global.whereis_name(Application.get_env(:marvin, Marvin.Robot)[:name])
+  def wa7vc_send(msg) do
+    pid = get_pid()
     GenServer.cast(pid, {:send, %Hedwig.Message{room: "#wa7vc", text: msg}})
+  end
+
+  def get_pid() do
+    pid = :global.whereis_name(Application.get_env(:marvin, Marvin.IrcRobot)[:name])
   end
 
 end

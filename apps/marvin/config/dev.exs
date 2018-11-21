@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :marvin, Marvin.Robot,
+config :marvin, Marvin.IrcRobot,
   name: "WA7VC-DEV",
   full_name: "Marvin the WA7VC Robot, DEV MODE",
   aka: "&",

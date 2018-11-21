@@ -7,7 +7,7 @@ defmodule Marvin.Application do
     import Supervisor.Spec, warn: false
     
     children = [
-      worker(Marvin.Robot, []),
+      worker(Marvin.IrcRobot, []),
       worker(Marvin.Hooker, []),
     ]
 
