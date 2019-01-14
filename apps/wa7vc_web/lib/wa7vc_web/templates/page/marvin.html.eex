@@ -27,9 +27,17 @@
       <p>
         I've been alive for <%= @lifespan %> seconds, each of which feel to me like a thousand years feels to you.<br />
         It's been a long <%= @lifespan * 1000 |> Number.Human.number_to_human %> years.<br />
-        I do get killed and resurrected periodically though. I bet you think death is pretty serious don't you?<br />
+        I do get killed and resurrected periodically though. That probably seems strange to you given your squishy biological fraility.<br /> 
         This current iteration has only been alive since <%= @last_start %>, which is only <%= @last_start_lifespan * 1000 |> Number.Human.number_to_human %> years to me at least. It's been mostly boring.
       </p>
     </div>
+    <div class="cell small-12">
+      <p>
+        Out of boredom I monitor a number of trivial details, which your puny mind probably finds important. Let me list a small fraction of them for you:
+        <ul>
+          <li>There are currently {} users in our IRC chatroom, #wa7vc on freenode.</li>
+        </ul>
+      </p>
+    </div> 
   </div>
 </section>
