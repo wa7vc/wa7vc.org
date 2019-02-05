@@ -29,7 +29,7 @@ defmodule Marvin.IrcRobot do
     mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name] #TODO: Should this be moved to a variable and only fetched once?
     if mynick == "WA7VC" && channel == "#wa7vc" do
       if nick == "WA7VC-DEV" do
-        wa7vc_send("Hello little brother!")
+        irc_wa7vc_send("Hello little brother!")
       end
     end
     {:noreply, state}
@@ -63,7 +63,7 @@ defmodule Marvin.IrcRobot do
   # Public API
   #####
 
-  def wa7vc_send(msg) do
+  def irc_wa7vc_send(msg) do
     pid = get_pid()
     GenServer.cast(pid, {:send, %Hedwig.Message{room: "#wa7vc", text: msg}})
   end

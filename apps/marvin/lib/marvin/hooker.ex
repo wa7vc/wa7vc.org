@@ -23,7 +23,7 @@ defmodule Marvin.Hooker do
 
   def handle_received_github_hook(hook) do
     STM.increment(:github_hooks_count)
-    Marvin.IrcRobot.wa7vc_send("Just got a webhook from github, yum!")
+    Marvin.IrcRobot.irc_wa7vc_send("Just got a webhook from github, yum!")
     Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "Just got a webhook from github, yum!" }
   end
 
