@@ -12,7 +12,7 @@
   "gettext": {:hex, :gettext, "0.16.0", "4a7e90408cef5f1bf57c5a39e2db8c372a906031cc9b1466e963101cb927dafc", [:mix], [], "hexpm"},
   "hackney": {:hex, :hackney, "1.15.0", "287a5d2304d516f63e56c469511c42b016423bcb167e61b611f6bad47e3ca60e", [:rebar3], [{:certifi, "2.4.2", [hex: :certifi, repo: "hexpm", optional: false]}, {:idna, "6.0.0", [hex: :idna, repo: "hexpm", optional: false]}, {:metrics, "1.0.1", [hex: :metrics, repo: "hexpm", optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, repo: "hexpm", optional: false]}, {:ssl_verify_fun, "1.1.4", [hex: :ssl_verify_fun, repo: "hexpm", optional: false]}], "hexpm"},
   "hedwig": {:hex, :hedwig, "1.0.1", "0e92de2ef19fee826958a4400959ff9064b03203ccffd074ef5e22f3e587eaaf", [:mix], [], "hexpm"},
-  "hedwig_irc": {:git, "git://github.com/jeffweiss/hedwig_irc.git", "a592f0511e8b301cb94ac9a0af1359271ccea517", []},
+  "hedwig_irc": {:hex, :hedwig_irc, "0.1.4", "058683371f90acd5140a092d990ce7d79e409b38830f18e2ccd141b740cb1fd4", [:mix], [{:exirc, "~> 1.0", [hex: :exirc, repo: "hexpm", optional: false]}, {:hedwig, "~> 1.0", [hex: :hedwig, repo: "hexpm", optional: false]}], "hexpm"},
   "idna": {:hex, :idna, "6.0.0", "689c46cbcdf3524c44d5f3dde8001f364cd7608a99556d8fbd8239a5798d4c10", [:rebar3], [{:unicode_util_compat, "0.4.1", [hex: :unicode_util_compat, repo: "hexpm", optional: false]}], "hexpm"},
   "jason": {:hex, :jason, "1.1.2", "b03dedea67a99223a2eaf9f1264ce37154564de899fd3d8b9a21b1a6fd64afe7", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm"},
   "metrics": {:hex, :metrics, "1.0.1", "25f094dea2cda98213cecc3aeff09e940299d950904393b2a29d191c346a8486", [:rebar3], [], "hexpm"},
