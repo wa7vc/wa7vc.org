@@ -24,7 +24,7 @@ defmodule Wa7vcWeb.Mixfile do
   def application do
     [
       mod: {Wa7vcWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools, :edeliver]
+      extra_applications: [:logger, :runtime_tools, :edeliver, :timex]
     ]
   end
 
@@ -48,6 +48,7 @@ defmodule Wa7vcWeb.Mixfile do
       {:plug, "~> 1.7"},
       {:jason, "~> 1.0"},
       {:number, "~> 0.5.7"},
+      {:timex, "~> 3.1"},
     ]
   end
 

@@ -1,5 +1,6 @@
 defmodule Marvin.Hooker do
   use GenServer
+  alias Marvin.PrefrontalCortex, as: STM
 
   def start_link() do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
@@ -21,6 +22,7 @@ defmodule Marvin.Hooker do
   end
 
   def handle_received_github_hook(hook) do
+    STM.increment(:github_hooks_count)
     Marvin.IrcRobot.wa7vc_send("Just got a webhook from github, yum!")
     Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "Just got a webhook from github, yum!" }
   end
