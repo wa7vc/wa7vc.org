@@ -10,7 +10,7 @@ defmodule Marvin.IrcRobot do
       :yes = :global.register_name(name, self())
     end
     STM.put(:irc_last_checked, Timex.now())
-    schedule_connection_check()
+    schedule_connection_loop()
 
     {:ok, state}
   end
@@ -44,20 +44,21 @@ defmodule Marvin.IrcRobot do
   #####
   # Internal Handlers
   #####
-  def handle_info(:connection_check_loop, state) do
+  def handle_info(:connection_loop, state) do
     last_checked = STM.get(:irc_last_checked)
     if Timex.diff(last_checked, Timex.now(), :minutes) > 3 do
       adapter_pid = Map.get(state, :adapter)
       {_adapter_pid, _adapter_opts, client_pid} = :sys.get_state(adapter_pid)
       mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name] #TODO: Should this be moved to a variable and only fetched once?
       ExIrc.Client.msg(client_pid, :privmsg, mynick, "SELFPING-AUTO")
-      # This *should* initiate a crash/reboot if we're not connected
+      # This *should* crashed the process if we're not connected, initiating a restart/reconnect. If we're still connected we'll update some stats.
 
       STM.put(:irc_last_checked, Timex.now())
-      schedule_connection_check()
 
       channel_users = GenServer.call(client_pid, {:channel_users, "#wa7vc"})
       STM.put(:irc_users_count, length(channel_users))
+
+      schedule_connection_loop()
     end
     {:noreply, state}
   end
@@ -98,5 +99,5 @@ defmodule Marvin.IrcRobot do
   #####
 
 
-  defp schedule_connection_check(), do: Process.send_after(self(), :connection_check_loop, 60 * 1000)
+  defp schedule_connection_loop(), do: Process.send_after(self(), :connection_loop, 60 * 1000)
 end
