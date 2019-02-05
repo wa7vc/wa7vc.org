@@ -31,7 +31,7 @@ defmodule Marvin.GithubWebhookPlug do
     hmac = :crypto.hmac(:sha, key, body)
     case hmac do
       ^signature ->
-        hook = Poison.decode!(body)
+        hook = Jason.decode!(body)
         Marvin.Hooker.receive_github_hook(hook)
         conn
         |> put_resp_content_type("application/json")
