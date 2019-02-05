@@ -22,6 +22,7 @@ defmodule Marvin.IrcRobot do
   end
 
   def handle_in(%Hedwig.Message{} = msg, state) do
+    Marvin.PrefrontalCortex.increment(:irc_messages_count)
     {:dispatch, msg, state}
   end
 
@@ -54,6 +55,9 @@ defmodule Marvin.IrcRobot do
 
       STM.put(:irc_last_checked, Timex.now())
       schedule_connection_check()
+
+      channel_users = GenServer.call(client_pid, {:channel_users, "#wa7vc"})
+      STM.put(:irc_users_count, length(channel_users))
     end
     {:noreply, state}
   end

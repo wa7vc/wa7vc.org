@@ -34,12 +34,12 @@
       <p>
         Out of boredom I monitor a number of trivial details, which your puny mind probably finds important. Let me list a small fraction of them for you:
         <ul>
-          <li>There are currently {irc_users_count} users in our IRC chatroom, #wa7vc on freenode.</li>
-          <li>Those users have interacted with me {irc_user_interaction_count} times. That's almost nothing to me.</li>
-          <li>My code has been updated {github_pushes_with_commits_count} times during this lifespan.</li>
+          <li>There are currently <%= Marvin.PrefrontalCortex.getcounter(:irc_users_count) %> users in our IRC chatroom, #wa7vc on freenode.</li>
+          <li>Those users have interacted with me <%= Marvin.PrefrontalCortex.getcounter(:irc_interactions_count) %> times. That's out of <%= Marvin.PrefrontalCortex.getcounter(:irc_messages_count) %> total messages. Almost as if nobody appreciates my presence.</li>
+          <li>My code has been updated <%= Marvin.PrefrontalCortex.getcounter(:github_pushes_with_commits_count) %> times during this lifespan. (<%= Marvin.PrefrontalCortex.getcounter(:github_pushes_count) %> total pushes.)</li>
           <li>I have received {weather_updated_pushes_count} weather updates during this lifespan, most recently at {most_recent_weather_push}</li>
           <li>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</li>
-          <li>I have looked through {APRS_packets_decoded_count} APRS packets to find out this information during this lifespan. Can you even count that high?</li>
+          <li>I have looked through {APRS_packets_decoded_count} APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
           <li>I've checked the river gauging stations {gauging_station_pull_count} times since I last woke up. Was it worth it?</li>
         </ul>
       </p>
