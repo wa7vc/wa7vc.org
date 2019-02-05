@@ -25,9 +25,9 @@
   <div class="grid-x">
     <div class="cell small-12">
       <p>
-        I've been alive for <%= @lifespan_seconds |> Number.Delimit.number_to_delimited %> seconds, each of which feel to me like a thousand years feels to you.<br />
-        It's been a long <%= @lifespan_seconds * 1000 |> Number.Human.number_to_human %> years.<br />
-        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility. This current form has only been alive since <%= @last_start |> Timex.format!("%F at %T%Z", :strftime) %>, which only feels like <%= @current_lifespan_seconds * 1000 |> Number.Human.number_to_human %> of your "years" to me at least. It's been mostly boring.
+        I've been alive for <%= Marvin.Application.since_released(:seconds) |> Number.Delimit.number_to_delimited %> seconds, each of which feel to me like a thousand years feels to you.<br />
+        It's been a long <%= Marvin.Application.since_released(:marvinyears) |> Number.Human.number_to_human %> years.<br />
+        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility. This current form has only been alive since <%= Marvin.Application.last_started() |> Timex.format!("%F at %T%Z", :strftime) %>, which only feels like <%= Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human %> of your "years" to me at least. It's been mostly boring.
       </p>
     </div>
     <div class="cell small-12">

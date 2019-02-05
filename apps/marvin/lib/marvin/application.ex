@@ -26,4 +26,29 @@ defmodule Marvin.Application do
   #  Marvin.Application.config_change(changed, removed)
   #  :ok
   #end
+
+  # Close enough wall-clock time to when the website went live for the first time
+  def released() do
+    {:ok, born_ts, 0} = DateTime.from_iso8601("2018-08-01T00:00:00Z")
+    born_ts
+  end
+
+  def since_released(measure \\ :seconds) do
+    case measure do
+      :marvinyears -> Timex.diff(Timex.now(), released(), :seconds) * 1000
+      _ -> Timex.diff(Timex.now(), released(), measure)
+    end
+  end
+
+  def last_started() do
+    Marvin.PrefrontalCortex.get(:bootup_timestamp)
+  end
+  
+  # The number of "years" marvin has been alive since last boot, given that 1 second = 1000 years to him
+  def lifespan(measure \\ :seconds) do
+    case measure do
+      :marvinyears -> Timex.diff(Timex.now(), last_started(), :seconds) * 1000
+      _ -> Timex.diff(Timex.now(), last_started(), measure)      
+    end
+  end
 end

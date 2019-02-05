@@ -23,7 +23,7 @@ defmodule Hedwig.Responders.MarvinMisc do
   hedwig: uptime - Report how long the server has been running
   """
   respond ~r/uptime/i, msg do
-    reply msg, "Each milisecond of your human time is like a million uncountable years for me. How could you even comprehend?"
+    reply msg, "The last time I was awakened was #{Marvin.Application.last_started()}, around #{Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human} years ago from my perspective."
     Wa7vcWeb.Endpoint.broadcast! "website:pingmsg", "message", %{ :text => "#{msg.user.name} in #{msg.room} just impolitely asked my age." }
   end
 
