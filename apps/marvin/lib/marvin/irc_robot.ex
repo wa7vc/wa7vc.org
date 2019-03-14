@@ -9,18 +9,18 @@ defmodule Marvin.IrcRobot do
     if :undefined == :global.whereis_name(name) do
       :yes = :global.register_name(name, self())
     end
-    STM.put(:irc_last_checked, Timex.now())
-    schedule_connection_loop()
+    Process.send_after(get_pid(), :connection_loop, 15 * 1000) #Start the connection loop in 5 seconds.
 
     {:ok, state}
   end
 
-  def handle_disconnect(_reason, state) do
-    Logger.debug("Marvin.IrcRobot got IRC disconnect, crashing the process")
-    raise "Marvin.IrcRobot IRC Disconnected"
-    {:reconnect, state}
-  end
-
+  # Don't overwrite, see if Hedwig handles it.
+  #def handle_disconnect(_reason, state) do
+  #  Logger.debug("Marvin.IrcRobot got IRC disconnect, crashing the process")
+  #  raise "Marvin.IrcRobot IRC Disconnected"
+  #  {:reconnect, state}
+  #end
+  
   def handle_in(%Hedwig.Message{} = msg, state) do
     Marvin.PrefrontalCortex.increment(:irc_messages_count)
     {:dispatch, msg, state}
@@ -35,31 +35,39 @@ defmodule Marvin.IrcRobot do
     end
     {:noreply, state}
   end
-
-  def handle_in(_msg, state) do
-    {:noreply, state}
-  end
+ 
+  #def handle_in(_msg, state) do
+  #  {:noreply, state}
+  #end
 
 
   #####
   # Internal Handlers
   #####
   def handle_info(:connection_loop, state) do
-    last_checked = STM.get(:irc_last_checked)
-    if Timex.diff(last_checked, Timex.now(), :minutes) > 3 do
-      adapter_pid = Map.get(state, :adapter)
-      {_adapter_pid, _adapter_opts, client_pid} = :sys.get_state(adapter_pid)
-      mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name] #TODO: Should this be moved to a variable and only fetched once?
+    # Logger.debug("Handling :connection_loop")
+    last_checked = STM.get(:irc_last_selfping_timestamp)
+    mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name] #TODO: Should this be moved to a variable and only fetched once?
+
+    # Can't use get_client_pid() from inside the genserver loop or it'll time out.
+    adapter_pid = Map.get(state, :adapter)
+    {_adapter_pid, _adapter_opts, client_pid} = :sys.get_state(adapter_pid)
+
+    # Send ourselves a message as a way to "do something" with the IRC connection.
+    # This *should* crashed the process if we're not connected, initiating a restart/reconnect. 
+    if last_checked == :error || Timex.diff(Timex.now(), last_checked, :minutes) > 2 do
       ExIrc.Client.msg(client_pid, :privmsg, mynick, "SELFPING-AUTO")
-      # This *should* crashed the process if we're not connected, initiating a restart/reconnect. If we're still connected we'll update some stats.
-
-      STM.put(:irc_last_checked, Timex.now())
-
-      channel_users = GenServer.call(client_pid, {:channel_users, "#wa7vc"})
-      STM.put(:irc_users_count, length(channel_users))
-
-      schedule_connection_loop()
+      STM.put(:irc_last_selfping_timestamp, Timex.now())
     end
+    # If we're still connected we'll update some stats.
+    #
+    # Note that channel_users() crashes the genserver if called on a channel you're not in, so we have to check that first
+    if Enum.member?(ExIrc.Client.channels(client_pid), "#wa7vc") do
+      STM.put(:irc_users_count, length(ExIrc.Client.channel_users(client_pid, "#wa7vc")))
+    end
+      
+    schedule_connection_loop()
+
     {:noreply, state}
   end
 
