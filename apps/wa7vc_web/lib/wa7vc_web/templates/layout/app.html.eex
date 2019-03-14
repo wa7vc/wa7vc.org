@@ -23,6 +23,7 @@
             <li class="menu-text">
               <a href="/#events">Events</a>
               <ul class="menu vertical">
+                <li><a href="/dmrgathering">PNW DMR Gathering</a></li>
                 <li><a href="/summergathering">Summer Gathering</a></li>
               </ul>
             </li>

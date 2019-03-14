@@ -21,6 +21,22 @@ defmodule Wa7vcWeb.PageController do
     end
   end
 
+  # If no year given redirect to current year. This will need to change when we add the next year!
+  def dmrgathering(conn, params) do
+    case params["year"] do
+      nil -> redirect conn, to: "/dmrgathering/2019"
+      year ->
+        try do
+          render conn, "dmrgathering-#{year}.html"
+        rescue
+          Phoenix.Template.UndefinedError ->  conn
+                                                |> put_flash(:error, "No DMR Gathering page for the year #{year} yet, sorry!")
+                                                |> redirect(to: "/dmrgathering")
+                                                |> halt()
+        end
+    end
+  end
+
   def marvin(conn, params) do
     # Get application version numbers
     {:ok, vsn_wa7vc_web} = :application.get_key(:wa7vc_web, :vsn)
