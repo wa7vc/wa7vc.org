@@ -23,7 +23,7 @@ defmodule Wa7vc.Mixfile do
   def application do
     [
       mod: {Wa7vc.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :sentry]
     ]
   end
 
@@ -35,7 +35,9 @@ defmodule Wa7vc.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    []
+    [
+      {:sentry, "~> 6.4"}, 
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://browser.sentry-cdn.com/5.0.8/bundle.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      Sentry.init({ dsn: 'https://42404814b5a24bfeb1d19e9c7e8866ad@sentry.io/1255197' });
+    </script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
