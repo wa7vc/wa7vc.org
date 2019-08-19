@@ -3,7 +3,7 @@ defmodule Wa7vcWeb.Endpoint do
 
   socket "/socket", Wa7vcWeb.UserSocket,
     websocket: true,
-    longpoll: [check_origin: ["wa7vc.org","www.wa7vc.org"]]
+    longpoll: [check_origin: ["//wa7vc.org","//www.wa7vc.org"]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
