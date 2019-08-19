@@ -24,11 +24,17 @@
       <p>For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.</p>
       <p>To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg" target="_blank">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)</p>
       <p>
-        Event Talk-In Frequencies will be the WA7VC local frequencies:
+        Event Talk-In Frequency:
         <ul>
-          <li>70cm Simplex: 446.525 (no tone). IRLP Node 7808, Echolink Node 98045</li>
+          <li>2m Simplex: 146.52 (no tone)</li>
+        </ul>
+        Other WA7VC local frequencies:
+        <ul>
+          <li>Echolink: Node 98045 (or Valley Camp)</li>
+          <li>IRLP: 7808</li>
           <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
-          <li>DMR: We will be monitoring Washington 2. A demonstration Motorola DMR repeater will be onsite. (<a href="http://trbo.org/pnw/demonstration.html" target="_blank">Demonstration Project Information <i class="fas fa-external-link-alt"></i></a>)</li>
+          <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
+          <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
         </ul>
       </p>
   </div>
