@@ -11,9 +11,9 @@
   <div class="grid-x">
     <div class="cell small-3">
       <p>
-        <%= @wa7vc_web_version %><br />
-        <%= @wa7vc_version %><br />
-        <%= @marvin_version %><br />
+        W: <%= @wa7vc_web_version %><br />
+        A: <%= @wa7vc_version %><br />
+        M: <%= @marvin_version %><br />
       </p>
     </div>
     <div class="cell small-6"></div>
