@@ -14,7 +14,7 @@
       <p>WA7VC, the Valley Camp Amateur Radio Group, serving the Upper Snoqualmie Valley community since 1995.</p>
 
       <p>
-        The home of WA7VC is <a href="https://valleycamp.org/">Valley Camp</a>, located 6 miles NE of North Bend WA.<br />
+        The home of WA7VC is <a href="https://valleycamp.org/">Valley Camp <i class="fas fa-external-link-alt"></i></a>, located 6 miles NE of North Bend WA.<br />
         We have onsite a tower with a 10/15/20 meter beam and 2m/440 high gain vertical.<br />
         5 trees on the property have pulleys at or above 80' allowing for easy long wire installations.
       </p>
@@ -62,9 +62,9 @@
       <h5>But what's the weather?</h5>
       Our Davis VantagePro2 Plus weather station provides data to the following sites:
       <ul>
-        <li><a href="https://www.wunderground.com/personal-weather-station/dashboard?ID=KWANORTH35" target="_blank">WeatherUnderground - KWANORTH35 <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="http://www.wxqa.com/sss/search1.cgi?keyword=EW7771" target="_blank">CWOP - EW7771 <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="https://www.wrh.noaa.gov/mesowest/timeseries.php?wfo=sew&sid=E7771&num=48" target="_blank">NWS <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.wunderground.com/personal-weather-station/dashboard?ID=KWANORTH35">WeatherUnderground - KWANORTH35 <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://www.wxqa.com/sss/search1.cgi?keyword=EW7771">CWOP - EW7771 <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.wrh.noaa.gov/mesowest/timeseries.php?wfo=sew&sid=E7771&num=48">NWS <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
     </div>
   </div>
@@ -80,18 +80,18 @@
       <h5>Events</h5>
       WA7VC has hosted many Ham Radio Events over the years including: 
       <ul>
-        <li><a href="https://www.winterfieldday.com/" target="_blank">Winter Field Day <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="http://www.arrl.org/field-day" target="_blank">ARRL Field Day <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="http://pnwqrp.org/salmoncon" target="_blank">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.winterfieldday.com/">Winter Field Day <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://www.arrl.org/field-day">ARRL Field Day <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://pnwqrp.org/salmoncon">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="/summergathering">(NWAPRS) Summer Gathering</a></li>
-        <li><a href="http://www.wwdxc.org/salmonrun/" target="_blank">Salmon Run <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="https://www.scouting.org/jota/" target="_blank">BSA JOTA/JOTI <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="http://www.wwdxc.org/salmonrun/">Salmon Run <i class="fas fa-external-link-alt"></i></a></li>
+        <li><a href="https://www.scouting.org/jota/">BSA JOTA/JOTI <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
 
       <h5>Calendar</h5>
       Our upcoming schedule of events is:
       <ul>
-        <li>May 18, 2019: <a href="http://www.pnwdigital.net/dmrgathering-2019/index.html" target="_blank">PNW DMR Gathering<i class="fas fa-external-link-alt"></i></a> (<a href="http://www.pnwdigital.net/dmrgathering-2019/brochure.pdf">PDF Brochure</a>)</li>
+        <li>May 18, 2019: <a href="http://www.pnwdigital.net/dmrgathering-2019/index.html">PNW DMR Gathering<i class="fas fa-external-link-alt"></i></a> (<a href="http://www.pnwdigital.net/dmrgathering-2019/brochure.pdf">PDF Brochure</a>)</li>
         <li>September 6-8, 2019: <a href="/summergathering/2019">Summer Gathering</a></li>
       </ul>
     </div>
