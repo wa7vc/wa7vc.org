@@ -1,6 +1,6 @@
 <div id="hero">
-  <h1>PNW DMR Gathering</h1>
-  <h2>May 18-19, 2019</h2>
+  <h1>Summer Gathering</h1>
+  <h2>September 11-13, 2020</h2>
 </div>
 
 <div id="hero-image" class="upper-curve">
@@ -9,21 +9,34 @@
 
 <section id="prev-next" class="bg-light">
   <div class="grid-x">
-    <div class="cell small-3"></div>
+    <div class="cell small-3"><a href="/summergathering/2019"><i class="fas fa-arrow-circle-left"></i> Summer Gathering 2019</a></div>
     <div class="cell small-6"></div>
-    <div class="cell small-3" style="text-align: right;"><a href="/dmrgathering/2020">DMR Gathering 2020 <i class="fas fa-arrow-circle-right"></i></a></div>
+    <div class="cell small-3" style="text-align: right;"></div>
   </div>
 </section>
 
 <section id="about" class="bg-light">
   <div class="grid-x">
     <div class="cell small-12">
-      <h5>1st Annual Pacific Northwest DMR Gathering</h5>
+      <h5>23nd Annual Summer Gathering</h5>
+      <p><strong>Look for more info arriving on this page soon!</strong></p>
+      <p>As usual, this year's Summer Gathering will be filled with lectures, show-and-tell, food, and antennas. In addition to the schedule of events shown below, attendees are often showing off their own projects, selling or trading used items, and helping each other construct or repair all manner of things!</p>
+      <p>As always, the event will be held at <a href="https://valleycamp.org">Valley Camp</a>. For reservations please contact <a href="mailto:info@valleycamp.org">info@valleycamp.org</a>.</p>
+      <p>For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.</p>
+      <p>To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)</p>
       <p>
-        This event is sponsored jointly by the <a href="http://www.pnwdigital.net/index.html">PNW DMR Network</a> and <a href="https://valleycamp.org/">Valley Camp</a>/<a href="https://wa7vc.org">WA7VC</>
-      </p>
-      <p>
-				The <a href="http://www.pnwdigital.net/dmrgathering-2019/index.html">Official Event Page</a> has the full details of the event, so check that out for the latest news and schedule, as well as links for more info and to make reservations.
+        Event Talk-In Frequency:
+        <ul>
+          <li>2m Simplex: 146.52 (no tone)</li>
+        </ul>
+        Other WA7VC local frequencies:
+        <ul>
+          <li>Echolink: Node 98045 (or Valley Camp)</li>
+          <li>IRLP: 7808</li>
+          <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
+          <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
+          <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
+        </ul>
       </p>
   </div>
 </section>
@@ -33,9 +46,20 @@
   <div class="grid-x">
     <div class="cell small-12">
       <h4>Schedule of Events</h4>
-      <p>Saturday presentations from introductory to advanced.</p>
-			<p>Sunday morning events now added, single or multiple sessions with SME's, yet to be finalized.</p>
-			<p>There will be plenty of time for networking/socializing over the weekend. Check the <a href="http://www.pnwdigital.net/dmrgathering-2019/brochure.pdf">brochure</a> and the <a href="http://www.pnwdigital.net/dmrgathering-2019/index.html">Official Event Page</a> for the latest information.</p>
+    </div>
+
+    <div class="cell small-6 medium-4">
+      <h5>Friday (9/11):</h5>
+      <ul class="schedule-list">
+      </ul>
+    </div>
+
+    <div class="cell small-6 medium-4">
+      <h5>Saturday (9/12):</h5>
+    </div>
+
+    <div class="cell small-6 medium-4">
+      <h5>Sunday (9/13):</h5>
     </div>
   </div>
 </section>
@@ -74,6 +98,9 @@
         <b>If you take the right path:</b> Follow the road until the roads come back together, and make a right turn into camp.<br />
         Please note: While this is technically a one-way road many people are unfortunately disobeying the signs, so please be careful of the possibility of oncoming traffic!<br />
       </p>
+    </div>
+
+    <div class="cell small-12" style="text-align:center; font-size:8pt;">
     </div>
   </div>
 </section>
