@@ -18,10 +18,10 @@ defmodule Wa7vcWeb.Router do
 
     get "/", PageController, :index
 
-    get "/dmrgathering/:year", PageController, :dmrgathering
     get "/dmrgathering", PageController, :dmrgathering
-    get "/summergathering/:year", PageController, :summergathering
+    get "/dmrgathering/:year", PageController, :dmrgathering
     get "/summergathering", PageController, :summergathering
+    get "/summergathering/:year", PageController, :summergathering
     get "/nwaprssg", PageController, :summergathering
 
     get "/marvin", PageController, :marvin
