@@ -1,43 +1,61 @@
 defmodule Wa7vcWeb.PageController do
   use Wa7vcWeb, :controller
 
+  plug :sg_year when action in [:summergathering]
+  plug :dmr_year when action in [:dmrgathering]
+
+  defp dmr_year(conn, _opts) do
+    valid_years = ["2019", "2020"]
+    latest_year = List.last(valid_years)
+    requested_year = conn.path_params["year"]
+    
+    cond do
+      requested_year == nil ->
+        conn
+        |> assign(:load_year, latest_year)
+      requested_year in valid_years ->
+        conn
+        |> assign(:load_year, requested_year)
+      true ->
+        conn 
+        |> put_flash(:error, "No DMR Gathering page for #{requested_year}, sorry!")
+        |> assign(:load_year, latest_year)
+    end
+  end
+
+  defp sg_year(conn, _opts) do
+    valid_years = ["2018", "2019", "2020"]
+    latest_year = List.last(valid_years)
+    requested_year = conn.path_params["year"]
+    
+    cond do
+      requested_year == nil ->
+        conn
+        |> assign(:load_year, latest_year)
+      requested_year in valid_years ->
+        conn
+        |> assign(:load_year, requested_year)
+      true ->
+        conn 
+        |> put_flash(:error, "No Summer Gathering page for #{requested_year}, sorry!")
+        |> assign(:load_year, latest_year)
+    end
+  end
+
+
   def index(conn, _params) do
     render conn, "index.html"
   end
 
-  # If no year given redirect to current year. This will need to change when we add the next year!
+  def dmrgathering(conn, _params) do
+    render conn, "dmrgathering-#{conn.assigns[:load_year]}.html"
+  end
+
   def summergathering(conn, params) do
-    case params["year"] do
-      nil -> redirect conn, to: "/summergathering/2019"
-      year ->
-        try do
-          render conn, "summergathering-#{year}.html"
-        rescue
-          Phoenix.Template.UndefinedError ->  conn
-                                                |> put_flash(:error, "No Summer Gathering page for the year #{year} yet, sorry!")
-                                                |> redirect(to: "/summergathering")
-                                                |> halt()
-        end
-    end
+    render conn, "summergathering-#{conn.assigns[:load_year]}.html"
   end
 
-  # If no year given redirect to current year. This will need to change when we add the next year!
-  def dmrgathering(conn, params) do
-    case params["year"] do
-      nil -> redirect conn, to: "/dmrgathering/2019"
-      year ->
-        try do
-          render conn, "dmrgathering-#{year}.html"
-        rescue
-          Phoenix.Template.UndefinedError ->  conn
-                                                |> put_flash(:error, "No DMR Gathering page for the year #{year} yet, sorry!")
-                                                |> redirect(to: "/dmrgathering")
-                                                |> halt()
-        end
-    end
-  end
-
-  def marvin(conn, params) do
+  def marvin(conn, _params) do
     # Get application version numbers
     {:ok, vsn_wa7vc_web} = :application.get_key(:wa7vc_web, :vsn)
     List.to_string(vsn_wa7vc_web)
@@ -60,4 +78,6 @@ defmodule Wa7vcWeb.PageController do
       wa7vc_version: vsn_wa7vc,
       marvin_version: vsn_marvin
   end
+
+
 end
