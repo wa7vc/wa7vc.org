@@ -8,7 +8,7 @@ ASDF is used to ensure the correct versions of needed software, so either use AS
 New versions to deploy to production are tagged in git following typical SemVer style.
 
 ### Development Notes
-  - Phoenix 1.3>1.4 upgrade was done following [this gist](https://gist.github.com/chrismccord/bb1f8b136f5a9e4abc0bfc07b832257e), however the "replace brunch with webpack" step was not followed, nor the ecto upgrade (no ecto active at th etime).
+  - Phoenix 1.3>1.4 upgrade was done following [this gist](https://gist.github.com/chrismccord/bb1f8b136f5a9e4abc0bfc07b832257e), however the "replace brunch with webpack" step was not followed, nor the ecto upgrade (no ecto active at the time).
 
 ## Deployment
 While anything Elixir can compile to will work as a server, by default we're using an Ubuntu 18 VM.

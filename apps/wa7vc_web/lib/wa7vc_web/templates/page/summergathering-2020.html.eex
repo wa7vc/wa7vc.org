@@ -1,6 +1,6 @@
 <div id="hero">
   <h1>Summer Gathering</h1>
-  <h2>September 11-13, 2020</h2>
+  <h2><span style="text-decoration:line-through;">September 11-13, 2020</span><br />CANCELLED</h2>
 </div>
 
 <div id="hero-image" class="upper-curve">
@@ -19,25 +19,11 @@
   <div class="grid-x">
     <div class="cell small-12">
       <h5>23nd Annual Summer Gathering</h5>
-      <p><strong>Look for more info arriving on this page soon!</strong></p>
-      <p>As usual, this year's Summer Gathering will be filled with lectures, show-and-tell, food, and antennas. In addition to the schedule of events shown below, attendees are often showing off their own projects, selling or trading used items, and helping each other construct or repair all manner of things!</p>
-      <p>As always, the event will be held at <a href="https://valleycamp.org">Valley Camp</a>. For reservations please contact <a href="mailto:info@valleycamp.org">info@valleycamp.org</a>.</p>
-      <p>For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.</p>
-      <p>To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)</p>
       <p>
-        Event Talk-In Frequency:
-        <ul>
-          <li>2m Simplex: 146.52 (no tone)</li>
-        </ul>
-        Other WA7VC local frequencies:
-        <ul>
-          <li>Echolink: Node 98045 (or Valley Camp)</li>
-          <li>IRLP: 7808</li>
-          <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
-          <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
-          <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
-        </ul>
+        <b>CANCELLED due to Covid-19 Pandemic</b><br />
+        Check back for information and dates for 2021!
       </p>
+      <p>To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)</p>
   </div>
 </section>
 
@@ -46,21 +32,14 @@
   <div class="grid-x">
     <div class="cell small-12">
       <h4>Schedule of Events</h4>
-    </div>
-
-    <div class="cell small-6 medium-4">
-      <h5>Friday (9/11):</h5>
-      <ul class="schedule-list">
+      <ul>
+        <li>Apply hand sanitizer generously (Event repeats as often as needed)</li>
+        <li>Clean up your 'shack, you're gonna be spending some time in there</li>
+        <li>Check all your feedlines. You know you haven't done that in a while.</li>
+        <li>Get on the air with all the other isolated hams!</li>
       </ul>
     </div>
 
-    <div class="cell small-6 medium-4">
-      <h5>Saturday (9/12):</h5>
-    </div>
-
-    <div class="cell small-6 medium-4">
-      <h5>Sunday (9/13):</h5>
-    </div>
   </div>
 </section>
 
@@ -68,35 +47,16 @@
   <div class="grid-x">
     <div class="cell small=12 medium-4">
       <h5>Location</h5> 
-      <p>
-        <a href="https://valleycamp.org">Valley Camp</a> is location about 30 minutes east of
-        Seattle. (Directions from their website are located below)
-      </p>
-      <p>Address:<br />49515 S.E. Middle Fork Rd<br />North Bend WA 98045</p>
-      <p>Coordinates:<br />47.4680, -121.6806</p>
-      <p>Phone:<br />1-425-888-1852</p>
-      <p>Email:<br /><a href="mailto:info@valleycamp.org">info@valleycamp.org</a></p>
-
+      <p>The ethereal timeless void that we're all living in now.</p>
     </div>
     <div class="cell small=12 medium-8">
-      <div style="text-decoration:none; overflow:hidden;max-width:100%;width:800px;height:500px;"><div id="display-googlemap" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=49515+SE+Middle+Fork+Rd,+North+Bend,+WA,+USA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="googlehtml" href="https://dedicatedserver.expert" id="grabmap-authorization">dedicatedserver.expert</a><style>#display-googlemap .text-marker{}.map-generator{max-width: 100%; max-height: 100%; background: none;</style></div>
       <br />
       <br />
     </div>
     <div class="cell small-12">
       <h5>Directions to the Event</h5>
       <p>
-        Take Exit 34 off of I-90. At the bottom of the offramp turn left if coming from Seattle, or right if coming from Spokane.<br />
-        <br />
-        Go ½ mile to SE Middle Fork Rd. and turn Right. (County sign says 'Valley Camp 2.2 miles')<br />
-        <br />
-        When you come to the "Y" in the road you can take either direction, you'll find us where the roads come back together.<br />
-        <br />
-        <b>If you take the left path:</b> Follow that road until you get to the stop sign. We are straight ahead.<br />
-        This path may be easier for RV's and trailers, however it does have some additional twists and turns and is a two-way road.<br />
-        <br />
-        <b>If you take the right path:</b> Follow the road until the roads come back together, and make a right turn into camp.<br />
-        Please note: While this is technically a one-way road many people are unfortunately disobeying the signs, so please be careful of the possibility of oncoming traffic!<br />
+        2nd star to the right, and straight on to 2021.
       </p>
     </div>
 
