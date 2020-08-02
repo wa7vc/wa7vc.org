@@ -14,8 +14,7 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "O1t5BciZwZ1fm5RNn1WJjkgCFuQOwI9hVKjGDOAdyIkfKTzaexMYLXrJpCb02Agh",
   render_errors: [view: Wa7vcWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Wa7vcWeb.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub_server: Wa7vcWeb.PubSub
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

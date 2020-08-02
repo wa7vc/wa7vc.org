@@ -6,6 +6,9 @@ defmodule Wa7vcWeb.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Wa7vcWeb.PubSub},
+
       # Start the endpoint when the application starts
       supervisor(Wa7vcWeb.Endpoint, []),
       # Start your own worker by calling: Wa7vcWeb.Worker.start_link(arg1, arg2, arg3)

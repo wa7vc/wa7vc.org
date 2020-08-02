@@ -9,7 +9,7 @@ defmodule Wa7vcWeb.Mixfile do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.4",
+      elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       start_permanent: Mix.env == :prod,
@@ -37,10 +37,10 @@ defmodule Wa7vcWeb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:phoenix, "~> 1.5.4"},
+      {:phoenix_pubsub, "~> 2.0"},
+      {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:wa7vc, in_umbrella: true},
       {:marvin, in_umbrella: true},
@@ -50,6 +50,15 @@ defmodule Wa7vcWeb.Mixfile do
       {:number, "~> 0.5.7"},
       {:timex, "~> 3.1"},
       {:sentry, "~> 8.0"},
+
+
+      # Other deps from a clean 1.5.4 install
+      #{:phoenix_ecto, "~> 4.1"},
+      #{:ecto_sql, "~> 3.4"},
+      #{:postgrex, ">= 0.0.0"},
+      #{:phoenix_live_dashboard, "~> 0.2"},
+      #{:telemetry_metrics, "~> 0.4"},
+      #{:telemetry_poller, "~> 0.4"},
     ]
   end
 
