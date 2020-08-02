@@ -36,7 +36,7 @@ defmodule Wa7vc.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:sentry, "~> 6.4"}, 
+      {:sentry, "~> 8.0"}, 
     ]
   end
 

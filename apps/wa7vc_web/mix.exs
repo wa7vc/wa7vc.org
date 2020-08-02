@@ -49,7 +49,7 @@ defmodule Wa7vcWeb.Mixfile do
       {:jason, "~> 1.0"},
       {:number, "~> 0.5.7"},
       {:timex, "~> 3.1"},
-      {:sentry, "~> 6.4"},
+      {:sentry, "~> 8.0"},
     ]
   end
 

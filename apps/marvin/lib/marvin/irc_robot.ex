@@ -1,4 +1,8 @@
 defmodule Marvin.IrcRobot do
+  @moduledoc """
+  Marvin's IRC connection. Sets up and maintains the connection and does misc IRC things.
+  There can only be one! (This is a singleton object, methods called on the module find the active PID by name)
+  """
   use Hedwig.Robot, otp_app: :marvin
   alias Marvin.PrefrontalCortex, as: STM
 
@@ -56,14 +60,21 @@ defmodule Marvin.IrcRobot do
     # Send ourselves a message as a way to "do something" with the IRC connection.
     # This *should* crashed the process if we're not connected, initiating a restart/reconnect. 
     if last_checked == :error || Timex.diff(Timex.now(), last_checked, :minutes) > 2 do
-      ExIrc.Client.msg(client_pid, :privmsg, mynick, "SELFPING-AUTO")
+      ExIRC.Client.msg(client_pid, :privmsg, mynick, "SELFPING-AUTO")
       STM.put(:irc_last_selfping_timestamp, Timex.now())
+      STM.put(:irc_connection_status, "Connected")
     end
-    # If we're still connected we'll update some stats.
+ 
+    # If we're still connected (process didn't crash out) we'll update some stats.
     #
     # Note that channel_users() crashes the genserver if called on a channel you're not in, so we have to check that first
-    if Enum.member?(ExIrc.Client.channels(client_pid), "#wa7vc") do
-      STM.put(:irc_users_count, length(ExIrc.Client.channel_users(client_pid, "#wa7vc")))
+    channels = ExIRC.Client.channels(client_pid)
+    if channels == {:error, :not_connected} do
+      exit(channels)
+    end
+
+    if Enum.member?(channels, "#wa7vc") do
+      STM.put(:irc_users_count, length(ExIRC.Client.channel_users(client_pid, "#wa7vc")))
     end
       
     schedule_connection_loop()
@@ -71,35 +82,65 @@ defmodule Marvin.IrcRobot do
     {:noreply, state}
   end
 
+  # This would work in the /adapter/, but is not right for the Robot itself
+  #  def handle_call(:check_irc_connected, _from, state = {_robot, _opts, client}) do
+  #  {:reply, ExIRC.Client.is_connected?(client), state}
+  #end
+  #def handle_call(:check_irc_connected, _from, opts) do
+    #adapter = opts.
+    #{:reply, , opts}
+  #end
 
   #####
   # Public API
   #####
 
+  @doc """
+    Send a message to #WA7VC as Marvin
+  """
   def irc_wa7vc_send(msg) do
     pid = get_pid()
     GenServer.cast(pid, {:send, %Hedwig.Message{room: "#wa7vc", text: msg}})
   end
 
+  @doc """
+    Return the PID of Marvin.IrcRobot
+  """
   def get_pid() do
     :global.whereis_name(Application.get_env(:marvin, Marvin.IrcRobot)[:name])
   end
 
+  @doc """
+    Return the PID of the underlying ExIRC adapter
+  """
   def get_client_pid() do
     %{adapter: adapter_pid} = :sys.get_state(get_pid())
     {_adapter_pid, _adapter_opts, client_pid} = :sys.get_state(adapter_pid)
     client_pid
   end
 
+  @doc """
+    return the connection state from the IRC Client
+  """
   def client_connected?() do
     %{connected?: connection_state} = :sys.get_state(get_client_pid())
     connection_state
   end
 
-  # Send ourselevs a message as a way of forcing the ExIrc client to decide if it's currently connected or not
+  @doc """
+    Send ourselevs a message as a way of forcing the underlying ExIRC client to decide if it's currently connected or not
+  """
   def selfping() do
     mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name]
-    ExIrc.Client.msg(get_client_pid(), :privmsg, mynick, "SELFPING-MANUAL")
+
+    ExIRC.Client.msg(get_client_pid(), :privmsg, mynick, "SELFPING-MANUAL")
+  end
+
+  @doc """
+    See if our IRC connection is up
+  """
+  def is_connected?() do
+    GenServer.call(get_client_pid(), :is_connected?)
   end
 
   #####
