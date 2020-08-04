@@ -71,7 +71,7 @@ defmodule Wa7vcWeb.PageController do
     render conn, "dmrgathering-#{conn.assigns[:load_year]}.html"
   end
 
-  def summergathering(conn, params) do
+  def summergathering(conn, _params) do
     render conn, "summergathering-#{conn.assigns[:load_year]}.html"
   end
 

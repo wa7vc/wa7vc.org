@@ -21,7 +21,7 @@ defmodule Marvin.Hooker do
     GenServer.cast(__MODULE__, {:receive_github_hook, hook})
   end
 
-  def handle_received_github_hook(hook) do
+  def handle_received_github_hook(_hook) do
     STM.increment(:github_pushes_count)
 
     # if push contains commits

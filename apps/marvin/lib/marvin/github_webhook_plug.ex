@@ -19,7 +19,7 @@ defmodule Marvin.GithubWebhookPlug do
     # done.
   end
 
-  def github_api(conn, options) do
+  def github_api(conn, _options) do
     key = Application.get_env(:marvin, Marvin.Hooker)[:github_webhook_secret]
     {:ok, body, _} = read_body(conn)
     signature = case get_req_header(conn, "x-hub-signature") do
