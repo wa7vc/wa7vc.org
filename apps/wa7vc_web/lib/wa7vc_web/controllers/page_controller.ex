@@ -75,34 +75,6 @@ defmodule Wa7vcWeb.PageController do
     render conn, "summergathering-#{conn.assigns[:load_year]}.html"
   end
 
-  def marvin(conn, _params) do
-    # Get application version numbers
-    {:ok, vsn_wa7vc_web} = :application.get_key(:wa7vc_web, :vsn)
-    List.to_string(vsn_wa7vc_web)
-    {:ok, vsn_wa7vc} = :application.get_key(:wa7vc, :vsn)
-    List.to_string(vsn_wa7vc)
-    {:ok, vsn_marvin} = :application.get_key(:marvin, :vsn)
-    List.to_string(vsn_marvin)
-
-
-    # Calculate current iteration uptime
-    ##Reference Snippet, although I'm keeping the somewhat more complicated method that's actually used below.
-    ##wallclock_runtime = erlang.statistics(:wall_clock) |> elem(0) |> Kernel.div(1000)
-    #{last_started_ago, last_called_ago} = :erlang.statistics(:wall_clock)
-    #last_start_ts = NaiveDateTime.utc_now() |> NaiveDateTime.add(last_started_ago*-1, :millisecond)
-    #last_start_lifespan = NaiveDateTime.diff(NaiveDateTime.utc_now(), last_start_ts)
-
-    meta_attrs_list = [ %{name: "robots", content: "noindex"},
-                        %{name: "description", content: "Statistics and interesting facts, with a healthy dose of depression."}
-                      ]
-
-
-    render conn, "marvin.html",
-      wa7vc_web_version: vsn_wa7vc_web,
-      wa7vc_version: vsn_wa7vc,
-      marvin_version: vsn_marvin,
-      meta_attrs: meta_attrs_list
-  end
 
 
 end

@@ -35,6 +35,19 @@ body {
   padding-right: 80px;
 }
 
+.live-flash-container {
+  padding: 0px;
+  margin: 0px;
+}
+.live-flash-container p:empty {
+  display:none;
+}
+.live-flash-container p {
+  padding: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
 #flash-alert-container .alert {
   text-align: center;
   font-size: 2rem;

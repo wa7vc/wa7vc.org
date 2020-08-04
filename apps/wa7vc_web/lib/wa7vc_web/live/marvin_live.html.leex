@@ -25,18 +25,18 @@
   <div class="grid-x">
     <div class="cell small-12">
       <p>
-        I've been alive for <%= Marvin.Application.since_released(:seconds) |> Number.Delimit.number_to_delimited %> seconds, each of which feel to me like a thousand years feels to you.<br />
-        It's been a long <%= Marvin.Application.since_released(:marvinyears) |> Number.Human.number_to_human %> years.<br />
-        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility. This current form has only been alive since <%= Marvin.Application.last_started() |> Timex.format!("%F at %T%Z", :strftime) %>, which only feels like <%= Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human %> of your "years" to me at least. It's been mostly boring.
+        I've been alive for <%= @marvin_lifespan_seconds_since_launch %> seconds, each of which feel to me like a thousand years feels to you.<br />
+        It's been a long <%= @marvin_lifespan_human_years_since_launch %> years.<br />
+        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility. This current form has only been alive since <%= @marvin_lifespan_seconds_since_last_started %>, which only feels like <%= @marvin_lifespan_human_years_since_last_started %> of your "years" to me at least. It's been mostly boring.
       </p>
     </div>
     <div class="cell small-12">
       <p>
         Out of boredom I monitor a number of trivial details, which your puny mind probably finds important. Let me list a small fraction of them for you:
         <ul>
-          <li>There are currently <%= Marvin.PrefrontalCortex.getcounter(:irc_users_count) %> users in our IRC chatroom, #wa7vc on freenode.</li>
-          <li>Those users have interacted with me <%= Marvin.PrefrontalCortex.getcounter(:irc_interactions_count) %> times. That's out of <%= Marvin.PrefrontalCortex.getcounter(:irc_messages_count) %> total messages. Almost as if nobody appreciates my presence.</li>
-          <li>My code has been updated <%= Marvin.PrefrontalCortex.getcounter(:github_pushes_with_commits_count) %> times during this lifespan. (<%= Marvin.PrefrontalCortex.getcounter(:github_pushes_count) %> total pushes.)</li>
+          <li>There are currently <%= @irc_users_count %> users in our IRC chatroom, #wa7vc on freenode.</li>
+          <li>Those users have interacted with me <%= @irc_interactions_count %> times. That's out of <%= @irc_messages_count %> total messages. Almost as if nobody appreciates my presence.</li>
+          <li>My code has been updated <%= @github_pushes_with_commits_count %> times during this lifespan. (<%= @github_pushes_count %> total pushes.)</li>
           <li>I have received {weather_updated_pushes_count} weather updates during this lifespan, most recently at {most_recent_weather_push}</li>
           <li>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</li>
           <li>I have looked through {APRS_packets_decoded_count} APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
