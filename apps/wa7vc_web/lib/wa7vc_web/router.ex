@@ -1,5 +1,6 @@
 defmodule Wa7vcWeb.Router do
   use Wa7vcWeb, :router
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -32,4 +33,11 @@ defmodule Wa7vcWeb.Router do
   # scope "/api", Wa7vcWeb do
   #   pipe_through :api
   # end
+
+  if Mix.env() == :dev do
+    scope "/" do
+      pipe_through :browser
+      live_dashboard "/phx-dashboard", metrics: Wa7vcWeb.Telemetry
+    end
+  end
 end

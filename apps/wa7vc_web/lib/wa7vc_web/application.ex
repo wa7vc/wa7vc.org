@@ -8,6 +8,7 @@ defmodule Wa7vcWeb.Application do
     children = [
       # Start the PubSub system
       {Phoenix.PubSub, name: Wa7vcWeb.PubSub},
+      Wa7vcWeb.Telemetry,
 
       # Start the endpoint when the application starts
       supervisor(Wa7vcWeb.Endpoint, []),

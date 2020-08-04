@@ -24,7 +24,7 @@ defmodule Wa7vcWeb.Mixfile do
   def application do
     [
       mod: {Wa7vcWeb.Application, []},
-      extra_applications: [:logger, :runtime_tools, :edeliver, :timex, :sentry]
+      extra_applications: [:logger, :runtime_tools, :os_mon, :edeliver, :timex, :sentry]
     ]
   end
 
@@ -43,6 +43,9 @@ defmodule Wa7vcWeb.Mixfile do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_view, "~> 0.14.2"},  # Clean 1.5.4 install uses 0.13.0
       {:floki, ">= 0.0.0", only: :test},
+      {:phoenix_live_dashboard, "~> 0.2"},
+      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
       {:wa7vc, in_umbrella: true},
       {:marvin, in_umbrella: true},
@@ -58,9 +61,6 @@ defmodule Wa7vcWeb.Mixfile do
       #{:phoenix_ecto, "~> 4.1"},
       #{:ecto_sql, "~> 3.4"},
       #{:postgrex, ">= 0.0.0"},
-      #{:phoenix_live_dashboard, "~> 0.2"},
-      #{:telemetry_metrics, "~> 0.4"},
-      #{:telemetry_poller, "~> 0.4"},
     ]
   end
 
