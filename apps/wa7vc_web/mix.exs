@@ -41,6 +41,8 @@ defmodule Wa7vcWeb.Mixfile do
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_view, "~> 0.14.2"},  # Clean 1.5.4 install uses 0.13.0
+      {:floki, ">= 0.0.0", only: :test},
       {:gettext, "~> 0.11"},
       {:wa7vc, in_umbrella: true},
       {:marvin, in_umbrella: true},

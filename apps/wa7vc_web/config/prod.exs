@@ -21,6 +21,7 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
   root: ".",
   version: Application.spec(:wa7vc_web, :vsn),
   secret_key_base: "${SECRET_KEY_BASE}"
+  live_view: [signing_salt: "${LIVEVIEW_SECRET_SALT}"]
 
 # ## SSL Support
 #

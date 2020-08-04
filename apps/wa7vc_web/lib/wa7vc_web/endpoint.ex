@@ -1,6 +1,12 @@
 defmodule Wa7vcWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :wa7vc_web
 
+  @session_options [
+    store: :cookie,
+    key: "_wa7vc_web_key",
+    signing_salt: "QczfYGF+"  # TODO: Not that we're using it right now anyway, but this needs to get moved to ENV
+  ]
+
   socket "/socket", Wa7vcWeb.UserSocket,
     websocket: true,
     longpoll: [check_origin: ["//wa7vc.org","//www.wa7vc.org"]]
@@ -39,12 +45,12 @@ defmodule Wa7vcWeb.Endpoint do
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
-  plug Plug.Session,
-    store: :cookie,
-    key: "_wa7vc_web_key",
-    signing_salt: "QczfYGF+"
+  plug Plug.Session, @session_options
 
   plug Wa7vcWeb.Router
+
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]]
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.

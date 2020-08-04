@@ -84,6 +84,7 @@ Environment=GITHUB_WEBHOOK_SECRET=
 Environment=SECRET_KEY_BASE=
 Environment=SENTRY_DSN=
 Environment=REPLACE_OS_VARS=true
+Environment=LIVEVIEW_SECRET_SALT=
 ExecStart=/home/wa7vc/production/wa7vc_web/bin/wa7vc_web start
 ExecStop=/home/wa7vc/production/wa7vc_web/bin/wa7vc_web stop
 
