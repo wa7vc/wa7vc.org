@@ -14,6 +14,8 @@ defmodule Wa7vcWeb.MarvinLive do
 
     if connected?(socket), do: :timer.send_interval(1000, self(), :update_lifespans)
 
+    Marvin.PrefrontalCortex.subscribe()
+
     {:ok, assign(socket, assigns)}
   end
 
@@ -30,15 +32,28 @@ defmodule Wa7vcWeb.MarvinLive do
       |> assign(results: %{}, query: query)}
   end
 
-
-  defp lifespan_assigns() do
-    %{marvin_lifespan_seconds_since_launch: Marvin.Application.since_released(:seconds) |> Number.Delimit.number_to_delimited,
-      marvin_lifespan_human_years_since_launch: Marvin.Application.since_released(:marvinyears) |> Number.Human.number_to_human,
-      marvin_lifespan_seconds_since_last_started: Marvin.Application.last_started() |> Timex.format!("%F at %T%Z", :strftime),
-      marvin_lifespan_human_years_since_last_started: Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human }
+  # Handle key update broadcasts from Marvin.PrefrontalCortex
+  # Any key we already have an assigns for gets updated, anything else gets ignored.
+  # So to get live assigns updating, just add the variable to assigns on mount, and presto!
+  def handle_info({:key_updated, {k,v}}, socket) do
+    case Map.has_key?(socket.assigns, k) do
+      true ->
+        {:noreply, assign(socket, %{k => v})}
+      false ->
+        {:noreply, socket}
+    end
   end
 
 
+  defp lifespan_assigns() do
+    %{marvin_lifespan_seconds_since_launch: Marvin.Application.since_released(:seconds) |> Number.Delimit.number_to_delimited(precision: 0),
+      marvin_lifespan_human_years_since_launch: Marvin.Application.since_released(:marvinyears) |> Number.Human.number_to_human,
+      marvin_lifespan_seconds_since_last_started: Marvin.Application.last_started() |> Timex.format!("%F at %T %Z", :strftime),
+      marvin_lifespan_human_years_since_last_started: Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human(precision: 0) }
+  end
+
+
+  # TODO: Detect when a new version has been released so the new version numbers can get pushed?
   defp version_assigns() do
     # Get application version numbers
     {:ok, vsn_wa7vc_web} = :application.get_key(:wa7vc_web, :vsn)

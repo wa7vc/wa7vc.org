@@ -19,7 +19,7 @@ defmodule Marvin.MixProject do
   def application do
     [
       mod: {Marvin.Application, []},
-      extra_applications: [:logger, :hedwig_irc_adapter, :sentry]
+      extra_applications: [:logger, :hedwig_irc_adapter, :phoenix_pubsub, :sentry]
     ]
   end
 
@@ -33,6 +33,7 @@ defmodule Marvin.MixProject do
       # {:hedwig_irc, git: "git://github.com/jeffweiss/hedwig_irc.git"}
       {:hedwig_irc_adapter, "~> 0.1.0"}, # Use the daynyxx fork which has been updated to more recent Hedwig/ExIRC versions
       {:sentry, "~> 8.0"},
+      {:phoenix_pubsub, "~> 2.0"},
     ]
   end
 

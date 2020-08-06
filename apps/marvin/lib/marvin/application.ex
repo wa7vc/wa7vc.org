@@ -9,6 +9,7 @@ defmodule Marvin.Application do
     startup_tasks = [fn -> Marvin.PrefrontalCortex.put(:bootup_timestamp, Timex.now()) end]
     
     children = [
+      {Phoenix.PubSub, name: :marvin_synapses},
       worker(Marvin.PrefrontalCortex, []),
       worker(Marvin.IrcRobot, []),
       worker(Marvin.Hooker, []),
