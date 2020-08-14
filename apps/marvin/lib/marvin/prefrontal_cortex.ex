@@ -19,16 +19,16 @@ defmodule Marvin.PrefrontalCortex do
   def get(key) do
     case :ets.lookup(__MODULE__, key) do
       [{^key, val}] -> val
-      [] -> :error
+      [] -> nil
     end
   end
 
   # Get a value that's assumed to be a counter.
   # Because the counter may not have been created yet, we'll default to 0 if the key isn't found.
   def getcounter(key) do
-    case val = get(key) do
-      :error -> 0
-      _ -> val
+    case :ets.lookup(__MODULE__, key) do
+      [{^key, val}] -> val
+      [] -> 0
     end
   end
 
