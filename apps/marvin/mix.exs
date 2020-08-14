@@ -34,6 +34,9 @@ defmodule Marvin.MixProject do
       {:hedwig_irc_adapter, "~> 0.1.0"}, # Use the daynyxx fork which has been updated to more recent Hedwig/ExIRC versions
       {:sentry, "~> 8.0"},
       {:phoenix_pubsub, "~> 2.0"},
+      {:httpoison, "~> 1.6"},
+      {:jason, "~> 1.0"},  # Pin to same version as wa7vc_web uses
+      {:timex, "~> 3.1"},  # Pin to same version as wa7vc_web uses
     ]
   end
 

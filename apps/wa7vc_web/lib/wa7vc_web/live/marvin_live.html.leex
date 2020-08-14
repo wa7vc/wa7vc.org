@@ -34,6 +34,8 @@
     <div class="cell small-12 medium-6 large-4 marvin-stat-block">
       <h3>Local Rivers</h3>
       <ul>
+        <li>I've checked the river gauging stations <%= @usgs_river_data_fetches_count %> times since I last woke up, most recently at <%= @usgs_river_data_latest_fetch_timestamp %>. Was it worth it?</li>
+        <%= live_component @socket, Wa7vcWeb.MarvinRiverGaugesComponent, stations: @usgs_river_data_latest %>
       </ul>
     </div>
 

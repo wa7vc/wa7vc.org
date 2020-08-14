@@ -23,15 +23,6 @@ defmodule Wa7vcWeb.MarvinLive do
   def handle_info(:update_lifespans, socket) do
     {:noreply, assign(socket, lifespan_assigns())}
   end
-
-  @impl true
-  def handle_event("search", %{"q" => query}, socket) do
-    {:noreply,
-      socket
-      |> put_flash(:error, "No results found. Am I even trying?")
-      |> assign(results: %{}, query: query)}
-  end
-
   # Handle key update broadcasts from Marvin.PrefrontalCortex
   # Any key we already have an assigns for gets updated, anything else gets ignored.
   # So to get live assigns updating, just add the variable to assigns on mount, and presto!
@@ -43,6 +34,15 @@ defmodule Wa7vcWeb.MarvinLive do
         {:noreply, socket}
     end
   end
+
+  @impl true
+  def handle_event("search", %{"q" => query}, socket) do
+    {:noreply,
+      socket
+      |> put_flash(:error, "No results found. Am I even trying?")
+      |> assign(results: %{}, query: query)}
+  end
+
 
 
   defp lifespan_assigns() do
@@ -72,6 +72,10 @@ defmodule Wa7vcWeb.MarvinLive do
       irc_interactions_count: Marvin.PrefrontalCortex.getcounter(:irc_interactions_count),
       irc_messages_count: Marvin.PrefrontalCortex.getcounter(:irc_messages_count),
       github_pushes_with_commits_count: Marvin.PrefrontalCortex.getcounter(:github_pushes_with_commits_count),
-      github_pushes_count: Marvin.PrefrontalCortex.getcounter(:github_pushes_count) }
+      github_pushes_count: Marvin.PrefrontalCortex.getcounter(:github_pushes_count),
+      usgs_river_data_fetches_count: Marvin.PrefrontalCortex.getcounter(:usgs_river_data_fetches_count) |> Number.Human.number_to_human(precision: 0),
+      usgs_river_data_latest_fetch_timestamp: Marvin.PrefrontalCortex.get(:usgs_river_data_latest_fetch_timestamp),
+      usgs_river_data_latest: Marvin.PrefrontalCortex.get(:usgs_river_data_latest)
+    }
   end
 end

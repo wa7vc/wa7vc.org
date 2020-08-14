@@ -13,6 +13,7 @@ defmodule Marvin.Application do
       worker(Marvin.PrefrontalCortex, []),
       worker(Marvin.IrcRobot, []),
       worker(Marvin.Hooker, []),
+      worker(Marvin.RiverGaugeMonitor, []),
       worker(Task, startup_tasks, restart: :transient),
     ]
 
