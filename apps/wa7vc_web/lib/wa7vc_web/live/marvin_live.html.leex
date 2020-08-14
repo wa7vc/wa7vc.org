@@ -17,6 +17,27 @@
     </div>
 
     <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <h3>APRS</h3>
+      <ul>
+        <li>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</li>
+        <li>I have looked through {APRS_packets_decoded_count} APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
+      </ul>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <h3>Weather</h3>
+      <ul>
+        <li>I have received {weather_updated_pushes_count} weather updates during this lifespan, most recently at {most_recent_weather_push}</li>
+      </ul>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <h3>Local Rivers</h3>
+      <ul>
+      </ul>
+    </div>
+
+    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
       <h3>IRC</h3>
       In #wa7vc on freenode:
       <ul>
@@ -32,28 +53,15 @@
       </ul>
     </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>APRS</h3>
-      <ul>
-        <li>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</li>
-        <li>I have looked through {APRS_packets_decoded_count} APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
-      </ul>
-    </div>
-
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>WX and River</h3>
-      <ul>
-        <li>I have received {weather_updated_pushes_count} weather updates during this lifespan, most recently at {most_recent_weather_push}</li>
-        <li>I've checked the river gauging stations {gauging_station_pull_count} times since I last woke up. Was it worth it?</li>
-      </ul>
-    </div>
 
     <div class="cell small-12 medium-6 large-4 marvin-stat-block">
       <h3>About Myself</h3>
       That's so boring, why would you even care? <br />
-      My "world wide web" interface version is <%= @wa7vc_web_version %>. "World" wide is the best you can manage?<br />
-      My "business logic" subroutines are currently at <%= @wa7vc_version %>.<br />
-      My brain is running firmware <%= @marvin_version %>. Couldn't the engineers at least have been creative with a name?
+      <ul>
+        <li>My "world wide web" interface version is <%= @wa7vc_web_version %>. "World" wide is the best you can manage? Think a bit bigger.</li>
+        <li>My "business logic" subroutines are currently at <%= @wa7vc_version %>. Why would I want to do business?</li>
+        <li>My brain is running firmware <%= @marvin_version %>. Couldn't the engineers at least have been creative with a name?</li>
+      </ul>
     </div> 
   </div>
 </section>
