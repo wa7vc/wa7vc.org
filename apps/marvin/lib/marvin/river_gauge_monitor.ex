@@ -113,6 +113,7 @@ defmodule Marvin.RiverGaugeMonitor do
 
   use GenServer
   alias Marvin.PrefrontalCortex, as: STM
+  require Logger
 
   @update_interval 300_000 # 1000 * 60 * 5, Refresh data every 5 minutes
   @gauge_stations [12144500,12142000,12141300,12143400]
@@ -147,21 +148,21 @@ defmodule Marvin.RiverGaugeMonitor do
 
   # Do the entire process of fetching the results and returning them as a list of Marvin.RiverGaugeMonitor.Station structs
   defp fetch_results do
-    get_parsed_usgs_json()
-    |> extract_and_parse_timeseries()
-    |> Enum.group_by(fn(x) -> x.siteCode end )
-    |> grouped_timeseries_to_structs()
-    |> Enum.reverse()
-  end
-
-  # Fetch the latest 2 hours of JSON data from the stations in @gauge_stations and decode it.
-  defp get_parsed_usgs_json do
     headers = [] # GZip requested by USGS, but not currently supported by HTTPoison/Hackney ["Accept-Encoding": "gzip,deflate"]
     options = [recv_timeout: 50_000] # Yes, a 50 second timeout. Their API can be **very** slow when generating a new result...
     
-    HTTPoison.get!("https://waterservices.usgs.gov/nwis/iv/?sites=" <> Enum.join(@gauge_stations, ",") <> "&format=json&period=PT2H", headers, options)
-    |> Map.get(:body)
-    |> Jason.decode!()
+    case HTTPoison.get("https://waterservices.usgs.gov/nwis/iv/?sites=" <> Enum.join(@gauge_stations, ",") <> "&format=json&period=PT2H", headers, options) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        Jason.decode!(body)
+        |> extract_and_parse_timeseries()
+        |> Enum.group_by(fn(x) -> x.siteCode end )
+        |> grouped_timeseries_to_structs()
+        |> Enum.reverse()
+      {:ok, response} ->
+        Logger.error("HTTP Request to get river gauge data returned non-200 response code: #{response.status_code}")
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        Logger.error("HTTP Request to get river gauge data returned errror: #{inspect(reason)}")
+    end
   end
 
   # Extracts the "timeseries" list from the USSGS JSON result, and parses it into an arbitrary map containing only the data we want, but following the same
