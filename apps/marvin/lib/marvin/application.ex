@@ -14,6 +14,7 @@ defmodule Marvin.Application do
       worker(Marvin.IrcRobot, []),
       worker(Marvin.Hooker, []),
       worker(Marvin.RiverGaugeMonitor, []),
+      Marvin.Aprs,
       worker(Task, startup_tasks, restart: :transient),
     ]
 

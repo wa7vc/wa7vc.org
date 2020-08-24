@@ -37,6 +37,7 @@ defmodule Marvin.MixProject do
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.0"},  # Pin to same version as wa7vc_web uses
       {:timex, "~> 3.1"},  # Pin to same version as wa7vc_web uses
+      {:aprs_parse, "~> 0.1.0"},
     ]
   end
 

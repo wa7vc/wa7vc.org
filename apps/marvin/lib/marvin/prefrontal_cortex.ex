@@ -25,7 +25,7 @@ defmodule Marvin.PrefrontalCortex do
 
   # Get a value that's assumed to be a counter.
   # Because the counter may not have been created yet, we'll default to 0 if the key isn't found.
-  def getcounter(key) do
+  def get_counter(key) do
     case :ets.lookup(__MODULE__, key) do
       [{^key, val}] -> val
       [] -> 0
@@ -38,6 +38,7 @@ defmodule Marvin.PrefrontalCortex do
   def increment(key, amount \\ 1) do
     newVal = :ets.update_counter(__MODULE__, key, amount, {key, 0})
     broadcast(key, newVal)
+    newVal
   end
 
   # Sign up for notifications about every value change made

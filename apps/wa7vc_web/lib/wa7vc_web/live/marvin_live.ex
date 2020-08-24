@@ -68,14 +68,15 @@ defmodule Wa7vcWeb.MarvinLive do
 
 
   defp leftover_assigns() do
-    %{irc_users_count: Marvin.PrefrontalCortex.getcounter(:irc_users_count),
-      irc_interactions_count: Marvin.PrefrontalCortex.getcounter(:irc_interactions_count),
-      irc_messages_count: Marvin.PrefrontalCortex.getcounter(:irc_messages_count),
-      github_pushes_with_commits_count: Marvin.PrefrontalCortex.getcounter(:github_pushes_with_commits_count),
-      github_pushes_count: Marvin.PrefrontalCortex.getcounter(:github_pushes_count),
-      usgs_river_data_fetches_count: Marvin.PrefrontalCortex.getcounter(:usgs_river_data_fetches_count) |> Number.Human.number_to_human(precision: 0),
+    %{irc_users_count: Marvin.PrefrontalCortex.get_counter(:irc_users_count),
+      irc_interactions_count: Marvin.PrefrontalCortex.get_counter(:irc_interactions_count),
+      irc_messages_count: Marvin.PrefrontalCortex.get_counter(:irc_messages_count),
+      github_pushes_with_commits_count: Marvin.PrefrontalCortex.get_counter(:github_pushes_with_commits_count),
+      github_pushes_count: Marvin.PrefrontalCortex.get_counter(:github_pushes_count),
+      usgs_river_data_fetches_count: Marvin.PrefrontalCortex.get_counter(:usgs_river_data_fetches_count) |> Number.Human.number_to_human(precision: 0),
       usgs_river_data_latest_fetch_timestamp: Marvin.PrefrontalCortex.get(:usgs_river_data_latest_fetch_timestamp),
-      usgs_river_data_latest: Marvin.PrefrontalCortex.get(:usgs_river_data_latest)
+      usgs_river_data_latest: Marvin.PrefrontalCortex.get(:usgs_river_data_latest),
+      aprs_messages_parsed_count: Marvin.PrefrontalCortex.get_counter(:aprs_messages_parsed_count)
     }
   end
 end

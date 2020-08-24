@@ -20,6 +20,14 @@ config :marvin, Marvin.IrcRobot,
   ]
 
 
+config :marvin, Marvin.Aprs,
+  server: 'noam.aprs2.net',
+  port: 14580,
+  filter: "r/47.4653992/-121.6803863/1",              # All packets within 1km radius of the compass point 2 at Valley Camp
+  aprs_login: "WA7VC-W",                              # Arbitrarily pick "-W" for "web".
+  aprs_passcode: "20725"                              # Yes, I know it's in source control. No it doesn't matter, anyone can generate it trivially.
+
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

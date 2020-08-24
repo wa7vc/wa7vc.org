@@ -160,8 +160,10 @@ defmodule Marvin.RiverGaugeMonitor do
         |> Enum.reverse()
       {:ok, response} ->
         Logger.error("HTTP Request to get river gauge data returned non-200 response code: #{response.status_code}")
+        []
       {:error, %HTTPoison.Error{reason: reason}} ->
         Logger.error("HTTP Request to get river gauge data returned errror: #{inspect(reason)}")
+        []
     end
   end
 
