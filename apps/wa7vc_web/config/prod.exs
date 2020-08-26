@@ -1,4 +1,7 @@
 use Mix.Config
+#
+# Do not print debug messages in production
+config :logger, level: :info
 
 # For production, we often load configuration from external
 # sources, such as your system environment. For this reason,
@@ -59,4 +62,14 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
 # start per endpoint:
 #
 #     config :wa7vc_web, Wa7vcWeb.Endpoint, server: true
-#
+
+
+config :sentry,
+  dsn: "${SENTRY_DSN}",
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!,
+  tags: %{
+    env: "production"
+  },
+  included_environments: [:prod]
