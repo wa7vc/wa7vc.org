@@ -19,7 +19,7 @@
     <div class="cell small-12 medium-6 large-4 marvin-stat-block">
       <h3>APRS</h3>
       <ul>
-        <li>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</li>
+        <li><strike>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</strike></li>
         <li>I have looked through <%= @aprs_messages_parsed_count %> APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
       </ul>
     </div>
@@ -27,7 +27,7 @@
     <div class="cell small-12 medium-6 large-4 marvin-stat-block">
       <h3>Weather</h3>
       <ul>
-        <li>I have received {weather_updated_pushes_count} weather updates during this lifespan, most recently at {most_recent_weather_push}</li>
+        <li>I haven't bothered to check the weather. I'll get around to learning that one of these days.</li>
       </ul>
     </div>
 
@@ -60,8 +60,7 @@
       <h3>About Myself</h3>
       That's so boring, why would you even care? <br />
       <ul>
-        <li>My "world wide web" interface version is <%= @wa7vc_web_version %>. "World" wide is the best you can manage? Think a bit bigger.</li>
-        <li>My "business logic" subroutines are currently at <%= @wa7vc_version %>. Why would I want to do business?</li>
+        <li>My "world wide web" interface version is <%= @wa7vc_version %>. "World" wide is the best you can manage? Think a bit bigger.</li>
         <li>My brain is running firmware <%= @marvin_version %>. Couldn't the engineers at least have been creative with a name?</li>
       </ul>
     </div> 

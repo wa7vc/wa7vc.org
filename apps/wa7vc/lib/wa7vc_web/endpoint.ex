@@ -1,5 +1,5 @@
 defmodule Wa7vcWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :wa7vc_web
+  use Phoenix.Endpoint, otp_app: :wa7vc
 
   @session_options [
     store: :cookie,
@@ -16,7 +16,7 @@ defmodule Wa7vcWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :wa7vc_web, gzip: false,
+    at: "/", from: :wa7vc, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -29,10 +29,10 @@ defmodule Wa7vcWeb.Endpoint do
 
   plug Plug.Logger
 
-  require Marvin.GithubWebhookPlug
-  plug Marvin.GithubWebhookPlug,
+  #require Marvin.GithubWebhookPlug
+  plug Wa7vcWeb.GithubWebhookPlug,
     mount: "/webhooks/github",
-    secret: Application.get_env(:marvin, Marvin.Hooker)[:github_webhook_secret]
+    secret: Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:github_webhook_secret]
 
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",

@@ -9,14 +9,18 @@ defmodule Marvin.Application do
     startup_tasks = [fn -> Marvin.PrefrontalCortex.put(:bootup_timestamp, Timex.now()) end]
     
     children = [
-      {Phoenix.PubSub, name: :marvin_synapses},
-      worker(Marvin.PrefrontalCortex, []),
+      cluster_supervisor(),
+      phoenix_pubsub(),
+      {Marvin.PrefrontalCortex, []},
       worker(Marvin.IrcRobot, []),
-      worker(Marvin.Hooker, []),
-      worker(Marvin.RiverGaugeMonitor, []),
-      Marvin.Aprs,
+      {Marvin.Hooker, []},
+      {Marvin.RiverGaugeMonitor, []},
+      {Marvin.Aprs, []},
       worker(Task, startup_tasks, restart: :transient),
     ]
+
+    # Remove any nils from the list, from things like pubsub that may not be started
+    children = Enum.reject(children, &is_nil/1)
 
     opts = [strategy: :one_for_one, name: Marvin.Supervisor]
 
@@ -29,6 +33,23 @@ defmodule Marvin.Application do
   #  Marvin.Application.config_change(changed, removed)
   #  :ok
   #end
+
+  defp cluster_supervisor() do
+    topologies = Application.get_env(:marvin, :topologies)
+
+    if topologies do
+      {Cluster.Supervisor, [topologies, [name: Marvin.ClusterSupervisor]]}
+    end
+  end
+
+  defp phoenix_pubsub() do
+    pubsub = Application.get_env(:marvin, :pubsub)
+
+    if pubsub[:start] do
+      {Phoenix.PubSub, [name: Wa7vc.PubSub]}
+    end
+  end
+
 
   # Close enough wall-clock time to when the website went live for the first time
   def released() do

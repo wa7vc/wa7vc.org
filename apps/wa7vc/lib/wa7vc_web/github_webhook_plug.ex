@@ -1,6 +1,5 @@
 # Used modified from https://github.com/hamiltop/ashes/blob/master/lib/ashes/github_webhook_plug.ex
-
-defmodule Marvin.GithubWebhookPlug do
+defmodule Wa7vcWeb.GithubWebhookPlug do
   import Plug.Conn
   
   def init(options) do
@@ -20,7 +19,7 @@ defmodule Marvin.GithubWebhookPlug do
   end
 
   def github_api(conn, _options) do
-    key = Application.get_env(:marvin, Marvin.Hooker)[:github_webhook_secret]
+    key = Application.get_env(:wa7vc_web, Webhooks)[:github_webhook_secret]
     {:ok, body, _} = read_body(conn)
     signature = case get_req_header(conn, "x-hub-signature") do
       ["sha1=" <> signature  | []] -> 
@@ -31,8 +30,7 @@ defmodule Marvin.GithubWebhookPlug do
     hmac = :crypto.hmac(:sha, key, body)
     case hmac do
       ^signature ->
-        hook = Jason.decode!(body)
-        Marvin.Hooker.receive_github_hook(hook)
+        Wa7vc.WebhookReceiver.github_hook(body)
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(200, "{ \"code\":200, \"msg\":\"Handled Github Webhook\" }")

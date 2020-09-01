@@ -23,10 +23,11 @@ defmodule Wa7vcWeb.MarvinLive do
   def handle_info(:update_lifespans, socket) do
     {:noreply, assign(socket, lifespan_assigns())}
   end
+
   # Handle key update broadcasts from Marvin.PrefrontalCortex
   # Any key we already have an assigns for gets updated, anything else gets ignored.
   # So to get live assigns updating, just add the variable to assigns on mount, and presto!
-  def handle_info({:key_updated, {k,v}}, socket) do
+  def handle_info(%{event: "key:updated", payload: %{:key => k, :value => v}}, socket) do
     case Map.has_key?(socket.assigns, k) do
       true ->
         {:noreply, assign(socket, %{k => v})}
@@ -55,15 +56,13 @@ defmodule Wa7vcWeb.MarvinLive do
 
   # TODO: Detect when a new version has been released so the new version numbers can get pushed?
   defp version_assigns() do
-    # Get application version numbers
-    {:ok, vsn_wa7vc_web} = :application.get_key(:wa7vc_web, :vsn)
     #List.to_string(vsn_wa7vc_web)
     {:ok, vsn_wa7vc} = :application.get_key(:wa7vc, :vsn)
     #List.to_string(vsn_wa7vc)
     {:ok, vsn_marvin} = :application.get_key(:marvin, :vsn)
     #List.to_string(vsn_marvin)
 
-    %{wa7vc_web_version: vsn_wa7vc_web, wa7vc_version: vsn_wa7vc, marvin_version: vsn_marvin}
+    %{wa7vc_version: vsn_wa7vc, marvin_version: vsn_marvin}
   end
 
 

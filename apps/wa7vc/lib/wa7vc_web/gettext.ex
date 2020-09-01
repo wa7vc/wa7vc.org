@@ -20,5 +20,5 @@ defmodule Wa7vcWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :wa7vc_web
+  use Gettext, otp_app: :wa7vc
 end

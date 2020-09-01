@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -13,13 +13,21 @@ config :phoenix, :stacktrace_depth, 20
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :wa7vc_web, Wa7vcWeb.Endpoint,
+config :wa7vc, Wa7vcWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+                    cd: Path.expand("../assets", __DIR__)]],
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/gettext/.*(po)$},
+      ~r{lib/wa7vc_web/views/.*(ex)$},
+      ~r{lib/wa7vc_web/templates/.*(eex)$}
+    ]
+  ]
 
 # ## SSL Support
 #
@@ -36,16 +44,3 @@ config :wa7vc_web, Wa7vcWeb.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
-
-# Watch static and templates for browser reloading.
-config :wa7vc_web, Wa7vcWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{lib/wa7vc_web/views/.*(ex)$},
-      ~r{lib/wa7vc_web/templates/.*(eex)$}
-    ]
-  ]
-
-
