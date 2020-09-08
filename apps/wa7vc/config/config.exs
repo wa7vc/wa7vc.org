@@ -10,11 +10,11 @@ config :wa7vc,
 # Configures the endpoint
 config :wa7vc, Wa7vcWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "O1t5BciZwZ1fm5RNn1WJjkgCFuQOwI9hVKjGDOAdyIkfKTzaexMYLXrJpCb02Agh",
+  secret_key_base: "devSecretKeyBaseMustBeAtLeast64BytesLong.ProductionUsesKeyFromAnsibleVault",
   render_errors: [view: Wa7vcWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: Wa7vc.PubSub,
-  live_view: [signing_salt: "SECRET_SALT"],
-  github_webhook_secret: "devsecret"
+  live_view: [signing_salt: "devSecretLiveSigningSalt"],
+  github_webhook_secret: "github_secret_dev"
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

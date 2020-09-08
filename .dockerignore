@@ -1,0 +1,5 @@
+# Ignores for Docker context only below
+.git
+Dockerfile
+docker-compose.yml
+backups

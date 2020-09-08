@@ -1,0 +1,21 @@
+[Unit]
+Description=WA7VC Website
+After=network.target
+
+[Service]
+User=wa7vc
+Group=wa7vc
+WorkingDirectory=/home/wa7vc/apps/wa7vc
+Environment=LANG=en_US.UTF-8
+Environment=SECRET_KEY_BASE="{{ SECRET_KEY_BASE }}"
+Environment=LIVEVIEW_SECRET_SALT="{{ LIVEVIEW_SECRET_SALT }}"
+Environment=GITHUB_WEBHOOK_SECRET="{{ GITHUB_WEBHOOK_SECRET }}"
+Environment=SENTRY_DSN="{{ SENTRY_DSN }}"
+ExecStart=/home/wa7vc/apps/wa7vc/bin/wa7vc start
+SyslogIdentifier=wa7vc
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

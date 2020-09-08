@@ -1,0 +1,55 @@
+upstream wa7vc_phoeinx_upstream {
+  server localhost:49515 max_fails=5 fail_timeout=60s;
+}
+
+server {
+  listen 80 default;
+  server_name wa7vc.org www.wa7vc.org;
+
+  if ($host = www.wa7vc.org) {
+      return 301 https://$host$request_uri;
+  } # managed by Certbot
+
+  if ($host = wa7vc.org) {
+      return 301 https://$host$request_uri;
+  } # managed by Certbot
+}
+
+
+
+server {
+  listen 443 ssl;
+  server_name wa7vc.org www.wa7vc.org;
+
+  gzip on;
+  client_max_body_size 2M;
+
+  ssl_certificate /etc/letsencrypt/live/wa7vc.org/fullchain.pem; # managed by Certbot
+  ssl_certificate_key /etc/letsencrypt/live/wa7vc.org/privkey.pem; # managed by Certbot
+
+  location / {
+    allow all;
+
+    # Proxy Headers
+    proxy_http_version 1.1;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Cluster-Client-Ip $remote_addr;
+
+    # The Important Websocket Bits!
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_redirect off;
+    proxy_pass http://phoenix_upstream;
+  }
+
+  error_page 502 /site-down.html;
+  location = /site-down.html {
+    root /home/wa7vc/error_page;
+    internal;
+  }
+
+}
+

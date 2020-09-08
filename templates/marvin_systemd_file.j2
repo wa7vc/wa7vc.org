@@ -1,0 +1,18 @@
+[Unit]
+Description=Marvin, the WA7VC Robot
+After=network.target
+
+[Service]
+User=deploy
+Group=deploy
+WorkingDirectory=/home/wa7vc/apps/marvin
+Environment=LANG=en_US.UTF-8
+Environment=MARVIN_IRC_PASSWORD="{{ MARVIN_IRC_PASSWORD }}"
+ExecStart=/home/wa7vc/apps/marvin/bin/marvin start
+SyslogIdentifier=marvin
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
