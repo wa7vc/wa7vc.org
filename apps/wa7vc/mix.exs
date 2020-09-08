@@ -20,7 +20,7 @@ defmodule Wa7vcWeb.Mixfile do
   def application do
     [
       mod: {Wa7vc.Application, []},
-      extra_applications: [:logger, :runtime_tools, :os_mon, :timex, :sentry] ++ marvin_dev_apps()
+      extra_applications: [:logger, :runtime_tools, :os_mon, :timex, :sentry]
     ]
   end
 
@@ -47,7 +47,6 @@ defmodule Wa7vcWeb.Mixfile do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
-      {:marvin, path: "../marvin/", runtime: false},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
       {:jason, "~> 1.0"},
@@ -71,15 +70,4 @@ defmodule Wa7vcWeb.Mixfile do
     ]
   end
 
-  # When we launch Marvin as a nested app during development it's mix.exs file doesn't get called, so we need to start a few things
-  defp marvin_dev_apps() do
-    case Mix.env() do
-      :dev -> [
-        :hedwig_irc_adapter,
-        :aprs_parse,
-        :httpoison,
-      ]
-      _ -> []
-    end
-  end
 end

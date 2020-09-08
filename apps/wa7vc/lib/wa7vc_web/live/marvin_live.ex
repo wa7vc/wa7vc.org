@@ -14,7 +14,8 @@ defmodule Wa7vcWeb.MarvinLive do
 
     if connected?(socket), do: :timer.send_interval(1000, self(), :update_lifespans)
 
-    Marvin.PrefrontalCortex.subscribe()
+    # Subscribe Marvin's memory.
+    Phoenix.PubSub.subscribe(Wa7vc.PubSub, "prefrontal_cortex")
 
     {:ok, assign(socket, assigns)}
   end
@@ -47,10 +48,30 @@ defmodule Wa7vcWeb.MarvinLive do
 
 
   defp lifespan_assigns() do
-    %{marvin_lifespan_seconds_since_launch: Marvin.Application.since_released(:seconds) |> Number.Delimit.number_to_delimited(precision: 0),
-      marvin_lifespan_human_years_since_launch: Marvin.Application.since_released(:marvinyears) |> Number.Human.number_to_human,
-      marvin_lifespan_seconds_since_last_started: Marvin.Application.last_started() |> Timex.format!("%F at %T %Z", :strftime),
-      marvin_lifespan_human_years_since_last_started: Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human(precision: 0) }
+    seconds_since_released = case GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :seconds_since_released}) do
+      {:ok, sec} -> sec |> Number.Delimit.number_to_delimited(precision: 0)
+      _ -> "[[ UNKNOWN - Marvin is AWOL ]]"
+    end
+
+    marvinyears_since_released = case GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :seconds_since_released}) do
+      {:ok, years} -> years |> Number.Human.number_to_human
+      _ -> "[[ UNKNOWN - Marvin is AWOL ]]"
+    end
+
+    last_started = case GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :last_started}) do
+      {:ok, started} -> started |> Timex.format!("%F at %T %Z", :strftime)
+      _ -> "[[ UNKNOWN - Marvin is AWOL ]]"
+    end
+
+    marvinyears_lifespan = case GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :marvinyears_lifespan}) do
+      {:ok, marvinyears} -> marvinyears |> Number.Human.number_to_human(precision: 0) 
+      _ -> "[[ UNKNOWN - Marvin is AWOL ]]"
+    end
+
+    %{marvin_lifespan_seconds_since_launch: seconds_since_released,
+      marvin_lifespan_human_years_since_launch: marvinyears_since_released,
+      marvin_lifespan_seconds_since_last_started: last_started,
+      marvin_lifespan_human_years_since_last_started: marvinyears_lifespan }
   end
 
 
@@ -59,7 +80,10 @@ defmodule Wa7vcWeb.MarvinLive do
     #List.to_string(vsn_wa7vc_web)
     {:ok, vsn_wa7vc} = :application.get_key(:wa7vc, :vsn)
     #List.to_string(vsn_wa7vc)
-    {:ok, vsn_marvin} = :application.get_key(:marvin, :vsn)
+    vsn_marvin = case :rpc.call(:"marvin@127.0.0.1", Marvin, :version, []) do
+      {:badrpc, :nodedown} -> "[[ UNKNOWN - Marvin is AWOL ]]"
+      v -> v
+    end
     #List.to_string(vsn_marvin)
 
     %{wa7vc_version: vsn_wa7vc, marvin_version: vsn_marvin}
@@ -67,15 +91,37 @@ defmodule Wa7vcWeb.MarvinLive do
 
 
   defp leftover_assigns() do
-    %{irc_users_count: Marvin.PrefrontalCortex.get_counter(:irc_users_count),
-      irc_interactions_count: Marvin.PrefrontalCortex.get_counter(:irc_interactions_count),
-      irc_messages_count: Marvin.PrefrontalCortex.get_counter(:irc_messages_count),
-      github_pushes_with_commits_count: Marvin.PrefrontalCortex.get_counter(:github_pushes_with_commits_count),
-      github_pushes_count: Marvin.PrefrontalCortex.get_counter(:github_pushes_count),
-      usgs_river_data_fetches_count: Marvin.PrefrontalCortex.get_counter(:usgs_river_data_fetches_count) |> Number.Human.number_to_human(precision: 0),
-      usgs_river_data_latest_fetch_timestamp: Marvin.PrefrontalCortex.get(:usgs_river_data_latest_fetch_timestamp),
-      usgs_river_data_latest: Marvin.PrefrontalCortex.get(:usgs_river_data_latest),
-      aprs_messages_parsed_count: Marvin.PrefrontalCortex.get_counter(:aprs_messages_parsed_count)
-    }
+    with {:ok, irc_users_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :irc_users_count}),
+         {:ok, irc_interactions_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :irc_interactions_count}),
+         {:ok, irc_messages_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :irc_messages_count}),
+         {:ok, github_pushes_with_commits_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :github_pushes_with_commits_count}),
+         {:ok, github_pushes_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :github_pushes_count}),
+         {:ok, usgs_river_data_fetches_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :usgs_river_data_fetches_count}),
+         {:ok, usgs_river_data_latest_fetch_timestamp} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :usgs_river_data_latest_fetch_timestamp}),
+         {:ok, usgs_river_data_latest} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :usgs_river_data_latest}),
+         {:ok, aprs_messages_parsed_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :aprs_messages_parsed_count})
+    do
+      %{irc_users_count: irc_users_count,
+        irc_interactions_count: irc_interactions_count,
+        irc_messages_count: irc_messages_count,
+        github_pushes_with_commits_count: github_pushes_with_commits_count,
+        github_pushes_count: github_pushes_count,
+        usgs_river_data_fetches_count: usgs_river_data_fetches_count |> Number.Human.number_to_human(precision: 0),
+        usgs_river_data_latest_fetch_timestamp: usgs_river_data_latest_fetch_timestamp,
+        usgs_river_data_latest: usgs_river_data_latest,
+        aprs_messages_parsed_count: aprs_messages_parsed_count
+      }
+    else
+      _ -> %{irc_users_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              irc_interactions_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              irc_messages_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              github_pushes_with_commits_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              github_pushes_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              usgs_river_data_fetches_count: "[[ UNKNOWN - Marvin is AWOL ]]",
+              usgs_river_data_latest_fetch_timestamp: "[[ UNKNOWN - Marvin is AWOL ]]",
+              usgs_river_data_latest: nil,
+              aprs_messages_parsed_count: "[[ UNKNOWN - Marvin is AWOL ]]"
+            }
+    end
   end
 end

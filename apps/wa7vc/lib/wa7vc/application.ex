@@ -42,7 +42,7 @@ defmodule Wa7vc.Application do
   end
 
   defp cluster_supervisor() do
-    topologies = Application.get_env(:marvin, :topologies)
+    topologies = Application.get_env(:wa7vc, :topologies)
 
     if topologies do
       {Cluster.Supervisor, [topologies, [name: Wa7vc.ClusterSupervisor]]}

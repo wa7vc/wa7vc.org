@@ -24,8 +24,12 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-# Since we only start marvin when we're in dev, we need to import Marvin's services config if we're in dev
-if Mix.env() == :dev, do: import_config("../../marvin/config/services.exs")
+config :wa7vc, topologies: [
+  local: [
+    strategy: Cluster.Strategy.Epmd,
+    config: [hosts: [:"wa7vc@127.0.0.1", :"marvin@127.0.0.1"]]
+    ]
+]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
