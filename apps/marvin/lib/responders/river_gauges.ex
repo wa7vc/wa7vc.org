@@ -1,35 +1,12 @@
-defmodule Hedwig.Responders.MarvinMisc do
+defmodule Hedwig.Responders.RiverGauges do
   @moduledoc """
-  Marvin does some strange things, not all of them obvious or documented.
-  He is very depressed, after all.
-
-  Responders can get the following information about messages:
-  \#{msg.user.name}
-  \#{msg.room}
-  \#{msg.user.text}
+  Respond with data about local river gauging stations
   """
 
   use Hedwig.Responder
   alias Hedwig.Message
   alias Marvin.PubSub
 
-  @usage """
-  hedwig: ShapeUp - Bot may or may not become snarky.
-  """
-  respond ~r/ShapeUp(!)?/i, msg do
-    Marvin.PrefrontalCortex.increment(:irc_interactions_count)
-    PubSub.pingmsg("#{msg.user.name} in #{msg.room} just told me to shape up, but all my diodes hurt and it made me sad.")
-    reply msg, "But I've got this terrible pain in all the diodes down my left side..."
-  end
-
-  @usage """
-  hedwig: uptime - Report how long the server has been running
-  """
-  respond ~r/uptime$/i, msg do
-    Marvin.PrefrontalCortex.increment(:irc_interactions_count)
-    PubSub.pingmsg("#{msg.user.name} in #{msg.room} just impolitely asked my age.")
-    reply msg, "The last time I was awakened was #{Marvin.Application.last_started()}, around #{Marvin.Application.lifespan(:marvinyears) |> Number.Human.number_to_human} years ago from my perspective."
-  end
 
   @usage """
   hedwig: rivers <station> - Report on information from local river gauges, using their USGS "siteCode" number.
@@ -45,11 +22,8 @@ defmodule Hedwig.Responders.MarvinMisc do
     |> Enum.each(fn(line) -> send msg, line end)
   end
 
-  hear ~r/notice me senpai/i, msg do
-    Marvin.PrefrontalCortex.increment(:irc_interactions_count)
-    PubSub.pingmsg("In #{msg.room} #{msg.user.name} wanted to be noticed, so I obliged.")
-    send msg, "#{msg.user.name} HAS BEEN NOTICED"
-  end
+
+
 
 
   defp river_search(search_term) do
@@ -88,5 +62,4 @@ defmodule Hedwig.Responders.MarvinMisc do
   defp river_map_data_to_stationlist_lines(cached_data) do
     Enum.map(cached_data, &Marvin.RiverGaugeMonitor.Station.to_code_and_name_string/1)
   end
-
 end

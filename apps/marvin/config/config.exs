@@ -23,6 +23,8 @@ config :marvin, Marvin.IrcRobot,
     {Hedwig.Responders.Help, []},
     {Hedwig.Responders.Ping, []},
     {Hedwig.Responders.MarvinMisc, []},
+    {Hedwig.Responders.System, []},
+    {Hedwig.Responders.RiverGauges, []},
   ]
 
 
