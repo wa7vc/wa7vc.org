@@ -1,9 +1,9 @@
-upstream wa7vc_phoeinx_upstream {
-  server localhost:49515 max_fails=5 fail_timeout=60s;
+upstream wa7vc_phoenix_upstream {
+  server localhost:49515;
 }
 
 server {
-  listen 80 default;
+  listen 80;
   server_name wa7vc.org www.wa7vc.org;
 
   if ($host = www.wa7vc.org) {
@@ -42,12 +42,13 @@ server {
     proxy_set_header Connection "upgrade";
 
     proxy_redirect off;
-    proxy_pass http://phoenix_upstream;
+    proxy_pass http://wa7vc_phoenix_upstream;
+    proxy_intercept_errors on;
+    error_page 502 /site-down.html;
   }
 
-  error_page 502 /site-down.html;
   location = /site-down.html {
-    root /home/wa7vc/error_page;
+    root /home/wa7vc/sites/wa7vc_error_page;
     internal;
   }
 

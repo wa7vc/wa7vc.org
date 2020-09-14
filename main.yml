@@ -1,97 +1,162 @@
 ---
-# Designed to run on a DaedalusDreams app server config, not found here, that is expecting this app.
+# Designed to run on a DaedalusDreams app server config, not found here, that is expecting this app. 
+# (wa7vc user must have access to /etc/nginx/sites-available and /usr/share/nginx/sites in order to fully deploy, and letsencrypt must be set up for wa7vc.org) 
 # Because of that this isn't a full config, it simply places the needed config into the deploy user's directory, where the system is expecting it.
 # Most likely you want to run with "--tags marvin" or "--tags wa7vc" to rebuild and redeploy that app.
 # Use the tag "deploy" to execute the deploy steps after manually building the release
 
-- name: include encrypted secret values for production server
-  include_vars: secrets.yml
+#- name: include encrypted secret values for production server
+  #hosts: app-d10-ca-1.inf.daedalusdreams.com
+  #tasks:
+    #- include_vars: vars/secrets.yml
 
-- name: Generic preparations
+- name: Webserver preparations
   tags: [ generic ]
-  hosts: app1.daedalusdreams.com
+  hosts:  webservers
   tasks:
+    - name: ensure error page site folder exists
+      tags: [ nginx ]
+      file:
+        state: directory
+        mode: 0755
+        path: "/home/wa7vc/sites/wa7vc_error_page"
     - name: ensure latest versions of files uploaded
+      tags: [ nginx ]
       copy:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
       with_items:
-        - {src: 'wa7vc.org_nginx-sites-enabled',dest: '/home/wa7vc/wa7vc.org-nginx-sites-enabled'}
-        - {src: 'error_page',dest: '/home/wa7vc/error_page'}
+        - {src: 'wa7vc.org_nginx-sites-enabled',dest: '/etc/nginx/sites-available/wa7vc.org'}
+        - {src: 'error_page/', dest: '/home/wa7vc/sites/wa7vc_error_page'}
+      notify: restart nginx
+    - name: link nginx sites to be active
+      tags: [ nginx ]
+      file:
+        state: link
+        path: "/etc/nginx/sites-enabled/wa7vc.org"
+        src: "/etc/nginx/sites-available/wa7vc.org"
+    - name: set up sertbot for our domains
+      tags: [ certbot ]
+      shell: "sudo certbot --noninteractive --nginx --agree-tos --email info@wa7vc.org -d wa7vc.org -d www.wa7vc.org"
+      notify: restart nginx
+  handlers:
+    # User the specific path/reload command we know we've been givin sudo for
+    # TODO: Ensure nginx -t first!
+    - name: restart nginx
+      shell: "sudo /usr/sbin/service nginx reload"
 
 
 - name: deploy latest version of Marvin
   tags: [ marvin ]
-  hosts: app1.daedalusdreams.com
+  hosts: marvinserver
   tasks:
+    - name: include secret vars
+      tags: [ always ]
+      include_vars: vars/secrets.yml
     - name: Build latest release locally
       tags: [ build ]
-      shell:
+      local_action:
+        module: shell
         chdir: apps/marvin/
         cmd: ./release.sh
     - name: Copy release to server
-      tags: [ deploy ]
+      tags: [ deploy, initial-deploy ]
       copy:
-        src: apps/marvin/tmp/marvin.tar.gz
+        src: ./apps/marvin/tmp/marvin.tar.gz
         dest: "/home/wa7vc/marvin.tar.gz"
-    - name: stop Marvin systemd unit on server
-      tags: [ deploy ]
-      systemd:
-        name: marvin
-        state: stopped
-    - name: update Marvin systemd unit file (And notify systemd to re-read it if necessary)
-      tags: [ deploy ]
+    - name: stop systemd unit
+      tags: [ deploy, systemd ]
+      shell: "sudo systemctl stop marvin.service"
+      #become: yes
+      #systemd:
+        #name: marvin
+        #state: stopped
+    - name: update Marvin systemd unit file
+      tags: [ deploy, initial-deploy, systemd ]
       template:
         src: "marvin_systemd_file.j2"
-        dest: "marvin_systemd_unit"
-      notify: reload systemd
-    - name: replace existing Marvin code with new release
-      tags: [ deploy ]
+        dest: "/home/wa7vc/systemd-services/marvin.service"
+    - name: reload systemd conf
+      tags: [ deploy, initial-deploy, systemd ]
+      shell: "sudo systemctl daemon-reload"
+      #become: yes
+      #systemd:
+        #daemon_reload: yes
+    - name: ensure deploy directory exists
+      tags: [ deploy, initial-deploy ]
+      file:
+        state: directory
+        path: "/home/wa7vc/apps/marvin/"
+    - name: replace existing code with new release
+      tags: [ deploy, initial-deploy ]
       unarchive:
-        src: marvin.tar.gz
+        remote_src: yes
+        src: /home/wa7vc/marvin.tar.gz
         dest: /home/wa7vc/apps/marvin/
     #- name: Run migrations
       #shell: './marvin/bin/marvin eval "Marvin.ReleaseTasks.migrate()"'
-    - name: start Marvin systemd unit on server
-      tags: [ deploy ]
-      systemd:
-        name: marvin
-        state: started
+    - name: start systemd unit
+      tags: [ deploy, initial-deploy, systemd ]
+      shell: "sudo systemctl start marvin.service"
+      #become: yes
+      #systemd:
+        #scope: user
+        #name: marvin
+        #state: started
 
 - name: deploy latest version of Wa7vc (web)
   tags: [ wa7vc ]
-  hosts: app1.daedalusdreams.com
+  hosts: webservers
   tasks:
+    - name: include secret vars
+      tags: [ always ]
+      include_vars: vars/secrets.yml
     - name: Build latest release locally
       tags: [ build ]
-      shell:
+      local_action:
+        module: shell
         chdir: apps/wa7vc/
         cmd: ./release.sh
     - name: Copy release to server
-      tags: [ deploy ]
+      tags: [ deploy, initial-deploy ]
       copy:
-        src: apps/wa7vc/tmp/wa7vc.tar.gz
+        src: ./apps/wa7vc/tmp/wa7vc.tar.gz
         dest: "/home/wa7vc/wa7vc.tar.gz"
-    - name: stop systemd unit on server
-      tags: [ deploy ]
-      systemd:
-        name: wa7vc
-        state: stopped
-    - name: update systemd unit file (And notify systemd to re-read it if necessary)
-      tags: [ deploy ]
+    - name: stop systemd unit
+      tags: [ deploy, systemd ]
+      shell: "sudo systemctl stop wa7vc.service"
+      #become: yes
+      #systemd:
+        #name: wa7vc
+        #state: stopped
+    - name: update systemd unit file 
+      tags: [ deploy, initial-deploy, systemd ]
       template:
         src: "wa7vc_systemd_file.j2"
-        dest: "wa7vc_systemd_unit"
-      notify: reload systemd
+        dest: "/home/wa7vc/systemd-services/wa7vc.service"
+    - name: reload systemd conf
+      tags: [ deploy, initial-deploy, systemd ]
+      shell: "sudo systemctl daemon-reload"
+      #become: yes
+      #systemd:
+        #daemon_reload: yes
+    - name: ensure deploy directory exists
+      tags: [ deploy, initial-deploy ]
+      file:
+        state: directory
+        path: "/home/wa7vc/apps/wa7vc/"
     - name: replace existing code with new release
-      tags: [ deploy ]
+      tags: [ deploy, initial-deploy ]
       unarchive:
+        remote_src: yes
         src: /home/wa7vc/wa7vc.tar.gz
         dest: /home/wa7vc/apps/wa7vc/
     #- name: Run migrations
       #shell: '/home/wa7vc/apps/wa7vc/bin/wa7vc eval "Wa7vc.ReleaseTasks.migrate()"'
-    - name: start systemd unit on server
-      tags: [ deploy ]
-      systemd:
-        name: wa7vc
-        state: started
+    - name: start systemd unit
+      tags: [ deploy, initial-deploy, systemd ]
+      shell: "sudo systemctl start wa7vc.service"
+      #become: yes
+      #systemd:
+        #name: wa7vc
+        #state: started

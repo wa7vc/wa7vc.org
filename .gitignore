@@ -4,6 +4,8 @@
 erl_crash.dump
 *.ez
 
+.ansible_vault_pass
+
 .deliver/releases/
 /rel/*/**"
 
