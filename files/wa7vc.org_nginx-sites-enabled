@@ -4,6 +4,7 @@ upstream wa7vc_phoenix_upstream {
 
 server {
   listen 80;
+  listen [::]:80 ipv6only=on;
   server_name wa7vc.org www.wa7vc.org;
 
   if ($host = www.wa7vc.org) {
@@ -19,6 +20,7 @@ server {
 
 server {
   listen 443 ssl;
+  listen [::]:443 ssl http2 ipv6only=on;
   server_name wa7vc.org www.wa7vc.org;
 
   gzip on;
