@@ -11,6 +11,12 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
+import $ from "jquery"
+require('what-input')
+window.$ = $;
+import Foundation from 'foundation-sites';
+
+import "../css/app.css"
 import "phoenix_html"
 import {Socket} from "phoenix"
 import NProgress from "nprogress"
