@@ -28,6 +28,11 @@ defmodule Hedwig.Responders.MarvinMisc do
     send msg, "#{msg.user.name} HAS BEEN NOTICED"
   end
 
+  hear ~r/borked/i, msg do
+    Marvin.PrefrontalCortex.increment(:irc_interactions_count)
+    PubSub.pingmsg("bork bork bork...")
+    send msg, "bork bork bork..."
+  end
 
 
 end
