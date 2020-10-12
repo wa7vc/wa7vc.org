@@ -33,7 +33,7 @@ defmodule Wa7vcWeb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.4"},
+      {:phoenix, "~> 1.5.5"},
       # Unused Ecto deps from a clean 1.5.4 install
       #{:phoenix_ecto, "~> 4.1"},
       #{:ecto_sql, "~> 3.4"},
