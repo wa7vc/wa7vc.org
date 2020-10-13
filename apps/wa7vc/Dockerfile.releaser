@@ -15,7 +15,7 @@ COPY --from=builder /app/deps/phoenix /app/node_modules/phoenix
 COPY --from=builder /app/deps/phoenix_html /app/node_modules/phoenix_html
 COPY --from=builder /app/deps/phoenix_live_view /app/node_modules/phoenix_live_view
 COPY assets /app
-RUN /app/node_modules/brunch/bin/brunch build
+RUN node /app/node_modules/webpack/bin/webpack.js
 
 FROM builder as releaser
 ENV MIX_ENV=prod
