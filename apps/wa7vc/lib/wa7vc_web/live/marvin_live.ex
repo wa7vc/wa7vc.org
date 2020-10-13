@@ -101,15 +101,15 @@ defmodule Wa7vcWeb.MarvinLive do
          {:ok, usgs_river_data_latest} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get, :usgs_river_data_latest}),
          {:ok, aprs_messages_parsed_count} <- GenServer.call({Marvin.PrefrontalCortex, :"marvin@127.0.0.1"}, {:get_counter, :aprs_messages_parsed_count})
     do
-      %{irc_users_count: irc_users_count,
-        irc_interactions_count: irc_interactions_count,
-        irc_messages_count: irc_messages_count,
-        github_pushes_with_commits_count: github_pushes_with_commits_count,
-        github_pushes_count: github_pushes_count,
-        usgs_river_data_fetches_count: usgs_river_data_fetches_count |> Number.Human.number_to_human(precision: 0),
+      %{irc_users_count: irc_users_count |> Number.Delimit.number_to_delimited(precision: 0),
+        irc_interactions_count: irc_interactions_count |> Number.Delimit.number_to_delimited(precision: 0),
+        irc_messages_count: irc_messages_count |> Number.Delimit.number_to_delimited(precision: 0),
+        github_pushes_with_commits_count: github_pushes_with_commits_count |> Number.Delimit.number_to_delimited(precision: 0),
+        github_pushes_count: github_pushes_count |> Number.Delimit.number_to_delimited(precision: 0),
+        usgs_river_data_fetches_count: usgs_river_data_fetches_count |> Number.Delimit.number_to_delimited(precision: 0),
         usgs_river_data_latest_fetch_timestamp: usgs_river_data_latest_fetch_timestamp,
         usgs_river_data_latest: usgs_river_data_latest,
-        aprs_messages_parsed_count: aprs_messages_parsed_count
+        aprs_messages_parsed_count: aprs_messages_parsed_count |> Number.Delimit.number_to_delimited(precision: 0)
       }
     else
       _ -> %{irc_users_count: "[[ UNKNOWN - Marvin is AWOL ]]",
