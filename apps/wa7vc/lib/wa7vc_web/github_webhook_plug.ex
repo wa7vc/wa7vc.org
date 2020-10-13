@@ -19,7 +19,7 @@ defmodule Wa7vcWeb.GithubWebhookPlug do
   end
 
   def github_api(conn, _options) do
-    key = Application.get_env(:wa7vc_web, Webhooks)[:github_webhook_secret]
+    key = Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:github_webhook_secret]
     {:ok, body, _} = read_body(conn)
     signature = case get_req_header(conn, "x-hub-signature") do
       ["sha1=" <> signature  | []] -> 
@@ -36,7 +36,7 @@ defmodule Wa7vcWeb.GithubWebhookPlug do
         |> send_resp(200, "{ \"code\":200, \"msg\":\"Handled Github Webhook\" }")
         |> halt
       _ ->
-        IO.inspect key, label: "Using Key: "
+        #IO.inspect key, label: "Using Key: "
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(401, "{ \"code\":401, \"msg\":\"You're not github!\" }")

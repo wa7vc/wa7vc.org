@@ -46,6 +46,12 @@ if you're deploying marvin somewhere else the steps are pretty easy:
     The ansible deployment task includes a systemd unit that runs the
     application, restarts it if necessary, and provides it the necessary ENV.
 
+## External Setup Required
+  * Github Webhooks:
+    In order to receive github webhooks for the repo, github must be set to
+    send webhooks to https://wa7vc.org/webhooks/github
+    It should be set to "send me everything", and the correct/matching secret.
+
 ## Notes
   * In order to use the `./wa7vc remote` to access to remote console you will
     need to start it with the RELEASE_COOKIE env variable containing the cookie
