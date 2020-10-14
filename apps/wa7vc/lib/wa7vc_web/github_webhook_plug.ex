@@ -30,7 +30,7 @@ defmodule Wa7vcWeb.GithubWebhookPlug do
     hmac = :crypto.hmac(:sha, key, body)
     case hmac do
       ^signature ->
-        Wa7vc.WebhookReceiver.github_hook(body)
+        Phoenix.PubSub.broadcast(Wa7vc.PubSub, :raw_webhook_received, {source: "github", body: body})
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(200, "{ \"code\":200, \"msg\":\"Handled Github Webhook\" }")
