@@ -5,7 +5,6 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookPlugTest do
   # secret. Ideally we would generate a random secret for each test run,
   # allowing us to be totally certain that the module was implementing the
   # hash checking correctly, but for now, meh.
-  #@secret "LK44/Ayqlqr8oBB0mzKyRX5aQBaxU1WE4fvae5VlIHrYq8mYnqLcAOPAX8jtU4A5" 
   @secret Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:github_webhook_secret]
   # Use an arbitrary JSON blob as a payload. Any testing of how the *contents*
   # are handled is done in the Marvin.Hooker testing

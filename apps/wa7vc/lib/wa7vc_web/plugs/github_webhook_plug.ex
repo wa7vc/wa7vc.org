@@ -1,12 +1,27 @@
-# Used concept modified from
-# https://github.com/hamiltop/ashes/blob/master/lib/ashes/github_webhook_plug.ex
 defmodule Wa7vcWeb.Plugs.GithubWebhookReceiver do
+  @moduledoc """
+  Receive any webhooks sent by Github.
+
+  This plug is mounted at the path defined in endpoint.ex, and required that
+  the endpoint config contain a "github_webhook_secret" key, which is the
+  shared secret that is entered into Github's webhook configuration.
+
+  Returns JSON payloads containg an "code" field matching the HTTP status code
+  being returned, and an "msg" field containing a textual description of the
+  result.
+  Not that Github cares, long as we return a 200... But it's fun.
+
+  Used concept modified from
+  https://github.com/hamiltop/ashes/blob/master/lib/ashes/github_webhook_plug.ex
+  """
   import Plug.Conn
   
   def init(options) do
     options
   end
 
+  # Parse the webhook if the request is for where we're mounted, otherwise
+  # take no action and pass the conn on down the line
   def call(conn, options) do
     mount = options[:mount]
     case conn.request_path do
