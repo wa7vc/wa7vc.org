@@ -29,8 +29,7 @@ defmodule Wa7vcWeb.Endpoint do
 
   plug Plug.Logger
 
-  #require Marvin.GithubWebhookPlug
-  plug Wa7vcWeb.GithubWebhookPlug,
+  plug Wa7vcWeb.Plugs.GithubWebhookReceiver,
     mount: "/webhooks/github",
     secret: Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:github_webhook_secret]
 
