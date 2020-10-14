@@ -11,12 +11,11 @@ defmodule Marvin.Hooker do
   end
 
   def init(opts) do
-    PubSub.subscribe("webhook:received")
+    PubSub.subscribe("webhook:received_raw")
     {:ok, opts}
   end
 
-  def handle_info({:raw_webhook_received, %{source: "github", body: hook_body}}, state) do
-    IO.puts("hooker got raw github hook")
+  def handle_info(%{source: "github", body: hook_body}, state) do
     Implementation.handle_raw_github_hook(hook_body)
     {:noreply, state}
   end
@@ -30,7 +29,6 @@ defmodule Marvin.Hooker do
     alias Marvin.PubSub
 
     def handle_raw_github_hook(hook_body) do
-      IO.puts("Implementation, handling github hook")
       hook = Jason.decode!(hook_body)
 
       STM.increment(:github_pushes_count)
