@@ -3,6 +3,8 @@ The poor depressed robot.
 He's so bored, constantly monitoring details that the puny humans seem to think
 are important, but he does his job, with only minimal complaint.
 
+Visit Marvin [here](https://wa7vc.org/marvin) to see what he's up to.
+
 ## Development
 To start the server in development and let marvin and the website frontend work
 together marvin must be launched from from the apps/marvin directory passing
@@ -19,7 +21,8 @@ nodes. This allows Marvin to stay up and running and really build up those
 regularly to update content and such.
 
 To deploy the app you can use the Ansible task found in the root of the shared
-repository, which is designed to deploy to a DaedalusDreams appserver: 
+repository, which is designed to deploy to a 
+[Daedalus Dreams appserver](https://gitlab.daedalusdreams.com/DaedalusDreams/infrastructure-via-ansible/-/tree/master/roles/app-server):
 `ansible-playbook main.yml --tags marvin`
 
 However you can also do it as a 2-stage process if you're not confident in your
@@ -29,7 +32,7 @@ build completing cleanly:
     `ansible-playbook main.yml --tags marvin --skip-tags build`
 
 if you're deploying marvin somewhere else the steps are pretty easy:
-  * Execute ./release.sh
+  * Execute ./release.sh  
     This uses docker to build a release locally that matches the deployment
     environment. (So shared libs are all correct)
   * Copy the built release marvin.tar.gz from apps/marvin/tmp to the server
@@ -38,17 +41,18 @@ if you're deploying marvin somewhere else the steps are pretty easy:
     * LANG=en_US.UTF-8
     * RELEASE_COOKIE=YOUR_SECRET_COOKIE
     * MARVIN_IRC_PASSWORD=YOUR_IRC_PASSWORD
+    
     Both the secret cookie and irc password for the WA7VC deployment are stored
     in an ansible vault. Note that the cookie must be a shared cookie between
-    Marvin and the WA7VC website app.
+    Marvin and the WA7VC website app.  
     The ansible deployment task includes a systemd unit that runs the
     application, restarts it if necessary, and provides it the necessary ENV.
 
 ## Notes
   * In order to use the `./marvin remote` to access to remote console you will
     need to start it with the RELEASE_COOKIE env variable containing the cookie
-  * Have had trouble with IRC bot staying connected on occasion.
-    Can execute this manually via remote console to fix:
+  * Have had trouble with IRC bot staying connected on occasion.  
+    Can execute the following manually via remote console to fix:
     ```
     > GenServer.cast(Marvin.IrcRobot.get_pid(), {:reconnect})
     ```
