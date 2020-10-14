@@ -1,7 +1,8 @@
 defmodule Marvin do
   @moduledoc """
   Marvin  is our depressed robot assistant.
-  He handles webhooks/irc/notifications, and other boring non-website based things.
+  He handles webhooks/irc/notifications, and other boring non-website based
+  background tasks.
   """
 
   def version() do

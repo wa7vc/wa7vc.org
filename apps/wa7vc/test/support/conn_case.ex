@@ -28,7 +28,7 @@ defmodule Wa7vcWeb.ConnCase do
   end
 
 
-  setup _tags do
+  setup tags do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
