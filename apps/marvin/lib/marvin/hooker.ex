@@ -46,8 +46,8 @@ defmodule Marvin.Hooker do
       # if push contains commits
       # STM.increment(:github_pushes_with_commits_count)
 
-      Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["username"]} just twiddled my bits on github!")
-      PubSub.pingmsg("#{hook["sender"]["username"]} just twiddled my bits on github!")
+      Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github!")
+      PubSub.pingmsg("#{hook["sender"]["login"]} just twiddled my bits on github!")
     end
   end
 
