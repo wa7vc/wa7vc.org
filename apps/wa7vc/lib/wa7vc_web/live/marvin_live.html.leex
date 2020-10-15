@@ -72,8 +72,9 @@
         <ul>
           <li>
             <a href="https://github.com/wa7vc/wa7vc.org">My code</a> has been updated <%= @github_pushes_with_commits_count |> Number.Delimit.number_to_delimited(precision: 0) %> times during this current lifespan.
+            (<%= @github_commits_count |> Number.Delimit.number_to_delimited(precision: 0) %> total commits)
             <br />
-            There have been <%= @github_webhook_count |> Number.Delimit.number_to_delimited(precision: 0) %> total github events during that time. I know what they've said about me.
+            There have been <%= @github_webhook_count |> Number.Delimit.number_to_delimited(precision: 0) %> github events, and I've read them all. I know what they've said about me.
           </li>
         </ul>
       </div>
