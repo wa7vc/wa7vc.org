@@ -23,6 +23,7 @@ body {
 #pingmsg-li {
   padding-left: 10px;
   padding-right: 30px;
+  font-size:0.9rem;
 }
 
 #pingmsg-a {
@@ -72,7 +73,6 @@ body {
 
 #hero h1 {
   color: rgb(254,254,254);
-  font-size: 5rem;
   font-weight: bold;
   font-family: Oswald, Helvetica, san-serif;
   margin-left: 25%;
@@ -81,7 +81,6 @@ body {
 
 #hero h2 {
   color: rgb(254,254,254);
-  font-size: 3rem;
   font-weight: bold;
   font-family: Jura, Helvetica, san-serif;
   padding-bottom: 350px;
@@ -109,6 +108,9 @@ body {
   transform: translateX(-50%);
 }
 
+.menu-text {
+  font-size: 1.3rem;
+}
 
 #content {
 

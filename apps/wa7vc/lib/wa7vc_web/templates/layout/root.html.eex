@@ -18,10 +18,10 @@
     <div data-sticky-container>
       <div id="header" class="top-bar" data-sticky data-options="marginTop:0;">
         <div class="top-bar-left">
-          <ul class="dropdown menu" data-dropdown-menu>
+          <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
             <li class="menu-text"><a id="mainlink" href="/">WA7VC</a></li>
             <li class="menu-text"><a href="/#about">About</a></li>
-            <li class="menu-text">
+            <li class="menu-text is-dropdown-submenu-parent">
               <a href="/#events">Events</a>
               <ul class="menu vertical">
                 <li><a href="/dmrgathering">PNW DMR Gathering</a></li>
@@ -32,7 +32,7 @@
           </ul>
         </div>
         <div class="top-bar-right">
-          <ul class="menu">
+          <ul class="menu vertical medium-horizontal">
             <li id="pingmsg-li" class="menu-text"><a id="pingmsg-a" href="/marvin"><span id="pingmsg"></span></a></li>
             <li class="menu-text"><a class="button" href="mailto:info@wa7vc.org">Email Us</a></li>
           </ul>
