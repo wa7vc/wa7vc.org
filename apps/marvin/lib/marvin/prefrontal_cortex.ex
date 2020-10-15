@@ -66,16 +66,16 @@ defmodule Marvin.PrefrontalCortex do
     {:ok, %{:bootup_timestamp => Timex.now()}}
   end
 
-  def handle_call({:get, :seconds_since_released}, _from, state) do
+  def handle_call({:get, :seconds_since_launch}, _from, state) do
     {:reply, {:ok, Marvin.Application.since_released(:seconds)}, state}
   end
-  def handle_call({:get, :marvinyears_since_released}, _from, state) do
+  def handle_call({:get, :marvinyears_since_launch}, _from, state) do
     {:reply, {:ok, Marvin.Application.since_released(:marvinyears)}, state}
   end
   def handle_call({:get, :last_started}, _from, state) do
     {:reply, {:ok, Marvin.Application.last_started()}, state}
   end
-  def handle_call({:get, :marvinyears_lifespan}, _from, state) do
+  def handle_call({:get, :marvinyears_since_last_started}, _from, state) do
     {:reply, {:ok, Marvin.Application.lifespan(:marvinyears)}, state}
   end
   def handle_call({:get, key}, _from, state) do

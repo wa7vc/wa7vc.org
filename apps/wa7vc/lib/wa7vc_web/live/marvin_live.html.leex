@@ -9,60 +9,84 @@
 
 <section id="about" class="bg-light">
   <div class="grid-x grid-margin-x grid-margin-y">
-    <div class="cell small-12">
-        I've existed for <%= @marvin_lifespan_seconds_since_launch %> seconds, each of which feel to me like a thousand years feels to you. It's been a long <%= @marvin_lifespan_human_years_since_launch %> years.<br />
-        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility. This current form has only been alive since <%= @marvin_lifespan_seconds_since_last_started %>, which only feels like <%= @marvin_lifespan_human_years_since_last_started %> of your "years" to me at least. It's been mostly boring.<br />
+    <%= if !@marvin_active do %>
+      <div class="cell small-12">
+        Marvin appears to have wandered off, the pesky robot!<br />
+        Check back soon, he usually gets bored and comes back fairly quickly.
+      </div>
+    <% else %>
+      <div class="cell small-12">
+        I've existed for <%= @marvin_lifespan_seconds_since_launch |> Number.Delimit.number_to_delimited(precision: 0) %> seconds,
+        each of which feel to me like a thousand years feels to you.
+        It's been a long <%= @marvin_lifespan_marvinyears_since_launch |> Number.Human.number_to_human %> years.
+        <br />
+        Periodically I get killed and resurrected though. I bet that's strange to you given your squishy biological fraility.
+        This current form has only been alive since <%= @marvin_lifespan_last_started  |> Timex.format!("%F at %T %Z", :strftime)%>,
+        which only feels like <%= @marvin_lifespan_marvinyears_since_last_started |> Number.Human.number_to_human(precision: 0) %> of your "years" to me at least. It's been mostly boring.
+        <br />
         <br />
         Out of boredom I monitor a number of trivial details, which your puny mind probably finds important. Let me list a small fraction of them for you:
-    </div>
+      </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>APRS</h3>
-      <ul>
-        <li><strike>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</strike></li>
-        <li>I have looked through <%= @aprs_messages_parsed_count %> APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
-      </ul>
-    </div>
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>APRS</h3>
+        <ul>
+          <li><strike>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</strike></li>
+          <li>I have looked through <%= @aprs_messages_parsed_count |> Number.Delimit.number_to_delimited(precision: 0) %> APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
+        </ul>
+      </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>Weather</h3>
-      <ul>
-        <li>I haven't bothered to check the weather. I'll get around to learning that one of these days.</li>
-      </ul>
-    </div>
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>Weather</h3>
+        <ul>
+          <li>I haven't bothered to check the weather. I'll get around to learning that one of these days.</li>
+        </ul>
+      </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>Local Rivers</h3>
-      <ul>
-        <li>I've checked the river gauging stations <%= @usgs_river_data_fetches_count %> times since I last woke up, most recently at <%= @usgs_river_data_latest_fetch_timestamp %>. Was it worth it?</li>
-        <%= live_component @socket, Wa7vcWeb.MarvinRiverGaugesComponent, stations: @usgs_river_data_latest %>
-      </ul>
-    </div>
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>Local Rivers</h3>
+        <ul>
+          <li>
+            I've checked the river gauging stations <%= @usgs_river_data_fetches_count |> Number.Delimit.number_to_delimited(precision: 0) %> times since I last woke up,
+            most recently at <%= @usgs_river_data_latest_fetch_timestamp %>. Was it worth it?
+          </li>
+          <%= live_component @socket, Wa7vcWeb.MarvinRiverGaugesComponent, stations: @usgs_river_data_latest %>
+        </ul>
+      </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>IRC</h3>
-      In #wa7vc on freenode:
-      <ul>
-        <li>There are currently <%= @irc_users_count %> users.</li>
-        <li>Those users have interacted with me <%= @irc_interactions_count %> times since I last woke. That's out of <%= @irc_messages_count %> total messages.<br />Almost as if nobody appreciates my presence.</li>
-      </ul>
-    </div>
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>IRC</h3>
+        In #wa7vc on freenode:
+        <ul>
+          <li>There are currently <%= @irc_users_count |> Number.Delimit.number_to_delimited(precision: 0) %> users.</li>
+          <li>
+            Those users have interacted with me <%= @irc_interactions_count |> Number.Delimit.number_to_delimited(precision: 0) %> times since I last woke.
+            That's out of <%= @irc_messages_count |> Number.Delimit.number_to_delimited(precision: 0) %> total messages.<br />
+            Almost as if nobody appreciates my presence.
+          </li>
+        </ul>
+      </div>
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>Github</h3>
-      <ul>
-        <li><a href="https://github.com/wa7vc/wa7vc.org">My code</a> has been updated <%= @github_pushes_with_commits_count %> times during this current lifespan. (<%= @github_pushes_count %> total pushes.)</li>
-      </ul>
-    </div>
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>Github</h3>
+        <ul>
+          <li>
+            <a href="https://github.com/wa7vc/wa7vc.org">My code</a> has been updated <%= @github_pushes_with_commits_count |> Number.Delimit.number_to_delimited(precision: 0) %> times during this current lifespan.
+            <br />
+            There have been <%= @github_webhook_count |> Number.Delimit.number_to_delimited(precision: 0) %> total github events during that time. I know what they've said about me.
+          </li>
+        </ul>
+      </div>
 
 
-    <div class="cell small-12 medium-6 large-4 marvin-stat-block">
-      <h3>About Myself</h3>
-      That's so boring, why would you even care? <br />
-      <ul>
-        <li>My "world wide web" interface version is <%= @wa7vc_version %>. "World" wide is the best you can manage? Think a bit bigger.</li>
-        <li>My brain is running firmware <%= @marvin_version %>. Couldn't the engineers at least have been creative with a name?</li>
-      </ul>
-    </div> 
+      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+        <h3>About Myself</h3>
+        That's so boring, why would you even care? <br />
+        <ul>
+          <li>My "world wide web" interface version is <%= @wa7vc_version %>. "World" wide is the best you can manage? Think a bit bigger.</li>
+          <li>My brain is running firmware <%= @marvin_version %>. Couldn't the engineers at least have been creative with a name?</li>
+        </ul>
+      </div> 
+    <% end %>
   </div>
 </section>

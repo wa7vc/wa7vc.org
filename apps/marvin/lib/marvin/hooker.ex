@@ -41,7 +41,7 @@ defmodule Marvin.Hooker do
     def handle_raw_github_hook(hook_body) do
       hook = Jason.decode!(hook_body)
 
-      STM.increment(:github_pushes_count)
+      STM.increment(:github_webhook_count)
 
       # if push contains commits
       # STM.increment(:github_pushes_with_commits_count)
