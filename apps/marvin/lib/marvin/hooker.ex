@@ -43,9 +43,9 @@ defmodule Marvin.Hooker do
 
       STM.increment(:github_webhook_count)
 
-      if Map.has_key?(hook, :commits) do
+      if Map.has_key?(hook, "commits") do
         STM.increment :github_pushes_with_commits_count
-        STM.increment :github_commits_count, Enum.count(hook.commits)
+        STM.increment :github_commits_count, Enum.count(hook["commits"])
       end
 
       Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github!")
