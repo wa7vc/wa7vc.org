@@ -35,7 +35,7 @@
         state: link
         path: "/etc/nginx/sites-enabled/wa7vc.org.conf"
         src: "/etc/nginx/sites-available/wa7vc.org.conf"
-    - name: set up sertbot for our domains
+    - name: set up certbot for our domains
       tags: [ certbot ]
       shell: "sudo certbot --noninteractive --nginx --agree-tos --email info@wa7vc.org -d wa7vc.org -d www.wa7vc.org"
       notify: restart nginx
