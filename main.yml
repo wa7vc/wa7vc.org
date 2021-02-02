@@ -26,19 +26,26 @@
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
       with_items:
-        - {src: 'wa7vc.org_nginx-sites-enabled',dest: '/etc/nginx/sites-available/wa7vc.org.conf'}
+        - {src: 'http_wa7vc.org_nginx-sites-enabled',dest: '/etc/nginx/sites-available/wa7vc_http.org.conf'}
+        - {src: 'https_wa7vc.org_nginx-sites-enabled',dest: '/etc/nginx/sites-available/wa7vc_https.org.conf'}
         - {src: 'error_page/', dest: '/home/wa7vc/sites/wa7vc_error_page'}
       notify: restart nginx
-    - name: link nginx sites to be active
+    - name: link HTTP nginx sites to be active
       tags: [ nginx ]
       file:
         state: link
-        path: "/etc/nginx/sites-enabled/wa7vc.org.conf"
-        src: "/etc/nginx/sites-available/wa7vc.org.conf"
+        path: "/etc/nginx/sites-enabled/wa7vc_http.org.conf"
+        src: "/etc/nginx/sites-available/wa7vc_http.org.conf"
     - name: set up certbot for our domains
       tags: [ certbot ]
       shell: "sudo certbot --noninteractive --nginx --agree-tos --email info@wa7vc.org -d wa7vc.org -d www.wa7vc.org"
       notify: restart nginx
+    - name: link HTTPS nginx sites to be active (now that we have certs)
+      tags: [ nginx ]
+      file:
+        state: link
+        path: "/etc/nginx/sites-enabled/wa7vc_https.org.conf"
+        src: "/etc/nginx/sites-available/wa7vc_https.org.conf"
   handlers:
     # User the specific path/reload command we know we've been givin sudo for
     # TODO: Ensure nginx -t first!
