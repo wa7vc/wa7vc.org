@@ -11,7 +11,7 @@
   <div class="grid-x">
     <div class="cell small-3"><a href="/summergathering/2019"><i class="fas fa-arrow-circle-left"></i> Summer Gathering 2019</a></div>
     <div class="cell small-6"></div>
-    <div class="cell small-3" style="text-align: right;"></div>
+    <div class="cell small-3" style="text-align: right;"><a href="/summergathering/2021">Summer Gathering 2021 <i class="fas fa-arrow-circle-right"></i></a></div>
   </div>
 </section>
 
