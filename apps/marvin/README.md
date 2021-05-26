@@ -6,9 +6,14 @@ are important, but he does his job, with only minimal complaint.
 Visit Marvin [here](https://wa7vc.org/marvin) to see what he's up to.
 
 ## Development
+Prepping for development is simple. In the marvin directory run:
+  * mix deps.get
+
+
 To start the server in development and let marvin and the website frontend work
 together marvin must be launched from from the apps/marvin directory passing
 the --name flag to iex: `iex --name "marvin@127.0.0.1" -S mix`
+Or, for convenience, just `./run_dev_server.sh`
 
 If multiple developers are developing on Marvin at the same time there will be
 collisions in the IRC channel as they try to use the same name. Developers can

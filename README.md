@@ -11,3 +11,10 @@ be adapted to deploy elsewhere.
 
 Specific instructions for each application lie in the README files in their
 respective folders in apps/.
+
+## Development
+To begin development:
+  * clone the repo and CD into the directory
+  * create the .ansible_vault_pass file containing the correct ansible vault password
+  * `asdf install` to install the correct erlang/elixir/nodejs versions using ASDF`
+then follow the instructions for each app in the apps/ directory.

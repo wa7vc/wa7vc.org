@@ -4,9 +4,12 @@ The WA7VC website frontend.
 It's a website. Not a lot to say. :-)
 
 ## Development
+A simple `mix setup` should do the trick!
+
 To start the server in development and be able to communicate with Marvin
 the app must be launched from the apps/wa7vc directory passing the --name
 flag to iex: `iex --name "wa7vc@127.0.0.1" -S mix phx.server`
+Or, for convenience, just `./run_dev_server.sh`
 
 ## Deployment
 Marvin and the WA7VC website are deployed as two unique OTP apps, allowing

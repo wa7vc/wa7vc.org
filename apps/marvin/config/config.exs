@@ -10,14 +10,14 @@ config :marvin, topologies: [
 
 config :marvin, Marvin.IrcRobot,
   adapter: Hedwig.Adapters.IRC,
-  server: "chat.freenode.net",
+  server: "irc.libera.chat",
   port: 6697,
   ssl?: true,
   name: "WA7VC",
   full_name: "Marvin the WA7VC Robot",
   aka: "!",
   rooms: [
-    {"#wa7vc", ""},
+    {"#WA7VC", ""},
   ],
   responders: [
     {Hedwig.Responders.Help, []},
