@@ -8,7 +8,7 @@
 </div>
 
 <section id="about" class="bg-light">
-  <div class="grid-x">
+  <div class="grid-x grid-margin-x">
     <div class="cell small-12 medium-7">
       <h5>2021 events are back on!</h5>
       <p>
@@ -40,7 +40,7 @@
   <div class="section-drop-image">
     <img src="/images/picnictable-workbench-1024x240.png" alt="Piles of computers or a picnic table" />
   </div>
-  <div class="grid-x">
+  <div class="grid-x grid-margin-x">
     <div class="cell small-12 medium-7">
       <h5>On the air</h5>
       There are a number of ways to reach us either via good 'ol RF or the internet:
@@ -76,7 +76,7 @@
 </section>
 
 <section id="events" class="bg-medium">
-  <div class="grid-x">
+  <div class="grid-x grid-margin-x">
     <div class="cell medium-5 hide-for-small-only">
       <img src="/images/balloon-500x500.png" alt="Preppeing a balloon for launch" /> 
     </div>

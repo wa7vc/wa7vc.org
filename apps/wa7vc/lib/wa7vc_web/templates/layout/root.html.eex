@@ -43,7 +43,7 @@
     <%= @inner_content %>
 
     <div id="footer">
-      <div id="footer-grid" class="grid-x">
+      <div id="footer-grid" class="grid-x grid-margin-x">
         <div id="footer-contact-header" class="cell small-12 medium-8">
           <h1>Contact Us</h1>
         </div>
