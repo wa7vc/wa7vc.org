@@ -32,7 +32,7 @@ defmodule Marvin.IrcRobot do
 
   def handle_in({:joined, channel, %{nick: nick}}, state) do
     mynick = Application.get_env(:marvin, Marvin.IrcRobot)[:name] #TODO: Should this be moved to a variable and only fetched once?
-    if mynick == "WA7VC" && channel == "#wa7vc" do
+    if mynick == "WA7VC" && channel == "#WA7VC" do
       if nick == "WA7VC-DEV" do
         irc_wa7vc_send("Hello little brother!")
       end
@@ -73,8 +73,8 @@ defmodule Marvin.IrcRobot do
       exit(channels)
     end
 
-    if Enum.member?(channels, "#wa7vc") do
-      STM.put(:irc_users_count, length(ExIRC.Client.channel_users(client_pid, "#wa7vc")))
+    if Enum.member?(channels, "#WA7VC") do
+      STM.put(:irc_users_count, length(ExIRC.Client.channel_users(client_pid, "#WA7VC")))
     end
       
     schedule_connection_loop()
@@ -100,7 +100,7 @@ defmodule Marvin.IrcRobot do
   """
   def irc_wa7vc_send(msg) do
     pid = get_pid()
-    GenServer.cast(pid, {:send, %Hedwig.Message{room: "#wa7vc", text: msg}})
+    GenServer.cast(pid, {:send, %Hedwig.Message{room: "#WA7VC", text: msg}})
   end
 
   @doc """
