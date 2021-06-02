@@ -48,7 +48,7 @@
         <ul>
           <li>
             I've checked the river gauging stations <%= @usgs_river_data_fetches_count |> Number.Delimit.number_to_delimited(precision: 0) %> times since I last woke up,
-            most recently at <%= @usgs_river_data_latest_fetch_timestamp %>. Was it worth it?
+            most recent check was at <%= @usgs_river_data_latest_fetch_timestamp %>.<br /><br />
           </li>
           <%= live_component @socket, Wa7vcWeb.MarvinRiverGaugesComponent, stations: @usgs_river_data_latest %>
         </ul>
