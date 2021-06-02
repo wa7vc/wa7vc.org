@@ -24,6 +24,8 @@ defmodule Marvin.Application do
 
     opts = [strategy: :one_for_one, name: Marvin.Supervisor]
 
+    Sentry.capture_message("Marvin is starting up", level: "info", extra: %{version: Mix.Project.config[:version]})
+
     Supervisor.start_link(children, opts)
   end
 

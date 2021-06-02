@@ -1,4 +1,5 @@
 defmodule Wa7vcWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :wa7vc
 
   @session_options [
@@ -44,6 +45,8 @@ defmodule Wa7vcWeb.Endpoint do
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
     json_decoder: Jason
+
+  plug Sentry.PlugContext
 
   plug Plug.MethodOverride
   plug Plug.Head
