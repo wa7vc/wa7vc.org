@@ -17,7 +17,7 @@ config :marvin, Marvin.IrcRobot,
   full_name: "Marvin the WA7VC Robot",
   aka: "!",
   rooms: [
-    {"#WA7VC", ""},
+    {"#wa7vc", ""},
   ],
   responders: [
     {Hedwig.Responders.Help, []},
