@@ -65,6 +65,11 @@ defmodule Marvin.Aprs do
     GenServer.call(__MODULE__, {:send_message, message})
   end
 
+  def handle_aprs_beacon_1hr_cache_callback(data) do
+    IO.inspect(data)
+    Marvin.PrefrontalCortex.put(:aprs_beacons_1hr_count, ConCache.size(:aprs_beacon_1hr_cache))
+  end
+
 
   ############
   # Server API
@@ -114,13 +119,12 @@ defmodule Marvin.Aprs do
     Logger.debug("APRS-IS COMMENT: " <> String.trim(comment_text))
   end
 
-  # TODO: Check if the message is intended FOR us!
   def dispatch(message) do
     m = Parser.parse(message)
     Logger.debug("APRS-IS message being dispatched: #{inspect(m)}")
 
     #m has base_callsign, sender, and ssid, as well as path, destination, and information_field (raw string)
-    #information_field starting with ";IRLP-7808" on a message with data_type :object appears to be the IRLP Beacono
+    #information_field starting with ";IRLP-7808" on a message with data_type :object appears to be the IRLP Beacon
     # data_type :object, sender of WA7VC-S, information_field: ";WA7VC  B"etc
     # data_type: position, sender: WA7VC-B
     # data_type: position, sender: WA7VC-10
@@ -128,11 +132,11 @@ defmodule Marvin.Aprs do
     #
 
     case m.base_callsign do
-      "WA7VC" -> IO.puts("It's from us, disregard.")
-      _ -> IO.puts("It's someone new!")
+      "WA7VC" -> nil
+      _ -> ConCache.put(:aprs_beacon_1hr_cache, m.base_callsign, m)
     end
 
-    # TODO: Handle/Dispatch message here
+    # Any other handling we want to do for this message?
   end
 
   defp connect_to_aprs_is(server, port) do
@@ -141,7 +145,7 @@ defmodule Marvin.Aprs do
   end
 
   defp send_login_string(socket, aprs_login, aprs_passcode, filter) do
-    :gen_tcp.send(socket, "user #{aprs_login} pass #{aprs_passcode} vers Marvin 0.2 filter #{filter} \n")
+    :gen_tcp.send(socket, "user #{aprs_login} pass #{aprs_passcode} vers Marvin 0.3 filter #{filter} \n")
   end
 
   defp create_timer(timeout) do

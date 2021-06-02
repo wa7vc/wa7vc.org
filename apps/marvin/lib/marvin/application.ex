@@ -17,6 +17,7 @@ defmodule Marvin.Application do
       {Marvin.RiverGaugeMonitor, []},
       {Marvin.Aprs, []},
       worker(Task, startup_tasks, restart: :transient),
+      {ConCache, [name: :aprs_beacon_1hr_cache, ttl_check_interval: :timer.seconds(30), global_ttl: :timer.seconds(60*60), callback: fn(data) -> Marvin.Aprs.handle_aprs_beacon_1hr_cache_callback(data) end]},
     ]
 
     # Remove any nils from the list, from things like pubsub that may not be started

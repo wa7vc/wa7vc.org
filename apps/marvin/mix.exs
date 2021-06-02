@@ -38,6 +38,7 @@ defmodule Marvin.MixProject do
       {:aprs_parse, "~> 0.1.0"},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:libcluster, "~> 3.2"},
+      {:con_cache, "~> 0.13"},
     ]
   end
 end

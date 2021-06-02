@@ -31,8 +31,8 @@
       <div class="cell small-12 medium-6 large-4 marvin-stat-block">
         <h3>APRS</h3>
         <ul>
-          <li><strike>There are currently {APRS_at_vc_count} APRS beacons in or around Valley Camp. I wonder if they're doing anything interesting.</strike></li>
-          <li>I have looked through <%= @aprs_messages_parsed_count |> Number.Delimit.number_to_delimited(precision: 0) %> APRS packets to find out this information during this lifespan. Can you even concieve of a number that big?</li>
+          <li>In the last hour <%= @aprs_beacons_1hr_count |> Number.Delimit.number_to_delimited(precision: 0) %> <%= if @aprs_beacons_1hr_count == 1, do: "callsign has", else: "callsigns have" %> beaconed in or around Valley Camp. I wonder if they're doing anything interesting.</li>
+          <li>I have looked through <%= @aprs_messages_parsed_count |> Number.Delimit.number_to_delimited(precision: 0) %> APRS packets to find out this information during this lifespan.</li>
         </ul>
       </div>
 

@@ -114,6 +114,7 @@ defmodule Wa7vcWeb.MarvinLive do
         usgs_river_data_fetches_count: get_counter_from_marvin(:usgs_river_data_fetches_count),
         usgs_river_data_latest_fetch_timestamp: get_key_from_marvin(:usgs_river_data_latest_fetch_timestamp),
         usgs_river_data_latest: get_key_from_marvin(:usgs_river_data_latest),
+        aprs_beacons_1hr_count: get_counter_from_marvin(:aprs_beacons_1hr_count),
         aprs_messages_parsed_count: get_counter_from_marvin(:aprs_messages_parsed_count)
       }
     else
@@ -126,6 +127,7 @@ defmodule Wa7vcWeb.MarvinLive do
         usgs_river_data_fetches_count: 0,
         usgs_river_data_latest_fetch_timestamp: "[[ UNKNOWN - Marvin was AWOL ]]",
         usgs_river_data_latest: nil,
+        aprs_beacons_1hr_count: 0,
         aprs_messages_parsed_count: 0
       }
     end
