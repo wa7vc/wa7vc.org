@@ -223,15 +223,31 @@ defmodule Marvin.RiverGaugeMonitor do
         siteName: first[:siteName],
         latitude: first[:latitude],
         longitude: first[:longitude],
-        variables: Enum.map(station_vars, &build_variable/1)
+        variables: Enum.map(station_vars, &add_latest_value_string_to_variable_struct/1)
       }
       [ s | acc ]
     end)
   end
 
-  defp build_variable(var_obj) do
-    Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
-    |> Map.put(:latest_value_string, "#{Map.fetch!(var_obj, :values) |> List.last() |> Map.fetch!(:value)}")
+  # Take the final variable out of the (sorted) list of values and copy it's value, as a string, up into the
+  # Variable struct so it can be accessed easily. 
+  # Rescuing against the possibility of an empty list is being done because of a situation where a station was
+  # apparently vandalized and the API started returning empty values lists. Shortly afterward the API began returning
+  # -999999 instead, and their API documentation isn't clear about what is expected, so we're going to leave this error
+  # catch in place and assume that this could happen again.
+  defp add_latest_value_string_to_variable_struct(var_obj) do
+    with {:ok, list} <- Map.fetch(var_obj, :values),
+         last_item <- List.last(list, {:error, "No values found"}),
+         {:ok, latest_value} <- Map.fetch(last_item, :value)
+    do
+      Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
+      |> Map.put(:latest_value_string, "#{latest_value}")
+    else
+      {:error, err} -> 
+        Logger.error("When adding latest value to variable an error #{err} was encountered for: #{IO.inspect(var_obj)}")
+        Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
+        |> Map.put(:latest_value_string, "")
+    end
   end
 
 end
