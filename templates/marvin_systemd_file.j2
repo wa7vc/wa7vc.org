@@ -9,6 +9,7 @@ WorkingDirectory=/home/wa7vc/apps/marvin
 Environment=LANG=en_US.UTF-8
 Environment=RELEASE_COOKIE="{{ ERLANG_COOKIE }}"
 Environment=MARVIN_IRC_PASSWORD="{{ MARVIN_IRC_PASSWORD }}"
+Environment=MARVIN_SENTRY_DSN="{{ MARVIN_SENTRY_DSN }}"
 ExecStart=/home/wa7vc/apps/marvin/bin/marvin start
 SyslogIdentifier=marvin
 RemainAfterExit=no
