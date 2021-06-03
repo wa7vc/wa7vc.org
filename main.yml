@@ -65,7 +65,7 @@
       local_action:
         module: shell
         chdir: apps/marvin/
-        cmd: ./release.sh
+        cmd: ./build_release.sh
     - name: Copy release to server
       tags: [ deploy, initial-deploy ]
       copy:
@@ -126,7 +126,7 @@
       local_action:
         module: shell
         chdir: apps/wa7vc/
-        cmd: ./release.sh
+        cmd: ./build_release.sh
     - name: Copy release to server
       tags: [ deploy, initial-deploy ]
       copy:

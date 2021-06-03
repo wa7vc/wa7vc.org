@@ -32,7 +32,7 @@ repository, which is designed to deploy to a
 
 However you can also do it as a 2-stage process if you're not confident in your
 build completing cleanly:
-  * from apps/marvin: `./release.sh`
+  * from apps/marvin: `./build_release.sh`
   * from repository root:
     `ansible-playbook main.yml --tags marvin --skip-tags build`
 

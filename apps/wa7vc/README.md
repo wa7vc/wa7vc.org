@@ -23,7 +23,7 @@ repository, which is designed to deploy to a
 
 However you can also do it as a 2-stage process if you're not confident in your
 build completing cleanly:
-  * from apps/wa7vc: `./release.sh`
+  * from apps/wa7vc: `./build_release.sh`
   * from repository root:
     `ansible-playbook main.yml --tags wa7vc --skip-tags build`
 
