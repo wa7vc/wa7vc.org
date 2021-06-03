@@ -31,7 +31,7 @@ defmodule Wa7vc.Application do
 
     if @env == :dev, do: Application.ensure_all_started(:marvin)
 
-    Sentry.capture_message("WA7VC is starting up", level: "info", extra: %{version: Mix.Project.config[:version]})
+    Sentry.capture_message("WA7VC is starting up", level: "info", extra: %{version: Application.spec(:wa7vc, :vsn) |> to_string()})
 
     startup_val
   end
