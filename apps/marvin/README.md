@@ -46,6 +46,7 @@ if you're deploying marvin somewhere else the steps are pretty easy:
     * LANG=en_US.UTF-8
     * RELEASE_COOKIE=YOUR_SECRET_COOKIE
     * MARVIN_IRC_PASSWORD=YOUR_IRC_PASSWORD
+    * MARVIN_SENTRY_DSN=MARVINS_SENTRY_DSN
     
     Both the secret cookie and irc password for the WA7VC deployment are stored
     in an ansible vault. Note that the cookie must be a shared cookie between

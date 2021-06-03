@@ -40,7 +40,7 @@ if you're deploying marvin somewhere else the steps are pretty easy:
     * SECRET_KEY_BASE=
     * LIVEVIEW_SECRET_SALT=
     * GITHUB_WEBHOOK_SECRET=
-    * SENTRY_DSN=
+    * WA7VC_SENTRY_DSN=
     
     The application could run standalone on port 80, but is designed to run
     behind an SSL terminating proxy server, (nginx/traefik) and so the port

@@ -65,7 +65,7 @@ config :wa7vc, Wa7vcWeb.Endpoint,
 #     config :wa7vc_web, Wa7vcWeb.Endpoint, server: true
 
 config :sentry,
-  dsn: System.fetch_env!("SENTRY_DSN"),
+  dsn: System.fetch_env!("WA7VC_SENTRY_DSN"),
   environment_name: :prod,
   enable_source_code_context: true,
   root_source_code_path: File.cwd!,
