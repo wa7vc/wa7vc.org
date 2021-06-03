@@ -7,7 +7,7 @@ COPY mix.* /app/
 RUN mix deps.get --only prod
 RUN mix deps.compile
 
-FROM node:15.11 as frontend
+FROM node:lts as frontend
 WORKDIR /app
 COPY assets/package.json assets/package-lock.json /app/
 RUN npm install
