@@ -1,5 +1,8 @@
 import Config
 
+config :logger,
+  backends: [:console, Sentry.LoggerBackend]
+
 # Do not print debug messages in production
 config :logger, level: :info
 
