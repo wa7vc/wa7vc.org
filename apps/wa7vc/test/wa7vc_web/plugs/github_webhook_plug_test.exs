@@ -71,13 +71,13 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookPlugTest do
 
   # Github uses SHA1 to calculate the hash using the shared secret.
   defp signature_for(body) do
-    :crypto.hmac(:sha, @secret, body)
+    :crypto.mac(:hmac, :sha, @secret, body)
     |> Base.encode16(case: :lower)
   end
 
   # Generate a signature using the wrong secret.
   defp bad_signature_for(body) do
-    :crypto.hmac(:sha, "gQXRRtDkqrrPXr3aGzzv0rNRf3he5HKOO9u5AOAmT+Uhf0VVOUc4xRAKB3/AE+iT", body)
+    :crypto.mac(:hmac, :sha, "gQXRRtDkqrrPXr3aGzzv0rNRf3he5HKOO9u5AOAmT+Uhf0VVOUc4xRAKB3/AE+iT", body)
     |> Base.encode16(case: :lower)
   end
 end

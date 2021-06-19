@@ -37,7 +37,7 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookReceiver do
                                   Wa7vcWeb.Endpoint)[:github_webhook_secret]
         {:ok, body, _} = read_body(conn)
 
-        calculated_signature = :crypto.hmac(:sha, key, body)
+        calculated_signature = :crypto.mac(:hmac, :sha, key, body)
 
         case extract_github_signature(conn)
              |> decode_base16_signature
