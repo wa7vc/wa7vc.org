@@ -1,4 +1,4 @@
-defmodule Hedwig.Responders.System do
+defmodule Marvin.Responders.System do
   @moduledoc """
   Marvin likes to talk about himself
   """

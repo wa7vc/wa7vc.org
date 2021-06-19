@@ -1,4 +1,4 @@
-defmodule Hedwig.Responders.RiverGauges do
+defmodule Marvin.Responders.RiverGauges do
   @moduledoc """
   Respond with data about local river gauging stations
   """

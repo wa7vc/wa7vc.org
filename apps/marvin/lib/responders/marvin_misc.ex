@@ -1,4 +1,4 @@
-defmodule Hedwig.Responders.MarvinMisc do
+defmodule Marvin.Responders.MarvinMisc do
   @moduledoc """
   Marvin does some strange things, not all of them obvious or documented.
   He is very depressed, after all.

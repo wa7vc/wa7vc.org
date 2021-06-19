@@ -22,9 +22,9 @@ config :marvin, Marvin.IrcRobot,
   responders: [
     {Hedwig.Responders.Help, []},
     {Hedwig.Responders.Ping, []},
-    {Hedwig.Responders.MarvinMisc, []},
-    {Hedwig.Responders.System, []},
-    {Hedwig.Responders.RiverGauges, []},
+    {Marvin.Responders.MarvinMisc, []},
+    {Marvin.Responders.System, []},
+    {Marvin.Responders.RiverGauges, []},
   ]
 
 
