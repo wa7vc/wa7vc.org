@@ -1,12 +1,5 @@
-/_build
-/cover
-/deps
-erl_crash.dump
-*.ez
-
 .ansible_vault_pass
 
-.deliver/releases/
-/rel/*/**"
-
+erl_crash.dump
+*.ez
 tmp/
