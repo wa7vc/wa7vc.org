@@ -17,7 +17,7 @@ defmodule Wa7vc.Application do
       # Start the Telemetry Supervisor
       Wa7vcWeb.Telemetry,
       # Start the endpoint when the application starts
-      supervisor(Wa7vcWeb.Endpoint, []),
+      Wa7vcWeb.Endpoint,
     ]
 
 
