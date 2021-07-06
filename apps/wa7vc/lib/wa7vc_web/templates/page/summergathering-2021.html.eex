@@ -39,6 +39,7 @@
           <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
         </ul>
       </p>
+    </div>
   </div>
 </section>
 
@@ -70,7 +71,7 @@
 
     </div>
     <div class="cell small=12 medium-8">
-      <div style="text-decoration:none; overflow:hidden;max-width:100%;width:800px;height:500px;"><div id="display-googlemap" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=49515+SE+Middle+Fork+Rd,+North+Bend,+WA,+USA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="googlehtml" href="https://dedicatedserver.expert" id="grabmap-authorization">dedicatedserver.expert</a><style>#display-googlemap .text-marker{}.map-generator{max-width: 100%; max-height: 100%; background: none;</style></div>
+      <div style="text-decoration:none; overflow:hidden;max-width:100%;width:800px;height:500px;"><div id="display-googlemap" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=49515+SE+Middle+Fork+Rd,+North+Bend,+WA,+USA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="googlehtml" href="https://dedicatedserver.expert" id="grabmap-authorization">dedicatedserver.expert</a><style>#display-googlemap .text-marker{}.map-generator{max-width: 100%; max-height: 100%; background: none;}</style></div>
       <br />
       <br />
     </div>
