@@ -7,10 +7,16 @@ defmodule Wa7vcWeb.ErrorView do
   #   "Internal Server Error"
   # end
 
+  #def render("404.html", _assigns) do
+    #IO.puts("Outputting 404")
+    #"The page you were looking for could not be found. Sorry!"
+  #end
+
   # By default, Phoenix returns the status message from
   # the template name. For example, "404.html" becomes
   # "Not Found".
   def template_not_found(template, _assigns) do
     Phoenix.Controller.status_message_from_template(template)
   end
+
 end

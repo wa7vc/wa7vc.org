@@ -1,0 +1,18 @@
+<%= render_shared("header.html", assigns) %>
+<%= render_shared("hero.html", assigns) %>
+
+  <main role="main" id="content">
+    <section id="error" class="bg-light">
+      <div class="grid-x grid-margin-x">
+        <div class="cell small-12 medium-7">
+          <h5>Error</h5>
+
+          <p>The page you were looking for could not be found.</p>
+
+          <p>Please  visit <a href="<%= Routes.page_path(@conn, :index) %>">the front page</a> or use the menu above.
+        </div>
+      </div>
+    </section>
+  </main>
+
+<%= render_shared("footer.html", assigns) %>
