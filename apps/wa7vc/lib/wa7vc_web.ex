@@ -90,6 +90,10 @@ defmodule Wa7vcWeb do
       import Wa7vcWeb.ErrorHelpers
       import Wa7vcWeb.Gettext
       alias Wa7vcWeb.Router.Helpers, as: Routes
+
+      def render_shared(template, assigns \\ []) do
+        render(Wa7vcWeb.SharedView, template, assigns)
+      end
     end
   end
 

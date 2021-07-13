@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+    <script type="text/javascript">Sentry.init({ dsn: 'https://42404814b5a24bfeb1d19e9c7e8866ad@o171576.ingest.sentry.io/1255197' });</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= if assigns[:meta_attrs], do: meta_tags(@meta_attrs) %>
+    <%= csrf_meta_tag() %>
+    <title>WA7VC Ham Radio Club</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Jura:400,700|Oswald:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div data-sticky-container>
+      <div id="header" class="top-bar" data-sticky data-options="marginTop:0;">
+        <div class="top-bar-left">
+          <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
+            <li class="menu-text"><a id="mainlink" href="/">WA7VC</a></li>
+            <li class="menu-text"><a href="/#about">About</a></li>
+            <li class="menu-text is-dropdown-submenu-parent">
+              <a href="/#events">Events</a>
+              <ul class="menu vertical">
+                <li><a href="/dmrgathering">PNW DMR Gathering</a></li>
+                <li><a href="/summergathering">Summer Gathering</a></li>
+              </ul>
+            </li>
+            <li class="menu-text"><a href="/#on-air">On-Air</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu vertical medium-horizontal">
+            <li id="pingmsg-li" class="menu-text"><a id="pingmsg-a" href="/marvin"><span id="pingmsg"></span></a></li>
+            <li class="menu-text"><a class="button" href="mailto:info@wa7vc.org">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
