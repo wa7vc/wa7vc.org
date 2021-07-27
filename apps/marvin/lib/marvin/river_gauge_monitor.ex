@@ -237,14 +237,18 @@ defmodule Marvin.RiverGaugeMonitor do
   # catch in place and assume that this could happen again.
   defp add_latest_value_string_to_variable_struct(var_obj) do
     with {:ok, list} <- Map.fetch(var_obj, :values),
-         last_item <- List.last(list, {:error, "No values found"}),
-         {:ok, latest_value} <- Map.fetch(last_item, :value)
+         last_values_obj when is_map(last_values_obj) <- List.last(list, {:error, "no values returned by API"}),
+         {:ok, latest_value} <- Map.fetch(last_values_obj, :value)
     do
       Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
       |> Map.put(:latest_value_string, "#{latest_value}")
     else
       {:error, err} -> 
-        Logger.error("When adding latest value to variable an error #{err} was encountered for: #{IO.inspect(var_obj)}")
+        Logger.error("When adding latest value to variable an error \"#{err}\" was encountered for: #{IO.inspect(var_obj)}")
+        Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
+        |> Map.put(:latest_value_string, "")
+      :error -> 
+        Logger.error("When adding latest value for variable an improperly structed dictionary was encountered for: #{IO.inspect(var_obj)}")
         Kernel.struct(Marvin.RiverGaugeMonitor.Variable, var_obj)
         |> Map.put(:latest_value_string, "")
     end
