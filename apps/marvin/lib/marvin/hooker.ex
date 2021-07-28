@@ -8,7 +8,7 @@ defmodule Marvin.Hooker do
 
   Webhooks are received on the webhook:received_raw subscription, in the
   following form:
-  %{source: "source", body: raw_hook_body}
+  %{source: "source", delivery: x_github_delivery_header_value, action: x_github_action_header_value, body: raw_hook_body}
   and are then parsed according to their expected format from that source,
   after which they are reacted to.
   """
@@ -25,8 +25,8 @@ defmodule Marvin.Hooker do
     {:ok, opts}
   end
 
-  def handle_info(%{source: "github", body: hook_body}, state) do
-    Implementation.handle_raw_github_hook(hook_body)
+  def handle_info(%{source: "github", delivery: hook_guid, action: hook_action, body: hook_body}, state) do
+    Implementation.handle_raw_github_hook(hook_guid, hook_action, hook_body)
     {:noreply, state}
   end
 
@@ -38,18 +38,32 @@ defmodule Marvin.Hooker do
     alias Marvin.PrefrontalCortex, as: STM
     alias Marvin.PubSub
 
-    def handle_raw_github_hook(hook_body) do
+    def handle_raw_github_hook(_hook_guid, hook_action, hook_body) do
       hook = Jason.decode!(hook_body)
 
       STM.increment(:github_webhook_count)
 
-      if Map.has_key?(hook, "commits") do
-        STM.increment :github_pushes_with_commits_count
-        STM.increment :github_commits_count, Enum.count(hook["commits"])
-      end
+      case hook_action do
+        "push" -> 
+          if Map.has_key?(hook, "commits") do
+            commit_count = Enum.count(hook["commits"])
+            STM.increment(:github_pushes_with_commits_count)
+            STM.increment(:github_commits_count, commit_count)
 
-      Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github!")
-      PubSub.pingmsg("#{hook["sender"]["login"]} just twiddled my bits on github!")
+            Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} commits on #{hook["ref"]} were pushed.")
+            PubSub.pingmsg("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} times!")
+          end
+        "delete" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just reprogrammed me with a very large axe! #{hook["ref-type"]} #{hook["ref"]} deleted!")
+          PubSub.pingmsg("#{hook["sender"]["login"]} just reprogrammed me with a very large axe!")
+        "create" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} pushed #{hook["ref_type"]} #{hook["ref"]}.")
+        "repository_vulnerability_alert" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} says we may have a vulnerabiity in #{hook["alert"]["affected_package_name"]}. No wonder my diodes hurt.")
+        "pull_request" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} a pull request. (#{hook["pull_request"]["html_url"]})")
+        "issues" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
+        _ -> 
+          Marvin.IrcRobot.irc_wa7vc_send("GitHub just said hello, but I'm not sure what changed... Worrying.")
+          PubSub.pingmsg("GitHub just said hello, but I'm not sure what changed... Worrying.")
+      end
     end
   end
 

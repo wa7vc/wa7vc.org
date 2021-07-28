@@ -35,7 +35,7 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookReceiver do
       "POST" -> 
         key = Application.get_env(:wa7vc, 
                                   Wa7vcWeb.Endpoint)[:github_webhook_secret]
-        {:ok, body, _} = read_body(conn)
+        {:ok, body, conn} = read_body(conn)
 
         calculated_signature = :crypto.mac(:hmac, :sha, key, body)
 
@@ -43,9 +43,11 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookReceiver do
              |> decode_base16_signature
              |> signature_matches(calculated_signature) do
           true ->
+            gh_action = get_resp_header(conn, "X-GitHub-Event") |> List.first(:unknown)
+            gh_delivery = get_resp_header(conn, "X-GitHub-Delivery") |> List.first(:unknown)
             Phoenix.PubSub.broadcast(Wa7vc.PubSub,
                                      "webhook:received_raw",
-                                     %{source: "github", body: body})
+                                     %{source: "github", delivery: gh_delivery, action: gh_action, body: body})
             conn
             |> put_resp_content_type("application/json")
             |> send_resp(200, "{ \"code\":200, "
