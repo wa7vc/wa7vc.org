@@ -6,18 +6,16 @@ defmodule Marvin.Application do
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    startup_tasks = [fn -> Marvin.PrefrontalCortex.put(:bootup_timestamp, Timex.now()) end]
-    
     children = [
       cluster_supervisor(),
       phoenix_pubsub(),
       {Marvin.PrefrontalCortex, []},
-      worker(Marvin.IrcRobot, []),
+      {Marvin.IrcRobot, []},
       {Marvin.Hooker, []},
       {Marvin.RiverGaugeMonitor, []},
       {Marvin.Aprs, []},
-      worker(Task, startup_tasks, restart: :transient),
       {ConCache, [name: :aprs_beacon_1hr_cache, ttl_check_interval: :timer.seconds(30), global_ttl: :timer.seconds(60*60), callback: fn(data) -> Marvin.Aprs.handle_aprs_beacon_1hr_cache_callback(data) end]},
+      {Task, fn -> Marvin.PrefrontalCortex.put(:bootup_timestamp, Timex.now()) end},
     ]
 
     # Remove any nils from the list, from things like pubsub that may not be started
