@@ -15,7 +15,7 @@ defmodule Marvin.Aprs do
   #######
   # SETUP
 
-  def start_link(opts \\ []) do
+  def start_link(_opts \\ []) do
     GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
 
@@ -100,7 +100,7 @@ defmodule Marvin.Aprs do
     {:stop, :normal, state}
   end
 
-  def handle_info({:tcp_error, socket, reason}, state) do
+  def handle_info({:tcp_error, _socket, reason}, state) do
     Logger.error("APRS-IS socket closed due to error #{inspect(reason)}")
     {:stop, :normal, state}
   end
