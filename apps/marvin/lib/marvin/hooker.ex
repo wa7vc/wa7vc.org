@@ -60,9 +60,11 @@ defmodule Marvin.Hooker do
         "repository_vulnerability_alert" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} says we may have a vulnerabiity in #{hook["alert"]["affected_package_name"]}. No wonder my diodes hurt.")
         "pull_request" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} a pull request. (#{hook["pull_request"]["html_url"]})")
         "issues" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
+        "issue_comment" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} comment on issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
+        :no_event -> Marvin.IrcRobot.irc_wa7vc_send("GitHub just said something that I couldn't understand... That's a bit worrying.")
         _ -> 
-          Marvin.IrcRobot.irc_wa7vc_send("GitHub just said hello, but I'm not sure what changed... Worrying.")
-          PubSub.pingmsg("GitHub just said hello, but I'm not sure what changed... Worrying.")
+          Marvin.IrcRobot.irc_wa7vc_send("GitHub just sent me a webhook with action #{hook_action}, but I'm ignoring it...")
+          PubSub.pingmsg("GitHub just sent me a webhook, but I'm ignoring it...")
       end
     end
   end
