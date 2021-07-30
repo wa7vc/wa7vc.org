@@ -1,5 +1,5 @@
 ---
-# Designed to run on a DaedalusDreams app server config, not found here, that is expecting this app. 
+# Designed to run on a DaedalusDreams app server (config for which is not found here) that is expecting this app to be deployed to it.
 # (wa7vc user must have access to /etc/nginx/sites-available and /usr/share/nginx/sites in order to fully deploy, and letsencrypt must be set up for wa7vc.org) 
 # Because of that this isn't a full config, it simply places the needed config into the deploy user's directory, where the system is expecting it.
 # Most likely you want to run with "--tags marvin" or "--tags wa7vc" to rebuild and redeploy that app.
@@ -53,19 +53,62 @@
       shell: "sudo /usr/sbin/service nginx reload"
 
 
-- name: deploy latest version of Marvin
+- name: build latest version of Marvin
   tags: [ marvin ]
   hosts: marvinserver
   tasks:
     - name: include secret vars
       tags: [ always ]
       include_vars: vars/secrets.yml
+    - name: verify repo is in consistent state for release
+      tags: [ build ]
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
+        chdir: apps/marvin/
+        cmd: mix marvin.verify_release
+      register: marvin_verify_release
+      failed_when: marvin_verify_release.rc != 0 
     - name: Build latest release locally
       tags: [ build ]
-      local_action:
-        module: shell
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
         chdir: apps/marvin/
+        cmd: build_release.sh
+      register: marvin_build
+      failed_when: marvin.build.rc != 0
+
+- name: build latest version of Wa7vc website
+  tags: [ wa7vc, build ]
+  hosts: webservers
+  tasks:
+    - name: include secret vars
+      tags: [ always ]
+      include_vars: vars/secrets.yml
+    - name: verify repo is in consistent state for release
+      tags: [ build ]
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
+        chdir: apps/wa7vc/
+        cmd: mix wa7vc.verify_release
+      register: wa7vc_verify_release
+      failed_when: wa7vc_verify_release.rc != 0 
+    - name: Build latest release locally
+      tags: [ build ]
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
+        chdir: apps/wa7vc/
         cmd: ./build_release.sh
+      register: wa7vc_build
+      failed_when: wa7vc_build.rc != 0
+
+
+- name: deploy latest version of Marvin
+  tags: [ marvin, deploy ]
+  hosts: marvinserver
+  tasks:
+    - name: include secret vars
+      tags: [ always ]
+      include_vars: vars/secrets.yml
     - name: Copy release to server
       tags: [ deploy, initial-deploy ]
       copy:
@@ -114,19 +157,13 @@
       tags: [ deploy, initial-deploy, systemd ]
       shell: "sudo systemctl enable marvin.service"
 
-- name: deploy latest version of Wa7vc (web)
-  tags: [ wa7vc ]
+- name: deploy latest version of Wa7vc website
+  tags: [ wa7vc, deploy ]
   hosts: webservers
   tasks:
     - name: include secret vars
       tags: [ always ]
       include_vars: vars/secrets.yml
-    - name: Build latest release locally
-      tags: [ build ]
-      local_action:
-        module: shell
-        chdir: apps/wa7vc/
-        cmd: ./build_release.sh
     - name: Copy release to server
       tags: [ deploy, initial-deploy ]
       copy:
