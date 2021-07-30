@@ -35,6 +35,18 @@ config :marvin, Marvin.Aprs,
   aprs_login: "WA7VC-W",                              # Arbitrarily pick "-W" for "web".
   aprs_passcode: "20725"                              # Yes, I know it's in source control. No it doesn't matter, anyone can generate it trivially.
 
+config :sentry,
+  included_environments: [:prod],
+  dsn: "${MARVIN_SENTRY_DSN}",
+  environment_name: :prod,
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  tags: %{
+    env: "production"
+  },
+  release: "marvin@#{Mix.Project.config[:version]}"
+
+
 config :marvin, :pubsub, start: true
 
 
