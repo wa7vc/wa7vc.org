@@ -47,8 +47,12 @@ config :sentry,
   release: "marvin@#{Mix.Project.config[:version]}"
 
 
-config :marvin, :pubsub, start: true
+config :marvin,
+  pubsub: [start: true],
+  usgs_waterservice_http_adapter: Marvin.USGSWaterservicesAPI.HTTPAdapter,
+  usgs_waterservice_api_client: Marvin.USGSWaterservicesAPI.APIClient
 
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this

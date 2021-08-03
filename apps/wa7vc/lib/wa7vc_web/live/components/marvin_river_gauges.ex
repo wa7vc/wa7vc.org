@@ -5,7 +5,7 @@ defmodule Wa7vcWeb.MarvinRiverGaugesComponent do
     ~L"""
     <%= if @stations do %>
       <%= for station <- @stations do %>
-          <li><%= station.siteName %> (<%= link "map", to: "https://maps.google.com/?q=#{station.latitude},#{station.longitude}", target: "_blank" %>):
+          <li><%= station.site_name %> (<%= link "map", to: "https://maps.google.com/?q=#{station.latitude},#{station.longitude}", target: "_blank" %>):
             <ul>
               <%= for variable <- station.variables do %>
                 <li><%= variable.description %>: <%= variable.latest_value_string %></li>

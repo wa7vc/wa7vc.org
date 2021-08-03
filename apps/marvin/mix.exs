@@ -6,7 +6,7 @@ defmodule Marvin.MixProject do
       app: :marvin,
       version: "0.3.10",
       elixir: "~> 1.10",
-      elixirc_path: elixirc_paths(Mix.env()),
+      elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -16,7 +16,7 @@ defmodule Marvin.MixProject do
   def application do
     [
       mod: {Marvin.Application, []},
-      extra_applications: [:logger, :hedwig_irc_adapter, :sentry]
+      extra_applications: [:logger, :hedwig_irc_adapter, :timex, :sentry]
     ]
   end
 
@@ -39,6 +39,7 @@ defmodule Marvin.MixProject do
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:libcluster, "~> 3.2"},
       {:con_cache, "~> 0.13"},
+      {:mox, "~> 1.0.0", only: :test},
     ]
   end
 end
