@@ -10,13 +10,10 @@ defmodule Marvin.Application do
       cluster_supervisor(),
       phoenix_pubsub(),
       {Marvin.PrefrontalCortex, []},
-      {Marvin.IrcRobot, []},
       {Marvin.Hooker, []},
-      {Marvin.RiverGaugeMonitor, []},
-      {Marvin.Aprs, []},
       {ConCache, [name: :aprs_beacon_1hr_cache, ttl_check_interval: :timer.seconds(30), global_ttl: :timer.seconds(60*60), callback: fn(data) -> Marvin.Aprs.handle_aprs_beacon_1hr_cache_callback(data) end]},
       Supervisor.child_spec({Task, fn -> Marvin.PrefrontalCortex.put(:bootup_timestamp, Timex.now()) end}, restart: :transient)
-    ]
+    ] ++ env_conditional_children(Application.get_env(:marvin, :environment))
 
     # Remove any nils from the list, from things like pubsub that may not be started
     children = Enum.reject(children, &is_nil/1)
@@ -34,6 +31,16 @@ defmodule Marvin.Application do
   #  Marvin.Application.config_change(changed, removed)
   #  :ok
   #end
+
+
+  defp env_conditional_children(:test), do: []
+  defp env_conditional_children(_) do
+    [
+      {Marvin.IrcRobot, []},
+      {Marvin.RiverGaugeMonitor, []},
+      {Marvin.Aprs, []},
+    ]
+  end
 
   defp cluster_supervisor() do
     topologies = Application.get_env(:marvin, :topologies)

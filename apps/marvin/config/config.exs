@@ -48,6 +48,7 @@ config :sentry,
 
 
 config :marvin,
+  environment: Mix.env(),
   pubsub: [start: true],
   usgs_waterservice_http_adapter: Marvin.USGSWaterservicesAPI.HTTPAdapter,
   usgs_waterservice_api_client: Marvin.USGSWaterservicesAPI.APIClient

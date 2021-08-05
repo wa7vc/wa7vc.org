@@ -31,14 +31,15 @@ defmodule Marvin.Aprs do
     with {:ok, socket} <- connect_to_aprs_is(server, port),
          :ok <- send_login_string(socket, aprs_login, aprs_passcode, filter),
          timer <- create_timer(@aprs_timeout) do
-      {:ok, 
+      {:ok,
         %{server: server,
           port: port,
           socket: socket,
           timer: timer
-      }}
+        }
+      }
     else
-      _ -> 
+      _ ->
         Logger.error("Could not connect or log in to APRS-IS")
         {:stop, :aprs_connection_failed}
     end
