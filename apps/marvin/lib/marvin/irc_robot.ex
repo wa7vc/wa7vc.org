@@ -39,7 +39,12 @@ defmodule Marvin.IrcRobot do
     end
     {:noreply, state}
   end
- 
+
+  def handle_in({:login_failed, :nick_in_use}, state) do
+    Logger.error("Could not log in because #{Application.get_env(:marvin, Marvin.IrcRobot)[:name]} is already in use! Multiple developers?!")
+    {:noreply, state}
+  end
+
   #def handle_in(_msg, state) do
   #  {:noreply, state}
   #end
@@ -67,16 +72,15 @@ defmodule Marvin.IrcRobot do
  
     # If we're still connected (process didn't crash out) we'll update some stats.
     #
-    # Note that channel_users() crashes the genserver if called on a channel you're not in, so we have to check that first
-    channels = ExIRC.Client.channels(client_pid)
-    if channels == {:error, :not_connected} do
-      exit(channels)
+    # Note that channel_users() crashes the genserver if called on a channel you're not in, so we have to check first
+    case ExIRC.Client.channels(client_pid) do
+      {:error, err_atom} -> exit(err_atom)
+      channels when is_list(channels) ->
+        if Enum.member?(channels, "#wa7vc") do
+          STM.put(:irc_users_count, length(ExIRC.Client.channel_users(client_pid, "#wa7vc")))
+        end
     end
 
-    if Enum.member?(channels, "#wa7vc") do
-      STM.put(:irc_users_count, length(ExIRC.Client.channel_users(client_pid, "#wa7vc")))
-    end
-      
     schedule_connection_loop()
 
     {:noreply, state}
