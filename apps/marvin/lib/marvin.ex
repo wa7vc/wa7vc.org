@@ -6,11 +6,11 @@ defmodule Marvin do
   """
 
   def version() do
-  {:marvin, _, version} =
-    Enum.find(:application.loaded_applications(), fn {app, _, _version} ->
-      app == :marvin
-    end)
+    {:marvin, _, version} =
+      Enum.find(:application.loaded_applications(), fn {app, _, _version} ->
+        app == :marvin
+      end)
 
-  to_string(version)
+    to_string(version)
   end
 end
