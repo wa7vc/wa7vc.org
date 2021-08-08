@@ -55,11 +55,13 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookPlugTest do
 
   test "authenticated webhook returns a 200 and sends body as pubsub message", %{conn: conn} do
     Phoenix.PubSub.subscribe(Wa7vc.PubSub, "webhook:received_raw")
-    expected_broadcast = %{source: "github", body: @payload}
+    expected_broadcast = %{source: "github", body: @payload, action: "push", delivery: "delivery-UUID"}
 
     conn = conn
            |> put_req_header("content-type", "application/json")
            |> put_req_header("x-hub-signature", "sha1=" <> signature_for(@payload))
+           |> put_req_header("x-github-event", "push")
+           |> put_req_header("x-github-delivery", "delivery-UUID")
            |> post("/webhooks/github", @payload)
 
     assert conn.status == 200
