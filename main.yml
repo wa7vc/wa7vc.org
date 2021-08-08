@@ -61,7 +61,7 @@
       tags: [ always ]
       include_vars: vars/secrets.yml
     - name: verify repo is in consistent state for release
-      tags: [ build ]
+      tags: [ build, verify ]
       delegate_to: 127.0.0.1
       ansible.builtin.command:
         chdir: apps/marvin/
@@ -85,7 +85,7 @@
       tags: [ always ]
       include_vars: vars/secrets.yml
     - name: verify repo is in consistent state for release
-      tags: [ build ]
+      tags: [ build, verify ]
       delegate_to: 127.0.0.1
       ansible.builtin.command:
         chdir: apps/wa7vc/
