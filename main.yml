@@ -73,9 +73,9 @@
       delegate_to: 127.0.0.1
       ansible.builtin.command:
         chdir: apps/marvin/
-        cmd: build_release.sh
+        cmd: ./build_release.sh
       register: marvin_build
-      failed_when: marvin.build.rc != 0
+      failed_when: marvin_build.rc != 0
 
 - name: build latest version of Wa7vc website
   tags: [ wa7vc, build ]
