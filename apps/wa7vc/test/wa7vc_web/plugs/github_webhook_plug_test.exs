@@ -55,7 +55,7 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookPlugTest do
 
   test "authenticated webhook returns a 200 and sends body as pubsub message", %{conn: conn} do
     Phoenix.PubSub.subscribe(Wa7vc.PubSub, "webhook:received_raw")
-    expected_broadcast = %{source: "github", body: @payload, action: "push", delivery: "delivery-UUID"}
+    expected_broadcast = %{source: "github", body: @payload, event: "push", delivery: "delivery-UUID"}
 
     conn = conn
            |> put_req_header("content-type", "application/json")

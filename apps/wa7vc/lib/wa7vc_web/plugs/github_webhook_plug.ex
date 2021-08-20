@@ -43,11 +43,11 @@ defmodule Wa7vcWeb.Plugs.GithubWebhookReceiver do
              |> decode_base16_signature
              |> signature_matches(calculated_signature) do
           true ->
-            gh_action = get_req_header(conn, "x-github-event") |> List.first(:no_event)
+            gh_event = get_req_header(conn, "x-github-event") |> List.first(:no_event)
             gh_delivery = get_req_header(conn, "x-github-delivery") |> List.first(:no_delivery)
             Phoenix.PubSub.broadcast(Wa7vc.PubSub,
                                      "webhook:received_raw",
-                                     %{source: "github", delivery: gh_delivery, action: gh_action, body: body})
+                                     %{source: "github", delivery: gh_delivery, event: gh_event, body: body})
             conn
             |> put_resp_content_type("application/json")
             |> send_resp(200, "{ \"code\":200, "

@@ -8,7 +8,7 @@ defmodule Marvin.Hooker do
 
   Webhooks are received on the webhook:received_raw subscription, in the
   following form:
-  %{source: "source", delivery: x_github_delivery_header_value, action: x_github_action_header_value, body: raw_hook_body}
+  %{source: "source", delivery: x_github_delivery_header_value, action: x_github_event_header_value, body: raw_hook_body}
   and are then parsed according to their expected format from that source,
   after which they are reacted to.
   """
@@ -25,8 +25,8 @@ defmodule Marvin.Hooker do
     {:ok, opts}
   end
 
-  def handle_info(%{source: "github", delivery: hook_guid, action: hook_action, body: hook_body}, state) do
-    Implementation.handle_raw_github_hook(hook_guid, hook_action, hook_body)
+  def handle_info(%{source: "github", delivery: hook_guid, event: hook_event, body: hook_body}, state) do
+    Implementation.handle_raw_github_hook(hook_guid, hook_event, hook_body)
     {:noreply, state}
   end
 
@@ -38,12 +38,12 @@ defmodule Marvin.Hooker do
     alias Marvin.PrefrontalCortex, as: STM
     alias Marvin.PubSub
 
-    def handle_raw_github_hook(_hook_guid, hook_action, hook_body) do
+    def handle_raw_github_hook(_hook_guid, hook_event, hook_body) do
       hook = Jason.decode!(hook_body)
 
       STM.increment(:github_webhook_count)
 
-      case hook_action do
+      case hook_event do
         "push" -> 
           if Map.has_key?(hook, "commits") do
             commit_count = Enum.count(hook["commits"])
@@ -63,7 +63,7 @@ defmodule Marvin.Hooker do
         "issue_comment" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} comment on issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
         :no_event -> Marvin.IrcRobot.irc_wa7vc_send("GitHub just said something that I couldn't understand... That's a bit worrying.")
         _ -> 
-          Marvin.IrcRobot.irc_wa7vc_send("GitHub just sent me a webhook with action #{hook_action}, but I'm ignoring it...")
+          Marvin.IrcRobot.irc_wa7vc_send("GitHub just sent me a #{hook_event} webhook, but I'm ignoring it...")
           PubSub.pingmsg("GitHub just sent me a webhook, but I'm ignoring it...")
       end
     end
