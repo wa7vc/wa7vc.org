@@ -68,6 +68,14 @@
         cmd: mix marvin.verify_release
       register: marvin_verify_release
       failed_when: marvin_verify_release.rc != 0 
+    - name: ensure test suite passing
+      tags: [ build, test ]
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
+        chdir: apps/marvin
+        cmd: mix test
+      register: marvin_test_results
+      failed_when: marvin_test_results.rc != 0
     - name: Build latest release locally
       tags: [ build ]
       delegate_to: 127.0.0.1
@@ -92,6 +100,14 @@
         cmd: mix wa7vc.verify_release
       register: wa7vc_verify_release
       failed_when: wa7vc_verify_release.rc != 0 
+    - name: ensure test suite passing
+      tags: [ build, test ]
+      delegate_to: 127.0.0.1
+      ansible.builtin.command:
+        chdir: apps/wa7vc
+        cmd: mix test
+      register: wa7vc_test_results
+      failed_when: wa7vc_test_results.rc != 0
     - name: Build latest release locally
       tags: [ build ]
       delegate_to: 127.0.0.1
