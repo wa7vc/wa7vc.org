@@ -1,0 +1,11 @@
+{
+  "description": "",
+  "license": "MIT",
+  "dependencies": {
+    "foundation-sites": "^6.7.4",
+    "jquery": "^3.6.0",
+    "topbar": "^1.0.1",
+    "what-input": "^5.2.10"
+  },
+  "devDependencies": {}
+}
