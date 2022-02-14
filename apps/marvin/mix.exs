@@ -5,7 +5,7 @@ defmodule Marvin.MixProject do
     [
       app: :marvin,
       version: "0.3.11",
-      elixir: "~> 1.10",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -32,13 +32,13 @@ defmodule Marvin.MixProject do
       {:sentry, "~> 8.0"},
       {:phoenix_pubsub, "~> 2.0"},
       {:httpoison, "~> 1.6"},
-      {:jason, "~> 1.1"},     # Pin to same version as wa7vc_web uses
-      {:timex, "~> 3.1"},     # Pin to same version as wa7vc_web uses
-      {:number, "~> 0.5.7"},  # Pin to same version as wa7vc_web uses
+      {:jason, "~> 1.3"},     # Pin to same version as wa7vc_web uses
+      {:timex, "~> 3.7"},     # Pin to same version as wa7vc_web uses
+      {:number, "~> 1.0.3"},  # Pin to same version as wa7vc_web uses
       {:aprs_parse, "~> 0.1.0"},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:libcluster, "~> 3.2"},
-      {:con_cache, "~> 0.13"},
+      {:con_cache, "~> 1.0"},
       {:mox, "~> 1.0.0", only: :test},
     ]
   end
