@@ -1,5 +1,0 @@
-<%= render_shared("header.html", assigns) %>
-
-    <%= @inner_content %>
-
-<%= render_shared("footer.html", assigns) %>

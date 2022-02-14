@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://browser.sentry-cdn.com/5.20.1/bundle.min.js" integrity="sha384-O8HdAJg1h8RARFowXd2J/r5fIWuinSBtjhwQoPesfVILeXzGpJxvyY/77OaPPXUo" crossorigin="anonymous"></script>
+    <script type="text/javascript">Sentry.init({ dsn: 'https://42404814b5a24bfeb1d19e9c7e8866ad@o171576.ingest.sentry.io/1255197' });</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tag() %>
+    <title>WA7VC Ham Radio Club</title>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}>
+    <link href="https://fonts.googleapis.com/css?family=Jura:400,700|Oswald:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+
+  <body>
+    <div data-sticky-container>
+      <div id="header" class="top-bar" data-sticky data-options="marginTop:0;">
+        <div class="top-bar-left">
+          <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
+            <li class="menu-text"><a id="mainlink" href="/">WA7VC</a></li>
+            <li class="menu-text"><a href="/#about">About</a></li>
+            <li class="menu-text is-dropdown-submenu-parent">
+              <a href="/#events">Events</a>
+              <ul class="menu vertical">
+                <li><a href={Routes.page_path(@conn, :dmrgathering)}>PNW DMR Gathering</a></li>
+                <li><a href={Routes.page_path(@conn, :summergathering)}>Summer Gathering</a></li>
+              </ul>
+            </li>
+            <li class="menu-text"><a href="/#on-air">On-Air</a></li>
+          </ul>
+        </div>
+        <div class="top-bar-right">
+          <ul class="menu vertical medium-horizontal">
+            <li id="pingmsg-li" class="menu-text"><a id="pingmsg-a" href={Routes.marvin_path(@conn, :index)}><span id="pingmsg"></span></a></li>
+            <li class="menu-text"><a class="button" href="mailto:info@wa7vc.org">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <%= render_shared("hero.html", assigns) %>
+
+    <main role="main" id="content">
+      <section id="error" class="bg-light">
+        <div class="grid-x grid-margin-x">
+          <div class="cell small-12 medium-7">
+            <h5>Error</h5>
+
+            <p>The page you were looking for could not be found.</p>
+
+            <p>Please  visit <a href={Routes.page_path(@conn, :index)}>the front page</a> or use the menu above.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+
+    <div id="footer">
+      <div id="footer-grid" class="grid-x grid-margin-x">
+        <div id="footer-contact-header" class="cell small-12 medium-8">
+          <h1>Contact Us</h1>
+        </div>
+        <div class="cell hide-for-small-only medium-4"></div>
+
+        <div class="cell small-12 medium-4">
+          <ul>
+            <li>70cm Simplex: 446.525 (no tone)</li>
+            <li>Echolink: Node 98045 (or Valley Camp)</li>
+            <li>IRLP: 7808</li>
+            <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
+            <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
+            <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
+          </ul>
+        </div>
+        <div class="cell small-12 medium-4">
+          <a href="mailto:info@wa7vc.org">info@wa7vc.org</a><br />
+          <br />
+          49515 S.E. Middle Fork Rd<br />
+          North Bend, WA, 98045
+        </div>
+        <div class="cell small-12 medium-4">
+          <div class="grid-y footer-right-container">
+            <div class="cell small-11">
+              <ul>
+                <li><a href={Routes.page_path(@conn, :index)}>Home</a></li>
+                <li><a href={Routes.page_path(@conn, :summergathering)}>Summer Gathering</a></li>
+              </ul>
+            </div>
+            <div class="cell small-1 created-by">Created by <a href="https://daedalusdreams.com/">Daedalus Dreams</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var _paq = _paq || [];
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      _paq.push(['enableHeartBeatTimer']);
+      (function() {
+        var u="https://a.daedalusdreams.com/";
+        _paq.push(['setTrackerUrl', u+'js/']);
+        _paq.push(['setSiteId', 6]);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <noscript><p><img src="https://a.daedalusdreams.com/js/index.php?idsite=6" style="border:0;" alt="" /></p></noscript>
+  </body>
+</html>
