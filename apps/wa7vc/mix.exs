@@ -44,6 +44,7 @@ defmodule Wa7vcWeb.Mixfile do
       {:phoenix_live_view, "~> 0.17.7"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:phoenix_live_dashboard, "~> 0.6"},
+      {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.11"},
@@ -63,8 +64,9 @@ defmodule Wa7vcWeb.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"],
-      test: ["test"]
+      setup: ["deps.get"],
+      test: ["test"],
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
       #setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       #"ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       #"ecto.reset": ["ecto.drop", "ecto.setup"],

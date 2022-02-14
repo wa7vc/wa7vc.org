@@ -34,7 +34,6 @@
         </div>
       </div>
     </div>
-    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
     <script type="text/javascript">
       var _paq = _paq || [];
       _paq.push(['trackPageView']);
