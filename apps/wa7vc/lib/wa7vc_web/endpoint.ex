@@ -17,8 +17,10 @@ defmodule Wa7vcWeb.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :wa7vc, gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+    at: "/",
+  from: :wa7vc,
+    gzip: false,
+    only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

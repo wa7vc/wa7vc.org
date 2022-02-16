@@ -15,18 +15,18 @@
       <div class="p-spacer"></div>
 
       <h5>Getting Involved</h5>
-      Donations to support ongoing ham radio activities can be made to <a href="https://valleycamp.org">Valley Camp</a>, a 501(c)3 organization. Indicate you are supporting WA7VC.
+      Donations to support ongoing ham radio activities can be made to <a href="https://valleycamp.org">Valley Camp <i class="fas fa-external-link-alt"></i></a>, a 501(c)3 organization. Indicate you are supporting WA7VC.
     </div>
 
     <div class="cell medium-5 hide-for-small-only">
-      <img src="/images/antenna-class-500x500.png" alt="Antenna Workshop in the field" /> 
+      <img src={Routes.static_path(@conn, "/images/antenna-class-500x500.png")} alt="Antenna Workshop in the field" /> 
     </div>
   </div>
 </section>
 
 <section id="on-air" class="bg-dark">
   <div class="section-drop-image">
-    <img src="/images/picnictable-workbench-1024x240.png" alt="Piles of computers or a picnic table" />
+    <img src={Routes.static_path(@conn, "/images/picnictable-workbench-1024x240.png")} alt="Piles of computers or a picnic table" />
   </div>
   <div class="grid-x grid-margin-x">
     <div class="cell small-12 medium-7">
@@ -66,7 +66,7 @@
 <section id="events" class="bg-medium">
   <div class="grid-x grid-margin-x">
     <div class="cell medium-5 hide-for-small-only">
-      <img src="/images/balloon-500x500.png" alt="Preppeing a balloon for launch" /> 
+      <img src={Routes.static_path(@conn, "/images/balloon-500x500.png")} alt="Preppeing a balloon for launch" /> 
     </div>
 
     <div class="cell small-12 medium-7">
@@ -76,7 +76,7 @@
         <li><a href="https://www.winterfieldday.com/">Winter Field Day <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="http://www.arrl.org/field-day">ARRL Field Day <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="https://sites.google.com/site/pnwqrpgroup/salmoncon">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="/summergathering">(NWAPRS) Summer Gathering</a></li>
+        <li><a href={Routes.page_path(@conn, :summergathering)}>(NWAPRS) Summer Gathering</a></li>
         <li><a href="http://www.wwdxc.org/salmonrun2020/">Salmon Run <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="https://www.scouting.org/jota/">BSA JOTA/JOTI <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
@@ -85,7 +85,7 @@
       Our upcoming schedule of events is:
       <ul>
         <li>June 25-26, 2022: Summer Field Day</li>
-        <li>July 8-10, 2022: <a href="https://sites.google.com/site/pnwqrpgroup/salmoncon">SalmonCon</a></li>
+        <li>July 8-10, 2022: <a href="https://sites.google.com/site/pnwqrpgroup/salmoncon">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
       We do not currently have Summer Gathering or PNW DMR events scheduled for 2022. Please <a href="mailto:info@wa7vc.org">contact us</a> with any questions or for updates.
     </div>
