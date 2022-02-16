@@ -35,7 +35,7 @@ defmodule Wa7vcWeb.PageController do
   end
 
   defp sg_year(conn, _opts) do
-    valid_years = ["2018", "2019", "2020", "2021"]
+    valid_years = ["2018", "2019", "2020", "2021", "2022"]
     latest_year = List.last(valid_years)
     requested_year = conn.path_params["year"]
     
