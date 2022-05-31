@@ -64,7 +64,7 @@ defmodule Wa7vcWeb.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get"],
+      setup: ["deps.get", "cmd npm install --prefix assets"],
       test: ["test"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"],
       #setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
