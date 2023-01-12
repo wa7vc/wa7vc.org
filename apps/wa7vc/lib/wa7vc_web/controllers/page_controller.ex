@@ -7,7 +7,7 @@ defmodule Wa7vcWeb.PageController do
   plug :dmr_meta_desc when action in [:dmrgathering]
 
   defp dmr_year(conn, _opts) do
-    valid_years = ["2019", "2020", "2021"]
+    valid_years = ["2019", "2020", "2021", "2023"]
     latest_year = List.last(valid_years)
     requested_year = conn.path_params["year"]
     
@@ -35,7 +35,7 @@ defmodule Wa7vcWeb.PageController do
   end
 
   defp sg_year(conn, _opts) do
-    valid_years = ["2018", "2019", "2020", "2021", "2022"]
+    valid_years = ["2018", "2019", "2020", "2021", "2022", "2023"]
     latest_year = List.last(valid_years)
     requested_year = conn.path_params["year"]
     
