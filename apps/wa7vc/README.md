@@ -16,7 +16,11 @@ Marvin and the WA7VC website are deployed as two unique OTP apps, allowing
 Marvin to stay up and running and collecting stats while we easily redeploy
 the website for updates.
 
-To deploy the app you can use the Ansible task found in the root of the shared
+The first step to deployment is to ensure the mix application version has been bumped, and create a wa7vc@{VERSION} tag.
+For example, in mix.exs update version to 0.1.2, commit that change, and then run `git tag -a wa7vc@0.1.2`.
+The tag matching the version number is required by the build and deploy step as one of the sanity checks to make sure that no un-comitted code is being included in the release build.
+
+As long as the repo is in an acceptable state, app you can be built and deployed usng the Ansible task found in the root of the shared
 repository, which is designed to deploy to a
 [Daedalus Dreams appserver](https://gitlab.daedalusdreams.com/DaedalusDreams/infrastructure-via-ansible/-/tree/master/roles/app-server):
 `ansible-playbook main.yml --tags wa7vc`
