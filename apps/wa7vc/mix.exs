@@ -5,7 +5,7 @@ defmodule Wa7vcWeb.Mixfile do
     [
       app: :wa7vc,
       version: "0.3.17",
-      elixir: "~> 1.12",
+      elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -33,7 +33,7 @@ defmodule Wa7vcWeb.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.0"},
+      {:phoenix, "~> 1.7.0-rc.3", override: true},
       # Unused Ecto deps from a clean 1.5.4 install
       #{:phoenix_ecto, "~> 4.1"},
       #{:ecto_sql, "~> 3.4"},
@@ -41,9 +41,9 @@ defmodule Wa7vcWeb.Mixfile do
       {:phoenix_pubsub, "~> 2.0"},
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_view, "~> 0.17.7"},
+      {:phoenix_live_view, "~> 0.18.3"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix_live_dashboard, "~> 0.7.2"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
