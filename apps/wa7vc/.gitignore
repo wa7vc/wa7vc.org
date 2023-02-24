@@ -2,7 +2,12 @@
 /_build
 /db
 /deps
+
+# Also ignore archive artifacts (built via "mix archive.build").
 /*.ez
+
+# Temporary files, for example, from tests.
+/tmp/
 
 # Generated on crash by the VM
 erl_crash.dump
