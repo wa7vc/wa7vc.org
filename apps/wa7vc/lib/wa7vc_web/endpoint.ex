@@ -20,7 +20,7 @@ defmodule Wa7vcWeb.Endpoint do
     at: "/",
   from: :wa7vc,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: Wa7vcWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

@@ -17,6 +17,8 @@ defmodule Wa7vcWeb do
   and import those modules here.
   """
 
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: Wa7vcWeb
@@ -25,6 +27,7 @@ defmodule Wa7vcWeb do
       import Wa7vcWeb.Gettext
       import Phoenix.LiveView.Controller
       alias Wa7vcWeb.Router.Helpers, as: Routes
+      unquote(verified_routes())
     end
   end
 
@@ -44,6 +47,7 @@ defmodule Wa7vcWeb do
 
   def live_view do
     quote do
+      import Phoenix.Component
       use Phoenix.LiveView,
         layout: {Wa7vcWeb.LayoutView, "live.html"}
 
@@ -90,10 +94,20 @@ defmodule Wa7vcWeb do
       import Wa7vcWeb.ErrorHelpers
       import Wa7vcWeb.Gettext
       alias Wa7vcWeb.Router.Helpers, as: Routes
+      unquote(verified_routes())
 
       def render_shared(template, assigns \\ []) do
         render(Wa7vcWeb.SharedView, template, assigns)
       end
+    end
+  end
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: Wa7vcWeb.Endpoint,
+        router: Wa7vcWeb.Router,
+        statics: Wa7vcWeb.static_paths()
     end
   end
 
