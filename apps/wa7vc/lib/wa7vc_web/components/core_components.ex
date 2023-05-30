@@ -157,8 +157,8 @@ defmodule Wa7vcWeb.CoreComponents do
       {@rest}
     >
       <p :if={@title} class="flex items-center gap-1.5 text-[0.8125rem] font-semibold leading-6">
-        <Heroicons.information_circle :if={@kind == :info} mini class="h-4 w-4" />
-        <Heroicons.exclamation_circle :if={@kind == :error} mini class="h-4 w-4" />
+        <Heroicons.information_circle :if={@kind == :info} mini class="h-4 w-4" style="height:20px; width:20px;" />
+        <Heroicons.exclamation_circle :if={@kind == :error} mini class="h-4 w-4" style="height:20px; width:20px;" />
         <%= @title %>
       </p>
       <p class="mt-2 text-[0.8125rem] leading-5"><%= msg %></p>
@@ -168,7 +168,7 @@ defmodule Wa7vcWeb.CoreComponents do
         class="group absolute top-2 right-1 p-2"
         aria-label={gettext("close")}
       >
-        <Heroicons.x_mark solid class="h-5 w-5 stroke-current opacity-40 group-hover:opacity-70" />
+        <Heroicons.x_mark solid class="h-5 w-5 stroke-current opacity-40 group-hover:opacity-70" style="height:20px; width:20px;" />
       </button>
     </div>
     """
@@ -188,7 +188,7 @@ defmodule Wa7vcWeb.CoreComponents do
     <.flash kind={:info} title="Success!" flash={@flash} />
     <.flash kind={:error} title="Error!" flash={@flash} />
     """
-
+    # REMOVED until we're actually using tailwind, otherwise it appears by default and stays on screen
     #<.flash
       #id="disconnected"
       #kind={:error}
@@ -198,8 +198,9 @@ defmodule Wa7vcWeb.CoreComponents do
       #phx-disconnected={show("#disconnected")}
       #phx-connected={hide("#disconnected")}
     #>
-      #Attempting to reconnect <Heroicons.arrow_path class="ml-1 w-3 h-3 inline animate-spin" />
+      #Attempting to reconnect <Heroicons.arrow_path class="ml-1 w-3 h-3 inline animate-spin" style="height:20px; width:20px; display:inline;" />
     #</.flash>
+    #"""
   end
 
   @doc """
