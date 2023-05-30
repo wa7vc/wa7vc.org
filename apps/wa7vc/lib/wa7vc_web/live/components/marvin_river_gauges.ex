@@ -1,5 +1,6 @@
 defmodule Wa7vcWeb.MarvinRiverGaugesComponent do
   use Wa7vcWeb, :live_component
+  import Phoenix.HTML.Link
 
   def render(assigns) do
     ~L"""

@@ -40,7 +40,6 @@ defmodule Wa7vcWeb.Mixfile do
       {:phoenix_pubsub, "~> 2.0"},
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_view, "~> 2.0"}, # Add until we switch to components
       {:phoenix_live_view, "~> 0.18.8"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:phoenix_live_dashboard, "~> 0.7.2"},
@@ -56,6 +55,7 @@ defmodule Wa7vcWeb.Mixfile do
       {:sentry, "~> 8.0"},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:libcluster, "~> 3.2"},
+      {:heroicons, "~> 0.5"}, # Import just to make the default core_components work for now
     ]
   end
 

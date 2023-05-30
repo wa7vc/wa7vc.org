@@ -8,7 +8,7 @@ defmodule Wa7vcWeb.Router do
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :put_root_layout, {Wa7vcWeb.LayoutView, :root}
+    plug :put_root_layout, {Wa7vcWeb.Layouts, :root}
   end
 
   pipeline :api do

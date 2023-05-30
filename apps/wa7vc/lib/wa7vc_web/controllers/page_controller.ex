@@ -62,17 +62,19 @@ defmodule Wa7vcWeb.PageController do
     |> assign(:meta_attrs, [ %{name: "description", content: desc} ])
   end
 
+
+
   def index(conn, _params) do
     meta_attrs_list = [ %{name: "description", content: "Ham Radio in the Snoqualamie Middle Fork Valley. Find out more about us and our schedule of events."} ]
-    render conn, "index.html", meta_attrs: meta_attrs_list
+    render(conn, "index.html", meta_attrs: meta_attrs_list)
   end
 
   def dmrgathering(conn, _params) do
-    render conn, "dmrgathering-#{conn.assigns[:load_year]}.html"
+    render(conn, "dmrgathering-#{conn.assigns[:load_year]}.html")
   end
 
   def summergathering(conn, _params) do
-    render conn, "summergathering-#{conn.assigns[:load_year]}.html"
+    render(conn, "summergathering-#{conn.assigns[:load_year]}.html")
   end
 
 
