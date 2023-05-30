@@ -41,7 +41,7 @@ defmodule Wa7vcWeb.Mixfile do
       {:floki, ">= 0.27.0", only: :test},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_view, "~> 2.0"}, # Add until we switch to components
-      {:phoenix_live_view, "~> 0.18.3"},
+      {:phoenix_live_view, "~> 0.18.8"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
       {:phoenix_live_dashboard, "~> 0.7.2"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
