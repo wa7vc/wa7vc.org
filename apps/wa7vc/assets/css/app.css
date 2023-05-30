@@ -1,4 +1,6 @@
-@import "../node_modules/foundation-sites/dist/css/foundation.css";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* This file is for your main application css. */
 

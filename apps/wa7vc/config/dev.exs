@@ -26,7 +26,7 @@ config :wa7vc, Wa7vcWeb.Endpoint,
   secret_key_base: "Br+c0rmgzJ2Am1gp/zqjGkcwPrHpfi8iktSlEkRKwsg1ALx+Sn+feKWBHdb1E5y6",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    # tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
