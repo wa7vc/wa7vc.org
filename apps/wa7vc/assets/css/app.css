@@ -9,16 +9,15 @@ body {
   color: rgb(0,0,0);
 }
 
-#mainlink {
-  color: rgb(0,0,0);
-  text-decoration: none;
-}
-
 #header {
+  background: rgb(230, 230, 230);
   font-size: 1.5rem;
   font-weight: bold;
   font-family: Jura, san-serif;
   z-index: 99;
+}
+#header a {
+  color:rgb(23, 121, 186);
 }
 
 #pingmsg-li {
@@ -109,9 +108,6 @@ body {
   transform: translateX(-50%);
 }
 
-.menu-text {
-  font-size: 1.3rem;
-}
 
 #content {
 

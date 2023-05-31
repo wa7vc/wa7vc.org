@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <.meta attrs={@meta_attrs} />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <title>WA7VC Ham Radio Club</title>
     <.live_title suffix=" · WA7VC Radio Club">
-      <%= assigns[:page_title] || "" %>
+      <%= assigns[:page_title] || "Welcome" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <link href="https://fonts.googleapis.com/css?family=Jura:400,700|Oswald:400,700" rel="stylesheet" />
@@ -19,28 +18,26 @@
   </head>
 
   <body>
-    <div data-sticky-container>
-      <div id="header" class="top-bar" data-sticky data-options="marginTop:0;">
-        <div class="top-bar-left">
-          <ul class="dropdown vertical medium-horizontal menu" data-dropdown-menu>
-            <li class="menu-text"><a id="mainlink" href="/">WA7VC</a></li>
-            <li class="menu-text"><a href="/#about">About</a></li>
-            <li class="menu-text is-dropdown-submenu-parent">
-              <a href="/#events">Events</a>
-              <ul class="menu vertical">
-                <li><.link href={~p"/dmrgathering"}>PNW DRM Gathering</.link></li>
-                <li><.link href={~p"/summergathering"}>Summer Gathering</.link></li>
-              </ul>
-            </li>
-            <li class="menu-text"><a href="/#on-air">On-Air</a></li>
-          </ul>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu vertical medium-horizontal">
-            <li id="pingmsg-li" class="menu-text"><a id="pingmsg-a" href={~p"/marvin"}><span id="pingmsg"></span></a></li>
-            <li class="menu-text"><a class="button" href="mailto:info@wa7vc.org">Email Us</a></li>
-          </ul>
-        </div>
+    <div id="header" class="sticky top-0 flex flex-row">
+      <div id="header-bar-left">
+        <ul>
+          <li><a href={~p"/"} class="color-black no-underline">WA7VC</a></li>
+          <li><a href={~p"/#about"}>About</a></li>
+          <li>
+            <a href="/#events">Events</a>
+            <ul>
+              <li><.link href={~p"/dmrgathering"}>PNW DRM Gathering</.link></li>
+              <li><.link href={~p"/summergathering"}>Summer Gathering</.link></li>
+            </ul>
+          </li>
+          <li><a href={~p"/#on-air"}>On-Air</a></li>
+        </ul>
+      </div>
+      <div id="header-bar-right" class="flex-grow pl-4 justify-between">
+        <ul>
+          <li id="pingmsg-li" class="menu-text"><a id="pingmsg-a" href={~p"/marvin"}><span id="pingmsg"></span></a></li>
+          <li><a href="mailto:info@wa7vc.org"><button class="rounded-full">Email Us</button></a></li>
+        </ul>
       </div>
     </div>
 
