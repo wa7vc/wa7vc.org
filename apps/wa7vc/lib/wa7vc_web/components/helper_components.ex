@@ -1,7 +1,7 @@
 defmodule Wa7vcWeb.HelperComponents do
   use Phoenix.Component
-  alias Phoenix.LiveView.JS
-  import Wa7vcWeb.Gettext
+  #alias Phoenix.LiveView.JS
+  #import Wa7vcWeb.Gettext
   import Phoenix.HTML.Tag
 
   def meta(assigns) do
