@@ -143,7 +143,7 @@ a {
 }
 
 #content > section p {
-  
+  @apply pt-4;
 }
 
 .schedule-list {
