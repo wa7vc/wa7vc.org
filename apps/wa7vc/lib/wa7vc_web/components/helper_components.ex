@@ -4,16 +4,13 @@ defmodule Wa7vcWeb.HelperComponents do
   #import Wa7vcWeb.Gettext
   import Phoenix.HTML.Tag
 
-  def meta(assigns) do
-    if assigns[:meta_attrs] == nil do
-      ~H""
-    else
-      ~H"""
-      <%= for tag <- assigns[:meta_attrs] do %>
-        <%= content_tag(:meta, Enum.into(tag, [])) %>
-      <% end %>
-      """
-    end
+  attr :attrs, :list, default: []
+  def meta_tags_for(assigns) do
+    ~H"""
+    <%= for tag <- @attrs do %>
+      <%= tag(:meta, Enum.into(tag, [])) %>
+    <% end %>
+    """
   end
 
   def hero(assigns) do
