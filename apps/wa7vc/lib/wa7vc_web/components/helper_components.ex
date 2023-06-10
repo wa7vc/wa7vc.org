@@ -13,16 +13,19 @@ defmodule Wa7vcWeb.HelperComponents do
     """
   end
 
+  
+  slot :h1
+  slot :h2
+  attr :image, :string, default: "/images/overhead-640x480.png"
+  attr :image_alt, :string, default: "A drone shot looking down on an event at Valley Camp"
   def hero(assigns) do
     ~H"""
-    <div id="hero">
-      <h1>WA7VC</h1>
-      <h2>Ham Radio in the Snoqualmie Middle Fork Valley</h2>
-    </div>
-
-    <div id="hero-image" class="upper-curve">
-      <img src="/images/overhead-640x480.png" alt="Looking down on an event." />
-    </div>
+      <div id="hero">
+        <h1><%= render_slot(@h1) || "WA7VC" %></h1>
+        <h2><%= render_slot(@h2) || "Ham Radio in the Snoqualmie Middle Fork Valley" %></h2>
+        <img src={ @image } alt={ @image_alt } />
+        <img src="/images/wave-top-white.svg" alt="A background image of a sine wave" />
+      </div>
     """
   end
 end

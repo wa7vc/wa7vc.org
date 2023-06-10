@@ -36,6 +36,7 @@ a {
 }
 
 #hero {
+  @apply pb-0;
   background-color: rgb(56,56,56);
   text-align: center;
   padding-top:30px;
@@ -51,33 +52,15 @@ a {
 }
 
 #hero h2 {
-  @apply text-lg sm:text-xl md:text-4xl mt-4;
+  @apply text-lg sm:text-xl md:text-4xl mt-4
+          mx-auto;
   color: rgb(254,254,254);
   font-weight: bold;
   font-family: Jura, Helvetica, san-serif;
-  padding-bottom: 350px;
-  margin-left: 25%;
-  margin-right: 25%;
 }
 
 #hero img {
-  margin-left: 25%;
-  margin-right: 25%;
-}
-
-#hero-image {
-  @apply pt-0 md:pt-[12rem];
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-}
-#hero-image img {
-  position: absolute;
-  top: -315px;
-  z-index: 50;
-  left: 50%;
-  width: auto;
-  transform: translateX(-50%);
+  @apply mx-auto mt-4 mb-8;
 }
 
 
@@ -86,7 +69,6 @@ a {
 }
 
 #content > section#prev-next {
-  transform: translateY(-150%);
 }
 
 #content > section#prev-next > div {
@@ -197,8 +179,11 @@ a {
   font-size: 0.8rem;
 }
 
+.follow_curve::after {
+
+}
+
 .upper-curve {
-  position: relative;
 }
 
 .upper-curve::after {

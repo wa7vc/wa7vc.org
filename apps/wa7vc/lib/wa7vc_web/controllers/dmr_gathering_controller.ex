@@ -7,6 +7,7 @@ defmodule Wa7vcWeb.DMRPage do
     image: nil,
     image_alt: nil,
     meta_desc: "The Pacific Northwest Digital Mobile Radio (WA7DMR) yearly gathering, the best event to find out the latest greatest information about DMR!",
+    cancelled: false,
   ]
 end
 
@@ -36,6 +37,7 @@ defmodule Wa7vcWeb.DMRGatheringController do
       """,
     },
     "2020" => %DMRPage{
+      cancelled: true,
       date: "May 15-17",
       about_header: "2nd Annual Pacific Northwest DMR Gathering",
       about_content: """
@@ -58,6 +60,7 @@ defmodule Wa7vcWeb.DMRGatheringController do
       meta_desc: "2020 event cancelled due to Covid-19",
     },
     "2021" => %DMRPage{
+      cancelled: true,
       date: "May 18-19",
       about_header: "3rd-ish Annual Pacific Northwest DMR Gathering",
       about_content: """
@@ -132,7 +135,7 @@ defmodule Wa7vcWeb.DMRGatheringController do
     d = @all_data[conn.assigns.load_year]
 
     {img, alt} = case d.image do
-      nil -> {"/images/overhead-640x480.png", "Looking down on an event"}
+      nil -> {"/images/overhead-640x480.png", "A  drone shot looking down on an event at Valley Camp"}
       i ->
         case d.image_alt do
           nil -> {i, "Image of the event"}
@@ -148,6 +151,7 @@ defmodule Wa7vcWeb.DMRGatheringController do
     |> assign(:image, img)
     |> assign(:image_alt, alt)
     |> assign(:meta_attrs, [ %{name: "description", content: d.meta_desc} ])
+    |> assign(:cancelled, d.cancelled)
   end
 
   def index(conn, _params) do
