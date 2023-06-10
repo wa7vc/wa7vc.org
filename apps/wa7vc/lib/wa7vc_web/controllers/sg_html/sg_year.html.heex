@@ -1,0 +1,88 @@
+<.hero image={ @image } image_alt={ @image_alt }>
+  <:h1>Summer Gathering</:h1>
+  <:h2><span class={"#{if @cancelled, do: "line-through"}"}><%= @date %>, <%= @load_year %></span><%= if @location do %><br /><%= @location %><% end %><%= if @cancelled do %><br />CANCELLED<% end %></:h2>
+</.hero>
+
+<section id="prev-next" class="bg-light">
+  <div class="flex justify-between">
+    <div>
+      <%= if @prev_year do %>
+        <a href={"/summergathering/#{@prev_year}"}><i class="fas fa-arrow-circle-left"></i> Summer Gathering <%= @prev_year %></a>
+      <% end %>
+    </div>
+    <div class="flex-grow"></div>
+    <div style="text-align: right;">
+      <%= if @next_year do %>
+        <a href={"/summergathering/#{@next_year}"}>Summer Gathering <%= @next_year %> <i class="fas fa-arrow-circle-right"></i></a>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%= if @retrospective_content do %>
+ <section id="retrospective" class="bg-medium">
+  <div>
+    <h5>Post-event Retrospective</h5>
+    <%= raw @retrospective_content %>
+  </div>
+</section>
+
+
+<% end %>
+
+<section id="about" class="bg-light">
+  <div>
+    <h5><%= @about_header %></h5>
+    <%= raw @about_content %>
+  </div>
+</section>
+
+<section id="event-schedule" class="bg-medium">
+  <div>
+    <h4>Schedule of Events</h4>
+    <%= raw @schedule_content %>
+  </div>
+</section>
+
+<section id="directions" class="bg-light">
+    <%= if @location_content do %>
+      <div>
+        <h5>Location</h5>
+        <%= raw @location_content %>
+      </div>
+    <% else %>
+      <div class="grid grid-cols-2">
+        <div class="col-span-2 md:col-span-1">
+          <h5>Location</h5> 
+          <p>
+            <a href="https://valleycamp.org">Valley Camp</a> is location about 30 minutes east of
+            Seattle. (Directions from their website are located below)
+          </p>
+          <p>Address:<br />49515 S.E. Middle Fork Rd<br />North Bend WA 98045</p>
+          <p>Coordinates:<br />47.4680, -121.6806</p>
+          <p>Phone:<br />1-425-888-1852</p>
+          <p>Email:<br /><a href="mailto:info@valleycamp.org">info@valleycamp.org</a></p>
+
+        </div>
+        <div class="col-span-2 md:col-span-1 pl-2">
+          <div style="text-decoration:none; overflow:hidden;max-width:100%;width:800px;height:500px;"><div id="display-googlemap" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=49515+SE+Middle+Fork+Rd,+North+Bend,+WA,+USA&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="googlehtml" href="https://dedicatedserver.expert" id="grabmap-authorization">dedicatedserver.expert</a><style>#display-googlemap .text-marker{}.map-generator{max-width: 100%; max-height: 100%; background: none;}</style></div>
+        </div>
+        <div class="col-span-2">
+          <h5>Directions to the Event</h5>
+          <p>
+            Take Exit 34 off of I-90. At the bottom of the offramp turn left if coming from Seattle, or right if coming from Spokane.<br />
+            <br />
+            Go ½ mile to SE Middle Fork Rd. and turn Right. (County sign says 'Valley Camp 2.2 miles')<br />
+            <br />
+            When you come to the "Y" in the road you can take either direction, you'll find us where the roads come back together.<br />
+            <br />
+            <b>If you take the left path:</b> Follow that road until you get to the stop sign. We are straight ahead.<br />
+            This path may be easier for RV's and trailers, however it does have some additional twists and turns and is a two-way road.<br />
+            <br />
+            <b>If you take the right path:</b> Follow the road until the roads come back together, and make a right turn into camp.<br />
+            Please note: While this is technically a one-way road many people are unfortunately disobeying the signs, so please be careful of the possibility of oncoming traffic!<br />
+          </p>
+        </div>
+      </div>
+    <% end %>
+</section>

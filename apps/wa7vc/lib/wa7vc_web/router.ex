@@ -23,9 +23,9 @@ defmodule Wa7vcWeb.Router do
     get "/dmrgathering", DMRGatheringController, :index
     get "/dmrgathering/:year", DMRGatheringController, :index
 
-    get "/summergathering", PageController, :summergathering
-    get "/summergathering/:year", PageController, :summergathering
-    get "/nwaprssg", PageController, :summergathering
+    get "/summergathering", SGController, :index
+    get "/summergathering/:year", SGController, :index
+    get "/nwaprssg", SGController, :index
 
     live "/marvin", MarvinLive, :index
   end
