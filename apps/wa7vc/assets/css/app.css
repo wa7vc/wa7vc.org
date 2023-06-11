@@ -208,5 +208,12 @@ a {
   min-height: 50px;
 }
 
-.marvin-stat-block {
+#content > section .marvin-stat-block {
+
+}
+#content > section .marvin-stat-block h3 {
+  @apply font-bold text-xl lg:text-2xl mb-2 lg:mb-4;
+}
+#content > section .marvin-stat-block ul {
+  @apply list-outside pl-5;
 }

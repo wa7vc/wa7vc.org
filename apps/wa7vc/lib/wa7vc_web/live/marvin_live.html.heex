@@ -1,21 +1,17 @@
-<div id="hero">
-  <h1>Marvin</h1>
-  <h2>What sort of menial thing do you want from me?</h2>
-</div>
-
-<div id="hero-image" class="upper-curve">
-  <img src="/images/marvin.png" alt="Marvin the depressed robot looks down on all of us." />
-</div>
+<.hero image={ "/images/marvin.png" } image_alt={ "Marvin the depressed robot looks down on all of us." }>
+  <:h1>Marvin</:h1>
+  <:h2>What sort of menial thing do you want from me?</:h2>
+</.hero>
 
 <section id="about" class="bg-light">
-  <div class="grid-x grid-margin-x grid-margin-y">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
     <%= if !@marvin_active do %>
-      <div class="cell small-12">
+      <div class="md:col-span-2 lg:col-span-3">
         Marvin appears to have wandered off, the pesky robot!<br />
         Check back soon, he usually gets bored and comes back fairly quickly.
       </div>
     <% else %>
-      <div class="cell small-12">
+      <div class="md:col-span-2 lg:col-span-3">
         I've existed for <%= @marvin_lifespan_seconds_since_launch |> Number.Delimit.number_to_delimited(precision: 0) %> seconds,
         each of which feel to me like a thousand years feels to you.
         It's been a long <%= @marvin_lifespan_marvinyears_since_launch |> Number.Human.number_to_human %> years.
@@ -28,7 +24,7 @@
         Out of boredom I monitor a number of trivial details, which your puny mind probably finds important. Let me list a small fraction of them for you:
       </div>
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>APRS</h3>
         <ul>
           <li>In the last hour <%= @aprs_beacons_1hr_count |> Number.Delimit.number_to_delimited(precision: 0) %> <%= if @aprs_beacons_1hr_count == 1, do: "callsign has", else: "callsigns have" %> beaconed in or around Valley Camp. I wonder if they're doing anything interesting.</li>
@@ -36,14 +32,14 @@
         </ul>
       </div>
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>Weather</h3>
         <ul>
           <li>I haven't bothered to check the weather. I'll get around to learning that one of these days.</li>
         </ul>
       </div>
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>Local Rivers</h3>
         <ul>
           <li>
@@ -54,7 +50,7 @@
         </ul>
       </div>
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>IRC</h3>
         In #wa7vc on irc.libera.chat:
         <ul>
@@ -67,7 +63,7 @@
         </ul>
       </div>
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>Github</h3>
         <ul>
           <li>
@@ -80,7 +76,7 @@
       </div>
 
 
-      <div class="cell small-12 medium-6 large-4 marvin-stat-block">
+      <div class="marvin-stat-block">
         <h3>About Myself</h3>
         That's so boring, why would you even care? <br />
         <ul>
