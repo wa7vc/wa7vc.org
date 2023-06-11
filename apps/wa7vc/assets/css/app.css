@@ -43,7 +43,7 @@ a {
 }
 
 #hero h1 {
-  @apply text-xl sm:text-3xl md:text-7xl;
+  @apply text-xl sm:text-3xl md:text-5xl xl:text-7xl mb-4;
   color: rgb(254,254,254);
   font-weight: bold;
   font-family: Oswald, Helvetica, san-serif;
@@ -52,7 +52,7 @@ a {
 }
 
 #hero h2 {
-  @apply text-lg sm:text-xl md:text-4xl mt-4
+  @apply text-lg sm:text-xl md:text-4xl mb-4
           mx-auto;
   color: rgb(254,254,254);
   font-weight: bold;
@@ -60,7 +60,7 @@ a {
 }
 
 #hero img {
-  @apply mx-auto mt-4 mb-8;
+  @apply mx-auto mt-0 mb-0;
 }
 
 
@@ -103,8 +103,7 @@ a {
 }
 
 #content > section > div {
-  @apply pt-1 md:pt-[4rem];
-  padding-bottom:1rem;
+  @apply pb-1 md:pb-[4rem];
   padding-right: 3rem;
   padding-left: 3rem;
   max-width: 90rem;
