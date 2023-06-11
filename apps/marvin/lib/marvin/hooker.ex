@@ -45,29 +45,69 @@ defmodule Marvin.Hooker do
 
       case hook_event do
         "push" -> 
-          if Map.has_key?(hook, "commits") do
-            commit_count = Enum.count(hook["commits"])
-            STM.increment(:github_pushes_with_commits_count)
-            STM.increment(:github_commits_count, commit_count)
-
-            Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} commits on #{hook["ref"]} were pushed.")
-            PubSub.pingmsg("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} times!")
+          case hook["repository"]["name"] do
+            "wa7vc.org" -> push_to_wa7vc_dot_org(hook)
+            "marvins_drone" -> push_to_marvins_drone(hook)
+            _ -> push_to_other(hook)
           end
         "delete" ->
-          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just reprogrammed me with a very large axe! #{hook["ref-type"]} #{hook["ref"]} deleted!")
-          PubSub.pingmsg("#{hook["sender"]["login"]} just reprogrammed me with a very large axe!")
-        "create" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} pushed #{hook["ref_type"]} #{hook["ref"]}.")
-        "repository_vulnerability_alert" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} says we may have a vulnerabiity in #{hook["alert"]["affected_package_name"]}. No wonder my diodes hurt.")
-        "pull_request" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} a pull request. (#{hook["pull_request"]["html_url"]})")
-        "issues" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
-        "issue_comment" -> Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} comment on issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
-        :no_event -> Marvin.IrcRobot.irc_wa7vc_send("GitHub just said something that I couldn't understand... That's a bit worrying.")
+          case hook["repository"]["name"] do
+            "wa7vc.org" -> delete_to_wa7vc_dot_org(hook)
+            _ -> delete_to_other(hook)
+          end
+        "create" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} pushed #{hook["ref_type"]} #{hook["ref"]}.")
+          PubSub.pingmsg("Something new has been created....")
+        "repository_vulnerability_alert" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} says #{hook["repository"]["name"]} may have a vulnerabiity in #{hook["alert"]["affected_package_name"]}. No wonder my diodes hurt.")
+        "pull_request" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} a pull request for #{hook["repository"]["name"]}. (#{hook["pull_request"]["html_url"]})")
+          PubSub.pingmsg("#{hook["sender"]["login"]} #{hook["action"]} a <a href=\"#{hook["pull_request"]["html_url"]}\">pull request for #{hook["repository"]["name"]}</a>")
+        "issues" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} issue: #{hook["issue"]["title"]} on #{hook["repository"]["name"]} (#{hook["issue"]["html_url"]})")
+          PubSub.pingmsg("#{hook["sender"]["login"]} #{hook["action"]} issue: <a href=\"#{hook["issue"]["html_url"]}\">#{hook["issue"]["title"]} on #{hook["repository"]["name"]}</a>")
+        "issue_comment" ->
+          Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} #{hook["action"]} comment on issue: #{hook["issue"]["title"]} (#{hook["issue"]["html_url"]})")
+          PubSub.pingmsg("#{hook["sender"]["login"]} #{hook["action"]} comment on issue: <a href=\"#{hook["issue"]["html_url"]}\">#{hook["issue"]["title"]}</a>")
+        :no_event ->
+          Marvin.IrcRobot.irc_wa7vc_send("GitHub just said something that I couldn't understand... That's a bit worrying.")
+          PubSub.pingmsg("GitHub just said something that I couldn't understand... That's a bit worrying.")
         _ -> 
           Marvin.IrcRobot.irc_wa7vc_send("GitHub just sent me a #{hook_event} webhook, but I'm ignoring it...")
           PubSub.pingmsg("GitHub just sent me a webhook, but I'm ignoring it...")
       end
     end
-  end
 
+    defp push_to_wa7vc_dot_org(hook) do
+      if Map.has_key?(hook, "commits") do
+        commit_count = Enum.count(hook["commits"])
+        STM.increment(:github_pushes_with_commits_count)
+        STM.increment(:github_commits_count, commit_count)
+
+        Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} commits on #{hook["ref"]} were pushed.")
+        PubSub.pingmsg("#{hook["sender"]["login"]} just twiddled my bits on github! #{commit_count} times!")
+      end
+    end
+
+    defp push_to_marvins_drone(_hook) do
+      Marvin.IrcRobot.irc_wa7vc_send("The drones are being updated...")
+      PubSub.pingmsg("The drones are being updated...")
+    end
+
+    defp push_to_other(hook) do
+      Marvin.IrcRobot.irc_wa7vc_send("I just received a webhook for #{hook["repository"]["name"]}, but I don't know what to do with it.")
+      PubSub.pingmsg("I just received a webhook for #{hook["repository"]["name"]}, but I don't know what to do with it.")
+    end
+
+    defp delete_to_wa7vc_dot_org(hook) do
+      Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just reprogrammed me with a very large axe! #{hook["ref-type"]} #{hook["ref"]} deleted!")
+      PubSub.pingmsg("#{hook["sender"]["login"]} just reprogrammed me with a very large axe!")
+    end
+
+    defp delete_to_other(hook) do
+      Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just deleted #{hook["ref-type"]} #{hook["ref"]} on #{hook["repository"]["name"]}.")
+    end
+
+  end
 end
 
