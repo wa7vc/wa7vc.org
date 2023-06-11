@@ -1,58 +1,60 @@
-<%= render_shared("hero.html", assigns) %>
+<.hero />
 
 <section id="about" class="bg-light">
-  <div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-7">
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="">
       <h5>Who we are</h5>
       <p>WA7VC, the Valley Camp Amateur Radio Group, serving the Upper Snoqualmie Valley community since 1995.</p>
-
       <p>
         The home of WA7VC is <a href="https://valleycamp.org/">Valley Camp <i class="fas fa-external-link-alt"></i></a>, located 6 miles NE of North Bend WA.<br />
         We have onsite a tower with a 10/15/20 meter beam and 2m/440 high gain vertical.<br />
         5 trees on the property have pulleys at or above 80' allowing for easy long wire installations.
       </p>
-
-      <div class="p-spacer"></div>
-
-      <h5>Getting Involved</h5>
-      Donations to support ongoing ham radio activities can be made to <a href="https://valleycamp.org">Valley Camp <i class="fas fa-external-link-alt"></i></a>, a 501(c)3 organization. Indicate you are supporting WA7VC.
     </div>
 
-    <div class="cell medium-5 hide-for-small-only">
-      <img src={Routes.static_path(@conn, "/images/antenna-class-500x500.png")} alt="Antenna Workshop in the field" /> 
+    <div class="row-span-2 mx-auto">
+      <img src={~p"/images/antenna-class-500x500.png"} alt="Antenna Workshop in the field" /> 
+    </div>
+
+    <div>
+      <h5>Getting Involved</h5>
+      Donations to support ongoing ham radio activities can be made to <a href="https://valleycamp.org">Valley Camp <i class="fas fa-external-link-alt"></i></a>, a 501(c)3 organization. Indicate you are supporting WA7VC.
     </div>
   </div>
 </section>
 
 <section id="on-air" class="bg-dark">
-  <div class="section-drop-image">
-    <img src={Routes.static_path(@conn, "/images/picnictable-workbench-1024x240.png")} alt="Piles of computers or a picnic table" />
+  <div class="section-drop-image mx-auto">
+    <img src={~p"/images/picnictable-workbench-1024x240.png"} alt="Piles of computers or a picnic table" />
   </div>
-  <div class="grid-x grid-margin-x">
-    <div class="cell small-12 medium-7">
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="px-4">
       <h5>On the air</h5>
-      There are a number of ways to reach us either via good 'ol RF or the internet:
-      <ul>
-        <li>70cm Simplex: 446.525 (no tone)</li>
-        <li>Echolink: Node 98045 (or Valley Camp)</li>
-        <li>IRLP: 7808</li>
-        <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
-        <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
-        <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
-        <li>Winlink: W7EFR-4 on 144.950Mhz, Mode: Packet/Packet 1200, Gridsquare: CN97DL, Antenna: Omni</li>
-      </ul>
-
-      Our on-site EchoIRLP node is powered by a Raspberry Pi. It offers the following commands:
-      <ul>
-        <li>*1 - Read the current time</li>
-        <li>*81 - Read data from Snoqualmie Falls river gauging station</li>
-        <li>*82 - Read data from North Fork river gauging station</li>
-        <li>*83 - Read data from Middle Fork river gauging station</li>
-        <li>*84 - Read data from South Fork river gauging station</li>
-      </ul>
+      <p>
+        There are a number of ways to reach us either via good 'ol RF or the internet:
+        <ul class="list-disc list-inside">
+          <li>70cm Simplex: 446.525 (no tone)</li>
+          <li>Echolink: Node 98045 (or Valley Camp)</li>
+          <li>IRLP: 7808</li>
+          <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
+          <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
+          <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
+          <li>Winlink: W7EFR-4 on 144.950Mhz, Mode: Packet/Packet 1200, Gridsquare: CN97DL, Antenna: Omni</li>
+        </ul>
+      </p>
+      <p class="mt-4">
+        Our on-site EchoIRLP node is powered by a Raspberry Pi. It offers the following DTMF commands:
+        <ul class="list-disc list-inside">
+          <li>*1 - Read the current time</li>
+          <li>*81 - Read data from Snoqualmie Falls river gauging station</li>
+          <li>*82 - Read data from North Fork river gauging station</li>
+          <li>*83 - Read data from Middle Fork river gauging station</li>
+          <li>*84 - Read data from South Fork river gauging station</li>
+        </ul>
+      </p>
     </div>
 
-    <div class="cell medium-5 hide-for-small-only">
+    <div class="">
       <h5>But what's the weather?</h5>
       Our Davis VantagePro2 Plus weather station provides data to the following sites:
       <ul>
@@ -65,31 +67,32 @@
 </section>
 
 <section id="events" class="bg-medium">
-  <div class="grid-x grid-margin-x">
-    <div class="cell medium-5 hide-for-small-only">
-      <img src={Routes.static_path(@conn, "/images/balloon-500x500.png")} alt="Preppeing a balloon for launch" /> 
-    </div>
-
-    <div class="cell small-12 medium-7">
+  <div class="grid md:order-1 md:grid-cols-2 gap-4">
+    <div class="">
       <h5>Events</h5>
       WA7VC has hosted many Ham Radio Events over the years including: 
       <ul>
+        <li><a href={~p"/summergathering"}>(NWAPRS) Summer Gathering</a></li>
+        <li><a href={~p"/dmrgathering"}>PNW DMR Gathering</a></li>
         <li><a href="https://www.winterfieldday.com/">Winter Field Day <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="http://www.arrl.org/field-day">ARRL Field Day <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="https://sites.google.com/site/pnwqrpgroup/salmoncon">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href={Routes.page_path(@conn, :summergathering)}>(NWAPRS) Summer Gathering</a></li>
         <li><a href="http://www.wwdxc.org/salmonrun2020/">Salmon Run <i class="fas fa-external-link-alt"></i></a></li>
         <li><a href="https://www.scouting.org/jota/">BSA JOTA/JOTI <i class="fas fa-external-link-alt"></i></a></li>
       </ul>
-
+    </div>
+    <div class="md:order-first md:row-span-2 mx-auto">
+      <img src={~p"/images/balloon-500x500.png"} alt="Preppeing a balloon for launch" /> 
+    </div>
+    <div>
       <h5>Calendar</h5>
       Our upcoming schedule of events is:
       <ul>
         <li>June 23-25, 2023: Field Day</li>
         <li>July 5-10, 2023: <a href="https://sites.google.com/site/pnwqrpgroup/salmoncon">SalmonCon <i class="fas fa-external-link-alt"></i></a></li>
         <li>July 15, 2023: WARTS picnic</li>
-        <li>July 28-30, 2023: <a href={Routes.page_path(@conn, :dmrgathering)}>PNW DMR Gathering</a></li>
-        <li>September 8-10, 2023: <a href={Routes.page_path(@conn, :summergathering)}>Summer Gathering</a></li>
+        <li>July 28-30, 2023: <a href={~p"/dmrgathering"}>PNW DMR Gathering</a></li>
+        <li>September 8-10, 2023: <a href={~p"/summergathering"}>Summer Gathering</a></li>
       </ul>
     </div>
   </div>

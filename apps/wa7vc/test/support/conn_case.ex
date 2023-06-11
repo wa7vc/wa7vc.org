@@ -17,13 +17,15 @@ defmodule Wa7vcWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint Wa7vcWeb.Endpoint
+
+      use Wa7VcWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
       import Wa7vcWeb.Router.Helpers
-
-      # The default endpoint for testing
-      @endpoint Wa7vcWeb.Endpoint
     end
   end
 

@@ -1,22 +1,28 @@
-@import "../node_modules/foundation-sites/dist/css/foundation.css";
-
-/* This file is for your main application css. */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 body {
   background: rgb(255,255,255);
   color: rgb(0,0,0);
 }
 
-#mainlink {
-  color: rgb(0,0,0);
-  text-decoration: none;
+a {
+  @apply text-sky-600 hover:underline hover:text-sky-800;
 }
 
 #header {
-  font-size: 1.5rem;
-  font-weight: bold;
+  @apply md:sticky md:top-0 bg-neutral-200
+          font-bold text-lg md:text-2xl lg:text-3xl;
   font-family: Jura, san-serif;
   z-index: 99;
+}
+#header a.logo {
+  @apply text-black no-underline sm:pr-7;
+}
+#header a {
+  @apply hover:underline;
+  color:rgb(23, 121, 186);
 }
 
 #pingmsg-li {
@@ -29,48 +35,15 @@ body {
   display: none;
 }
 
-#flash-alert-container {
-  background-color: rgb(56,56,56);
-  padding: 40px;
-  padding-left: 80px;
-  padding-right: 80px;
-}
-
-.live-flash-container {
-  padding: 0px;
-  margin: 0px;
-}
-.live-flash-container p:empty {
-  display:none;
-}
-.live-flash-container p {
-  padding: 40px;
-  padding-left: 80px;
-  padding-right: 80px;
-}
-
-#flash-alert-container .alert {
-  text-align: center;
-  font-size: 2rem;
-}
-
-.alert-danger {
-  background: rgb(191, 36, 9);
-  color: rgb(255, 255, 255);
-}
-
-.alert-info {
-  background: rgb(215, 255, 142);
-  color: rgb(0, 0, 0);
-}
-
 #hero {
+  @apply pb-0;
   background-color: rgb(56,56,56);
   text-align: center;
   padding-top:30px;
 }
 
 #hero h1 {
+  @apply text-xl sm:text-3xl md:text-5xl xl:text-7xl mb-4;
   color: rgb(254,254,254);
   font-weight: bold;
   font-family: Oswald, Helvetica, san-serif;
@@ -79,44 +52,23 @@ body {
 }
 
 #hero h2 {
+  @apply text-lg sm:text-xl md:text-4xl mb-4
+          mx-auto;
   color: rgb(254,254,254);
   font-weight: bold;
   font-family: Jura, Helvetica, san-serif;
-  padding-bottom: 350px;
-  margin-left: 25%;
-  margin-right: 25%;
 }
 
 #hero img {
-  margin-left: 25%;
-  margin-right: 25%;
+  @apply mx-auto mt-0 mb-0;
 }
 
-#hero-image {
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-  padding-top: 12rem;
-}
-#hero-image img {
-  position: absolute;
-  top: -315px;
-  z-index: 50;
-  left: 50%;
-  width: auto;
-  transform: translateX(-50%);
-}
-
-.menu-text {
-  font-size: 1.3rem;
-}
 
 #content {
 
 }
 
 #content > section#prev-next {
-  transform: translateY(-150%);
 }
 
 #content > section#prev-next > div {
@@ -137,9 +89,9 @@ body {
 }
 
 #content > section > .section-drop-image {
+  @apply min-h-[100px] md:min-h-[250px];
   text-align: center;
   position: relative;
-  min-height:250px;
 }
 #content > section > .section-drop-image > img {
   position: absolute;
@@ -151,8 +103,7 @@ body {
 }
 
 #content > section > div {
-  padding-top:4rem;
-  padding-bottom:1rem;
+  @apply pb-1 md:pb-[4rem];
   padding-right: 3rem;
   padding-left: 3rem;
   max-width: 90rem;
@@ -167,29 +118,35 @@ body {
 }
 
 #content > section h5 {
+  @apply mt-4;
   font-size: 2.5rem;
   font-weight: bold;
   font-family: Jura, san-serif;
 }
 
 #content > section p {
-  
+  @apply pt-4;
 }
 
-.schedule-list {
-  list-style-type: none;
+#content > section ul {
+  @apply list-disc list-inside;
 }
 
-.schedule-list > li {
+
+#content #event-schedule ul.schedule-list {
+  @apply list-none;
+}
+
+#content #event-schedule ul.schedule-list > li {
   margin-bottom: 0.8rem;
 }
 
-.schedule-list > li > time {
+#content #event-schedule ul.schedule-list > li > time {
   font-weight: bold;
   font-size: 1.1rem;
   border-bottom: 2px solid black;
 }
-.schedule-list > li > time:after {
+#content #event-schedule ul.schedule-list > li > time:after {
   content: "";
   display: block;
 }
@@ -215,9 +172,7 @@ body {
 }
 
 #footer #footer-contact-header {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: bold;
+  @apply text-2xl md:text-4xl font-bold text-center;
   font-family: Jura, san-serif;
 }
 
@@ -229,8 +184,11 @@ body {
   font-size: 0.8rem;
 }
 
+.follow_curve::after {
+
+}
+
 .upper-curve {
-  position: relative;
 }
 
 .upper-curve::after {
@@ -240,7 +198,7 @@ body {
     display: block;
     height: 50px;
     position: absolute;
-    top: -57px;
+    top: -49px;
     width: 100%;
     z-index: 1;
 }
@@ -249,5 +207,12 @@ body {
   min-height: 50px;
 }
 
-.marvin-stat-block {
+#content > section .marvin-stat-block {
+
+}
+#content > section .marvin-stat-block h3 {
+  @apply font-bold text-xl lg:text-2xl mb-2 lg:mb-4;
+}
+#content > section .marvin-stat-block ul {
+  @apply list-outside pl-5;
 }

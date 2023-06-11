@@ -11,16 +11,10 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
-import $ from "jquery"
-require('what-input')
-window.$ = $;
-import Foundation from 'foundation-sites';
-
-import "../css/app.css"
 import "phoenix_html"
 import {Socket} from "phoenix"
-import topbar from "topbar"
 import {LiveSocket} from "phoenix_live_view"
+import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
@@ -45,5 +39,3 @@ window.liveSocket = liveSocket
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 import socket from "./socket"
-
-$(document).foundation();
