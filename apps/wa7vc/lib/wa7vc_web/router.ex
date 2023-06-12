@@ -8,6 +8,7 @@ defmodule Wa7vcWeb.Router do
     plug :fetch_live_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :put_flash_from_params
     plug :put_root_layout, {Wa7vcWeb.Layouts, :root}
   end
 
@@ -39,6 +40,14 @@ defmodule Wa7vcWeb.Router do
     scope "/" do
       pipe_through :browser
       live_dashboard "/phx-dashboard", metrics: Wa7vcWeb.Telemetry
+    end
+  end
+  
+  def put_flash_from_params(conn, _opts) do
+    case conn.query_params["flash_error"] do
+      "404" -> put_flash(conn, :error, "The page you were looking for could not be found")
+      "500" -> put_flash(conn, :error, "Whoops, looks like that page had an error.")
+      _ -> conn 
     end
   end
 end
