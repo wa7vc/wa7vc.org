@@ -46,14 +46,14 @@ defmodule Marvin.Hooker do
       case hook_event do
         "push" -> 
           case hook["repository"]["name"] do
-            "wa7vc.org" -> push_to_wa7vc_dot_org(hook)
-            "marvins_drone" -> push_to_marvins_drone(hook)
-            _ -> push_to_other(hook)
+            "wa7vc.org" -> gh_push_to_wa7vc_dot_org(hook)
+            "marvins_drone" -> gh_push_to_marvins_drone(hook)
+            _ -> gh_push_to_other(hook)
           end
         "delete" ->
           case hook["repository"]["name"] do
-            "wa7vc.org" -> delete_to_wa7vc_dot_org(hook)
-            _ -> delete_to_other(hook)
+            "wa7vc.org" -> gh_delete_to_wa7vc_dot_org(hook)
+            _ -> gh_delete_to_other(hook)
           end
         "create" ->
           Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} pushed #{hook["ref_type"]} #{hook["ref"]}.")
@@ -78,7 +78,7 @@ defmodule Marvin.Hooker do
       end
     end
 
-    defp push_to_wa7vc_dot_org(hook) do
+    defp gh_push_to_wa7vc_dot_org(hook) do
       if Map.has_key?(hook, "commits") do
         commit_count = Enum.count(hook["commits"])
         STM.increment(:github_pushes_with_commits_count)
@@ -89,22 +89,22 @@ defmodule Marvin.Hooker do
       end
     end
 
-    defp push_to_marvins_drone(_hook) do
+    defp gh_push_to_marvins_drone(_hook) do
       Marvin.IrcRobot.irc_wa7vc_send("The drones are being updated...")
       PubSub.pingmsg("The drones are being updated...")
     end
 
-    defp push_to_other(hook) do
+    defp gh_push_to_other(hook) do
       Marvin.IrcRobot.irc_wa7vc_send("I just received a webhook for #{hook["repository"]["name"]}, but I don't know what to do with it.")
       PubSub.pingmsg("I just received a webhook for #{hook["repository"]["name"]}, but I don't know what to do with it.")
     end
 
-    defp delete_to_wa7vc_dot_org(hook) do
+    defp gh_delete_to_wa7vc_dot_org(hook) do
       Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just reprogrammed me with a very large axe! #{hook["ref-type"]} #{hook["ref"]} deleted!")
       PubSub.pingmsg("#{hook["sender"]["login"]} just reprogrammed me with a very large axe!")
     end
 
-    defp delete_to_other(hook) do
+    defp gh_delete_to_other(hook) do
       Marvin.IrcRobot.irc_wa7vc_send("#{hook["sender"]["login"]} just deleted #{hook["ref-type"]} #{hook["ref"]} on #{hook["repository"]["name"]}.")
     end
 
