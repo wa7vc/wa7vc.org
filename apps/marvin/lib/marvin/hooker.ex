@@ -30,6 +30,11 @@ defmodule Marvin.Hooker do
     {:noreply, state}
   end
 
+  def handle_info(%{source: "marvins_drone", delivery: hook_guid, event: hook_event, body: hook_body}, state) do
+    Implementation.handle_raw_drone_hook(hook_guid, hook_event, hook_body)
+    {:norelpy, state}
+  end
+
 
 
   defmodule Implementation do
@@ -37,6 +42,11 @@ defmodule Marvin.Hooker do
 
     alias Marvin.PrefrontalCortex, as: STM
     alias Marvin.PubSub
+
+    def handle_raw_drone_hook(_hook_guid, hook_event, hook_body) do
+      Marvin.IrcRobot.irc_wa7vc_send("Won't someone silence these pesky drones?")
+      PubSub.pingmsg("Won't someone silence these pesky drones?")
+    end
 
     def handle_raw_github_hook(_hook_guid, hook_event, hook_body) do
       hook = Jason.decode!(hook_body)

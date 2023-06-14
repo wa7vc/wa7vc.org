@@ -36,6 +36,9 @@ defmodule Wa7vcWeb.Endpoint do
     mount: "/webhooks/github",
     secret: Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:github_webhook_secret]
 
+  plug Wa7vcWeb.Plugs.MarvinsDroneWebhookReceiver,
+    mount: "/webhooks/drones"
+
   plug Phoenix.LiveDashboard.RequestLogger,
     param_key: "request_logger",
     cookie_key: "request_logger"
