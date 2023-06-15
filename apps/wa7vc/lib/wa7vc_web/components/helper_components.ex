@@ -24,7 +24,7 @@ defmodule Wa7vcWeb.HelperComponents do
         <h1><%= render_slot(@h1) || "WA7VC" %></h1>
         <h2><%= render_slot(@h2) || "Ham Radio in the Snoqualmie Middle Fork Valley" %></h2>
         <img src={ @image } alt={ @image_alt } />
-        <img src="/images/wave-top-white.svg" alt="A background image of a sine wave" />
+        <img src="/images/wave-top-white.svg" alt="A background image of a sine wave" class="translate-y-1"/>
       </div>
     """
   end
