@@ -4,8 +4,8 @@ defmodule Marvin.MixProject do
   def project do
     [
       app: :marvin,
-      version: "0.3.12",
-      elixir: "~> 1.12",
+      version: "0.4.0",
+      elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
