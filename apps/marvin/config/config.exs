@@ -7,7 +7,6 @@ config :marvin, topologies: [
     ]
 ]
 
-
 config :marvin, Marvin.IrcRobot,
   adapter: Hedwig.Adapters.IRC,
   server: "irc.libera.chat",
@@ -27,7 +26,6 @@ config :marvin, Marvin.IrcRobot,
     {Marvin.Responders.RiverGauges, []},
   ]
 
-
 config :marvin, Marvin.Aprs,
   server: 'noam.aprs2.net',
   port: 14580,
@@ -37,15 +35,8 @@ config :marvin, Marvin.Aprs,
 
 config :sentry,
   included_environments: [:prod],
-  dsn: "${MARVIN_SENTRY_DSN}",
-  environment_name: :prod,
   enable_source_code_context: true,
-  root_source_code_path: File.cwd!(),
-  tags: %{
-    env: "production"
-  },
-  release: "marvin@#{Mix.Project.config[:version]}"
-
+  root_source_code_path: File.cwd!()
 
 config :marvin,
   environment: Mix.env(),
@@ -79,7 +70,4 @@ config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 # by uncommenting the line below and defining dev.exs, test.exs and such.
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
-#
-#     import_config "#{Mix.env}.exs"
-
 import_config "#{Mix.env()}.exs"

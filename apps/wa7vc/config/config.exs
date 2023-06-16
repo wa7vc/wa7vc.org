@@ -33,7 +33,7 @@ config :wa7vc, Wa7vc.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.41",
+  version: "0.17.11",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
@@ -70,14 +70,8 @@ config :wa7vc, topologies: [
 
 config :sentry,
   included_environments: [:prod],
-  dsn: "${WA7VC_SENTRY_DSN}",
-  environment_name: :prod,
   enable_source_code_context: true,
-  root_source_code_path: File.cwd!,
-  tags: %{
-    env: "production"
-  },
-  release: "wa7vc@#{Mix.Project.config[:version]}"
+  root_source_code_path: File.cwd!
 
 
 # Import environment specific config. This must remain at the bottom

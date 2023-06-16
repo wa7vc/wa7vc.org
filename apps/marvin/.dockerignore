@@ -36,4 +36,4 @@ Dockerfile
 contrib
 docker-compose.yml
 docs
-tmp/
+_tmp/

@@ -2,10 +2,13 @@ defmodule Wa7vcWeb.Endpoint do
   use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :wa7vc
 
+  # The session will be stored in the cookie and signed,
+  # this means its contents can be read but not tampered with.
+  # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
     key: "_wa7vc_web_key",
-    signing_salt: "QczfYGF+"  # TODO: Not that we're using it right now anyway, but this needs to get moved to ENV
+    signing_salt: Application.get_env(:wa7vc, Wa7vcWeb.Endpoint)[:live_view][:signing_salt]
   ]
 
   socket "/socket", Wa7vcWeb.UserSocket,
@@ -56,9 +59,6 @@ defmodule Wa7vcWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  # The session will be stored in the cookie and signed,
-  # this means its contents can be read but not tampered with.
-  # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session, @session_options
 
   plug Wa7vcWeb.Router

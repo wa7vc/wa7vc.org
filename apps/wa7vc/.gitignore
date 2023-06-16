@@ -6,8 +6,8 @@
 # Also ignore archive artifacts (built via "mix archive.build").
 /*.ez
 
-# Temporary files, for example, from tests.
-/tmp/
+# Temporary files, for example, from tests, or deployment artifacts
+/_tmp/
 
 # Generated on crash by the VM
 erl_crash.dump

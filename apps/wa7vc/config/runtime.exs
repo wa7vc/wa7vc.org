@@ -17,7 +17,7 @@ import Config
 # Alternatively, you can use `mix phx.gen.release` to generate a `bin/server`
 # script that automatically sets the env var above.
 if System.get_env("PHX_SERVER") do
-  config :phx_example, Wa7vcWeb.Endpoint, server: true
+  config :wa7vc, Wa7vcWeb.Endpoint, server: true
 end
 
 if config_env() == :prod do
@@ -48,6 +48,22 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
+  # The live_view salt used to sign data sent to the client
+  live_view_salt = 
+    System.get_env("LIVEVIEW_SECRET_SALT") ||
+      raise """
+      environment variable LIVEVIEW_SECRET_SALT is missing.
+      """
+
+  # The sentry DSN is this application's custom DSN string for submitting
+  # errors to the Sentry.io service.
+  # Note that this has the WA7VC_ prefix so as not to conflict with Marvin
+  sentry_dsn = 
+    System.get_env("WA7VC_SENTRY_DSN") ||
+      raise """
+      environment variable WA7VC_SENTRY_DSN is missing.
+      """
+
   # The github webhook secret is used to verify that the webhooks are
   # actually coming from github, and can be obtained on the organization's
   # github settings page.
@@ -70,7 +86,12 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    secret_key_base: secret_key_base
+    secret_key_base: secret_key_base,
+    live_view: [signing_salt: live_view_salt],
+    github_webhook_secret: github_webhook_secret
+
+  config :sentry,
+    dsn: sentry_dsn
 
   # ## SSL Support
   #

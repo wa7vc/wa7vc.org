@@ -7,6 +7,9 @@
 # The directory Mix downloads your dependencies sources to.
 /deps/
 
+# Directory we'll use for test and deployment artifacts
+/_tmp/
+
 # Where 3rd-party dependencies like ExDoc output generated docs.
 /doc/
 
