@@ -68,12 +68,10 @@ defmodule Wa7vcWeb.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get"],
-      #setup: ["deps.get", "ecto.setup"],
+      setup: ["deps.get", "assets.setup", "assets.build"], # "ecto.setup"
       #"ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       #"ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["test"],
-      #test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["test"], # "ecto.create --quiet", "ecto.migrate --quiet", then "test"
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
