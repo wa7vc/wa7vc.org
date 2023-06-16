@@ -8,13 +8,12 @@ Group=wa7vc
 WorkingDirectory=/home/wa7vc/apps/wa7vc
 Environment=LANG=en_US.UTF-8
 Environment=RELEASE_COOKIE="{{ ERLANG_COOKIE }}"
-Environment=PHX_SERVER=true
 Environment=PORT=49515
 Environment=SECRET_KEY_BASE="{{ SECRET_KEY_BASE }}"
 Environment=LIVEVIEW_SECRET_SALT="{{ LIVEVIEW_SECRET_SALT }}"
 Environment=GITHUB_WEBHOOK_SECRET="{{ GITHUB_WEBHOOK_SECRET }}"
 Environment=WA7VC_SENTRY_DSN="{{ WA7VC_SENTRY_DSN }}"
-ExecStart=/home/wa7vc/apps/wa7vc/bin/wa7vc start
+ExecStart=/home/wa7vc/apps/wa7vc/bin/server
 SyslogIdentifier=wa7vc
 RemainAfterExit=no
 Restart=on-failure
