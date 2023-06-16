@@ -8,6 +8,7 @@ defmodule Marvin.MixProject do
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -40,6 +41,13 @@ defmodule Marvin.MixProject do
       {:libcluster, "~> 3.2"},
       {:con_cache, "~> 1.0"},
       {:mox, "~> 1.0.0", only: :test},
+    ]
+  end
+
+  defp aliases do
+    [
+      setup: ["deps.get"],
+      test: ["test"],
     ]
   end
 end
