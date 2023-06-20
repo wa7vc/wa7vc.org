@@ -190,7 +190,7 @@ defmodule Wa7vcWeb.CoreComponents do
     <.flash
       id="disconnected"
       kind={:error}
-      title="We can't find the internet"
+      title="Your browser has lost connection to the server..."
       close={false}
       autoshow={false}
       phx-disconnected={show("#disconnected")}
