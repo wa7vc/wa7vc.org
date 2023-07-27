@@ -1,3 +1,6 @@
+@moduledoc """
+PrefrontalCortex is Marvin's memory. Backed by ETS, this is where we can store key/value pairs, counters, or 
+"""
 defmodule Marvin.PrefrontalCortex do
   use GenServer
   alias Marvin.PubSub
@@ -66,6 +69,7 @@ defmodule Marvin.PrefrontalCortex do
     {:ok, %{:bootup_timestamp => Timex.now()}}
   end
 
+  # Handle some custom calculated keys first, and then dump to the ETS table if we haven't matched yet
   def handle_call({:get, :seconds_since_launch}, _from, state) do
     {:reply, {:ok, Marvin.Application.since_released(:seconds)}, state}
   end

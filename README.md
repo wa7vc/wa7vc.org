@@ -19,6 +19,19 @@ To begin development:
   * `asdf install` to install the correct erlang/elixir/nodejs versions using ASDF`
 then follow the instructions for each app in the apps/ directory.
 
+### Version Updates
+In order to release a new version the version number must be updated in mix.exs, for example:
+```elixir
+def project do
+[
+  app: :wa7vc,
+  version: "0.3.18",
+]
+end
+'''
+Once that change is comitted, a git tag must be created for the application and version number combination: `git tag -a wa7vc@0.3.18` (`-m "tag description"` is optional), and tags should be pushed with `git push origin --tags`
+The deployment process will build and deploy the specific application, at that version tag, so you can update the project version at any time, just so long as the version number and the tag version number match as of the tagged commit.
+
 ## Deployment
 The ansible playbook will do a couple of useful steps besides simply running the compile and deploying the result.  
 In order to prevent compiling in un-comitted code, the playbook will ensure that the repo is in a sane state, with a app@version tag as the most recent commit, and no un-comitted code.  

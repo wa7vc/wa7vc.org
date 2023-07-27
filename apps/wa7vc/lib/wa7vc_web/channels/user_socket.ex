@@ -4,6 +4,8 @@ defmodule Wa7vcWeb.UserSocket do
   ## Channels
   # channel "room:*", Wa7vcWeb.RoomChannel
   channel "website:*", Wa7vcWeb.WebsiteChannel
+  channel "drone:*", Wa7vcWeb.DroneChannel
+
 
   ## Transports
 
