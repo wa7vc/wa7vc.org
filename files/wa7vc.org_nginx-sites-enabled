@@ -3,15 +3,12 @@ upstream wa7vc_phoenix_upstream {
 }
 
 server {
-  listen 443 ssl http2;
-  listen [::]:443 ssl http2 ipv6only=on;
+  listen 80;
+  listen [::]:80;
   server_name wa7vc.org www.wa7vc.org;
 
   gzip on;
   client_max_body_size 2M;
-
-  ssl_certificate /etc/letsencrypt/live/wa7vc.org/fullchain.pem; # managed by Certbot
-  ssl_certificate_key /etc/letsencrypt/live/wa7vc.org/privkey.pem; # managed by Certbot
 
   location / {
     allow all;
