@@ -259,34 +259,23 @@ defmodule Wa7vcWeb.SGController do
       """,
     },
     "2023" => %SGPage{
+      meta_desc: "2023 Summer Gathering has been cancelled",
+      cancelled: true,
       date: "September 8-10",
       about_header: "26th Annual Summer Gathering",
       about_content: """
-        <p>And we're back!</p>
-        <p>Summer Gathering is happening once more, hopefully just as good as we all remember! We're still working on putting together the schedule, and we'll keep this page updated with details as they become available.</p>
-        <p>As always, the event will be held at <a href="https://valleycamp.org">Valley Camp</a>. For reservations please contact <a href="mailto:info@valleycamp.org">info@valleycamp.org</a>.</p>
-        <p>For questions, please contact <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>.</p>
-        <p>To stay up to date on the latest news, <a href="https://tinyletter.com/nwaprssg">sign up for the newsletter <i class="fas fa-external-link-alt"></i></a>. (We promise, we don't send too many emails!)</p>
-        <p>If you are planning to attend the event please fill out <a href="https://docs.google.com/forms/d/e/1FAIpQLSdGf7MDaeIsDe4nKCKhEcbHStU2M8p78KK7D_qZ-dG5su9Bpg/viewform?usp=sf_link">this RSVP form <i class="fas fa-external-link-alt"></i></a> so we make sure nobody goes hungry!</p>
-        <p>
-          Event Talk-In Frequency:
-          <ul>
-            <li>2m Simplex: 146.52 (no tone)</li>
-          </ul>
-          Other WA7VC local frequencies:
-          <ul>
-            <li>Echolink: Node 98045 (or Valley Camp)</li>
-            <li>IRLP: 7808</li>
-            <li>DSTAR: WA7VC B on 440.01250Mhz + 5.000Mhz</li>
-            <li>DMR: NorthBend-ValleyCamp 440.7250 + 5.000Mhz (Talkgroup: Local 2)</li>
-            <li>APRS: WA7VC-10 Digi-iGate 144.390</li>
-          </ul>
-        </p>
+        <p><b>CANCELLED</b></p>
+        <p>Unfortunately the event this year isn't going to be able to take place.</p>
+        <p>We're working on our 2024 events though, so stay tuned to tuned to <a href="https://wa7vc.org/#events">wa7vc.org</a> and we'll see you next year!</p>
       """,
       schedule_content: """
         <p>
-          We're still working on getting the schedule together! If you have any suggestions for presentations you'd be interested in or would like to give, contact us at <a href="mailto:summergathering@wa7vc.org">summergathering@wa7vc.org</a>!
+          If you've got a topic for a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
         </p>
+      """,
+      location_content: """
+        <p>Let's call it: On-Air and at all times.<br />Come join us via good old RF! We can't serve burgers that way, but it's <i>almost</i> as much fun.</p>
+        <p class="pt-6">73 DE WA7VC</p>
       """,
     },
   }
