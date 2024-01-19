@@ -4,7 +4,7 @@ defmodule Wa7vcWeb.Mixfile do
   def project do
     [
       app: :wa7vc,
-      version: "0.4.4",
+      version: "0.4.5",
       elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
