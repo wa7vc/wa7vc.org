@@ -202,6 +202,10 @@ defmodule Wa7vcWeb.SGController do
           <p>First star to the right and straight on to morning.</p>
         </div>
       """,
+      retrospective_content: """
+        <p>Social distancing couldn't stop us! A number of hams attended in their RVs, and much discussion was had via simplex radio! (It was easier than shouting at each other across the field...)</p>
+        <p>While it may not have been quite as fun as a normal gathering, it definitely illustrated the value of ham radio as a way to build community, even in times of isolation!</p>
+      """
     },
     "2021" => %SGPage{
       meta_desc: "2021 Summer Gathering is cancelled due to covid 19",
@@ -220,6 +224,10 @@ defmodule Wa7vcWeb.SGController do
           If you're interested in presenting a topic next year (2022) please let us know! It's never too early to start putting the schedule together!
         </p>
       """,
+      retrospective_content: """
+        <p>Unfortunately Washington State's COVID rules made it difficult to have a proper gathering once more this year. Once again we had people spending time in their RVs though, and now that we've all gotten used to the mask life there may even have been some appropriately-socially-distanced community time spent outdoors.</p>
+        <p>Ham radio just can't be stopped. :-)</p>
+      """
     },
     "2022" => %SGPage{
       date: "June 4th",
@@ -259,23 +267,152 @@ defmodule Wa7vcWeb.SGController do
       """,
     },
     "2023" => %SGPage{
-      meta_desc: "2023 Summer Gathering has been cancelled",
-      cancelled: true,
+      meta_desc: "2023 Summer Gathering",
       date: "September 8-10",
       about_header: "26th Annual Summer Gathering",
       about_content: """
-        <p><b>CANCELLED</b></p>
-        <p>Unfortunately the event this year isn't going to be able to take place.</p>
-        <p>We're working on our 2024 events though, so stay tuned to tuned to <a href="https://wa7vc.org/#events">wa7vc.org</a> and we'll see you next year!</p>
+        <p>Back from COVID, and back home in the mountains!</p>
+        <p>This year's conference is going to be more of an unconference model, where we'll be covering topics suggested by the attendees. Should be fun! The one topic we already know we'll be covering is how to use a TM-D710 as a digipeater/IGATE.<p>
       """,
       schedule_content: """
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
+          <div class="">
+            <h5>Friday (9/8):</h5>
+            <ul class="schedule-list">
+              <li>Campfires and snacks</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Saturday (9/9):</h5>
+            <ul class="schedule-list">
+              <li>0800-0900 Breakfast</li>
+              <li>0900 Presentations and Discussions</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Sunday (9/10):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+        </div>
+
         <p>
-          If you've got a topic for a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
+          If you've got a topic for for this or a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
         </p>
       """,
-      location_content: """
-        <p>Let's call it: On-Air and at all times.<br />Come join us via good old RF! We can't serve burgers that way, but it's <i>almost</i> as much fun.</p>
-        <p class="pt-6">73 DE WA7VC</p>
+    },
+    "2024" => %SGPage{
+      meta_desc: "2024 Summer Gathering",
+      date: "September 6-8",
+      about_header: "27th Annual Summer Gathering",
+      about_content: """
+        <p>Last year's community-driven approach was so successful that we're doing it again!</p>
+        <p>Come with questions, come with presenations! Impress your friends and neighbors!</p>
+      """,
+      schedule_content: """
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
+          <div class="">
+            <h5>Friday (9/6):</h5>
+            <ul class="schedule-list">
+              <li>Setup, campfires, community time</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Saturday (9/7):</h5>
+            <ul class="schedule-list">
+              <li>0800-0900: Breakfast</li>
+              <li>0900: Discussion and Presentations begin</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Sunday (9/8):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          If you've got a topic for for this or a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
+        </p>
+      """,
+      retrospective_content: """
+        <p>Much fun was had this weekend! The highlight was probably APRS Fox Hunting. Who doesn't love being lost in the woods?!</p>
+      """
+    },
+    "2025" => %SGPage{
+      meta_desc: "2025 Summer Gathering",
+      date: "September 5-7",
+      about_header: "28th Annual Summer Gathering",
+      about_content: """
+        <p>This year we're going back to basics and we're going to focus on modern APRS setup and operation, as well as the important differences between home and mobile settings.</p>
+        <p>The issue of frequency congestion continues to become more and more important, so keeping yourself up to date with the moden enviroment is an important way to be a good RF neighbor!</p>
+        <p>We're going free-form again this year and the discussion is going to be driven by who shows up! Come prepared with your questions and ideas!</p>
+      """,
+      schedule_content: """
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
+          <div class="">
+            <h5>Friday (9/5):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Saturday (9/6):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Sunday (9/7):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          If you've got a topic for for this or a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
+        </p>
+      """,
+    },
+    "2026" => %SGPage{
+      meta_desc: "2026 Summer Gathering",
+      date: "September 11-13",
+      about_header: "29th Annual Summer Gathering",
+      about_content: """
+        <p>If a 30th anniversary is the pearl anniversary, what's the 29th? Sand perhaps? Well, we're not going to the beach this year, so bring your own!</p>
+        <p>We're still finalizing the schedule for 2026, but we know we'll have some special guests, including K7GPS joining in via zoom for a special guest presentation!</p>
+      """,
+      schedule_content: """
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
+          <div class="">
+            <h5>Friday (9/11):</h5>
+            <ul class="schedule-list">
+              <li>Community time and s'mores at dusk.</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Saturday (9/12):</h5>
+            <ul class="schedule-list">
+              <li>0800: Breakfast</li>
+              <li>0900: Presentations begin.</li>
+            </ul>
+          </div>
+
+          <div class="">
+            <h5>Sunday (9/13):</h5>
+            <ul class="schedule-list">
+            </ul>
+          </div>
+        </div>
+
+        <p>
+          If you've got a topic for for this or a future gathering please reach out to us at <a href="mailto:info@wa7vc.org">info@wa7vc.org</a>, we'd love to hear from you!
+        </p>
       """,
     },
   }
